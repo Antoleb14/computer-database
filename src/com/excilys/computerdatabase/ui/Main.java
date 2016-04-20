@@ -4,18 +4,34 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.excilys.computerdatabase.model.Company;
-import com.excilys.computerdatabase.model.Computer;
+import com.excilys.computerdatabase.entity.Company;
+import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.persistence.CompanyDB;
 import com.excilys.computerdatabase.persistence.ComputerDB;
+import com.excilys.computerdatabase.service.Paginator;
 
+/**
+ * Main class for user interface
+ * @author excilys
+ *
+ */
 public class Main {
 
+	/**
+	 * Entry point of java program
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		menu(0);	
 	}
 
+	/**
+	 * Menu method
+	 * @param val Option selected
+	 */
 	private static void menu(int val) {
+		CompanyDB companies = new CompanyDB();
+		ComputerDB computer = new ComputerDB();
 		Scanner sc = new Scanner(System.in);
 		while(val<=0 || val>5){
 			System.out.println("Tapez un numéro correspondant à votre requète : ");
@@ -27,48 +43,62 @@ public class Main {
 			System.out.print("Indiquez votre choix : ");
 			val = enterInt(sc);
 		}
-		if(val == 1){
-			ComputerDB computer = new ComputerDB();
-			ArrayList<Computer> list = computer.findAll();
-			computer.closeConnection();
+		switch(val){
+			case 1:
+				int entry = 1;
+				do{
+					Paginator p = new Paginator(15);
+					ArrayList<Computer> computers = p.pager(entry);
+					int occ = 0;
+					for(Computer c : computers){
+						occ++;
+						System.out.println(occ +" - "+c);
+					}
+					entry = p.hud();
+					if(entry >0){
+						p.pager(entry);
+					}
+				}while(entry != 0);
+				break;
 			
-			for(Computer c : list){
-				System.out.println(c);
-			}
-			
-			
-			
-		}else if(val == 2){
-			CompanyDB companies = new CompanyDB();
-			ArrayList<Company> res = companies.findAll();
-			for(Company c : res){
-				System.out.println(c);
-			}
-			companies.closeConnection();
-			
-		}else if(val == 3){
-			System.out.println();
-			System.out.print("Which computer would you like to view : ");
-			int id = enterInt(sc);
-			ComputerDB computer = new ComputerDB();
-			Computer cmp = computer.find(id);
-			System.out.println(cmp);
-			System.out.println();
-			if(cmp != null){
-				System.out.print("Options: 1-Modifier, 2-Supprimer, 0-Retour => Votre choix :");
-				int opt = enterInt(sc);
-				options(cmp, opt);
-			}
-		}else if(val == 4){
-			Computer cmp = new Computer();
-			createComputer(cmp);
-		}else if(val == 5){
-			System.exit(0);
+			case 2:
+				ArrayList<Company> res = companies.findAll();
+				for(Company c : res){
+					System.out.println(c);
+				}
+				break;
+			case 3:
+				System.out.println();
+				System.out.print("Which computer would you like to view : ");
+				int id = enterInt(sc);
+				
+				Computer cmp = computer.find(id);
+				System.out.println(cmp);
+				System.out.println();
+				if(cmp != null){
+					System.out.print("Options: 1-Modifier, 2-Supprimer, 0-Retour => Votre choix :");
+					int opt = enterInt(sc);
+					options(cmp, opt);
+				}
+				break;
+			case 4:
+				Computer cmp1 = new Computer();
+				createComputer(cmp1);
+				break;
+			case 5:
+				System.exit(0);
+				break;
 		}
+		computer.closeConnection();
+		companies.closeConnection();
 		menu(0);
 
 	}
 
+	/**
+	 * UI method to create a computer
+	 * @param cmp object Computer in case of typing error
+	 */
 	private static void createComputer(Computer cmp) {
 		Scanner sc = new Scanner(System.in);
 		
@@ -128,7 +158,6 @@ public class Main {
 		System.out.print("Compagnie du Computer (0 = no company: ");
 		int company = enterInt(sc);
 		Company comp = companies.find(company);
-		companies.closeConnection();
 		
 		if(comp != null){
 			cmp.setCompany(comp);
@@ -137,16 +166,22 @@ public class Main {
 		System.out.println(cmp);
 		ComputerDB computer = new ComputerDB();
 		computer.create(cmp);
-		computer.closeConnection();
 		System.out.println("Computer has been created!");
 	}
 
+	
+	/**
+	 * UI method for the different options of a computer
+	 * @param cmp Computer
+	 * @param opt option selected (edit, remove or go back)
+	 */
 	private static void options(Computer cmp, int opt) {
 		Scanner sc = new Scanner(System.in);
+		ComputerDB computer = new ComputerDB();
+		CompanyDB companies = new CompanyDB();
 		if(opt == 2){
-			ComputerDB compDB = new ComputerDB();
-			compDB.delete(cmp);
-			compDB.closeConnection();
+			computer.delete(cmp);
+			computer.closeConnection();
 			System.out.println("The computer \""+ cmp.getName() +"\" has been removed from the database!");
 			
 		}
@@ -194,7 +229,6 @@ public class Main {
 			
 			// COMPANY INSERT
 			System.out.println("Liste des compagnies: ");
-			CompanyDB companies = new CompanyDB();
 			ArrayList<Company> res = companies.findAll();
 			
 			for(Company c : res){
@@ -204,16 +238,14 @@ public class Main {
 			System.out.print("Compagnie du Computer (0 = no company: ");
 			int company = enterInt(sc);
 			Company comp = companies.find(company);
-			companies.closeConnection();
-			
+
 			if(comp != null){
 				cmp.setCompany(comp);
 			}
 			
 			System.out.println(cmp);
-			ComputerDB computer = new ComputerDB();
 			computer.update(cmp);
-			computer.closeConnection();
+
 			System.out.println("Computer has been successfully edited!");
 		}
 		

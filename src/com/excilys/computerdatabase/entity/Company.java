@@ -1,10 +1,20 @@
-package com.excilys.computerdatabase.model;
+package com.excilys.computerdatabase.entity;
 
+/**
+ * Company Entity
+ * @author excilys
+ *
+ */
 public class Company {
 
 	private Long  id;
 	private String name;
 	
+	/**
+	 * Constructor of the class
+	 * @param l Id
+	 * @param name Name of the company
+	 */
 	public Company(Long l, String name) {
 		this.id = l;
 		this.name = name;

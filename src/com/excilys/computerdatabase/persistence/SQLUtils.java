@@ -4,6 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Singleton pattern for connection to the database
+ * @author excilys
+ *
+ */
 public final class SQLUtils {
 	
 	private Connection conn=null;
@@ -15,6 +20,9 @@ public final class SQLUtils {
     private static final String USER = "admincdb";
     private static final String PASS = "qwerty1234";
     
+    /**
+     * Constructor of the class
+     */
     private SQLUtils() {
         try {
             Class.forName(DRIVER).newInstance();
@@ -26,7 +34,7 @@ public final class SQLUtils {
     }
     
     /**
-     *
+     * Method to get instance of SQLUtils or create one if null
      * @return SQLUtils Database connection object
      */
     public static synchronized SQLUtils getDbCon() {
@@ -51,6 +59,10 @@ public final class SQLUtils {
 		}
     }
 
+    /**
+     * Get the connection object
+     * @return Connection
+     */
 	public Connection getConnection() {
 		return this.conn;
 	}    

@@ -5,15 +5,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.excilys.computerdatabase.model.Company;
+import com.excilys.computerdatabase.entity.Company;
 
+/**
+ * DAO class for Company
+ * @author excilys
+ *
+ */
 public class CompanyDB extends EntityDB{
 	
-	public CompanyDB(){
-		connect();
-	}
-	
+	/**
+	 * Return all companies stored in the database
+	 * @return List of companies
+	 */
     public ArrayList<Company> findAll(){
+    	connect();
     	ResultSet res = null;
     	ArrayList<Company> list = new ArrayList<Company>();
     	try{
@@ -26,11 +32,19 @@ public class CompanyDB extends EntityDB{
     		companies.closeConnection();
     	}catch(SQLException e){
     		e.printStackTrace();
+    	}finally{
+    		closeConnection();
     	}
     	return list;
     }
 
+    /**
+     * Find a company by ID
+     * @param id ID of the company
+     * @return Company
+     */
 	public Company find(int id) {
+		connect();
 		PreparedStatement prep = null;
 		ResultSet res = null;
 		Company c=null;
@@ -44,6 +58,8 @@ public class CompanyDB extends EntityDB{
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			closeConnection();
 		}
     	return c;
 	}

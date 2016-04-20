@@ -1,8 +1,12 @@
-package com.excilys.computerdatabase.model;
+package com.excilys.computerdatabase.entity;
 
 import java.time.LocalDateTime;
 
-
+/**
+ * Computer Entity
+ * @author excilys
+ *
+ */
 public class Computer {
 
 	private Long id;
@@ -11,6 +15,9 @@ public class Computer {
 	private LocalDateTime discontinued;
 	private Company company;
 	
+	/**
+	 * Constructor of the class
+	 */
 	public Computer(){
 		id = null;
 		name = "";
@@ -19,6 +26,14 @@ public class Computer {
 		company = null;
 	}
 	
+	/**
+	 * Constructor of the class
+	 * @param id
+	 * @param name
+	 * @param introduced
+	 * @param discontinued
+	 * @param company
+	 */
 	public Computer(Long id, String name, LocalDateTime introduced, LocalDateTime discontinued, Company company){
 		this.id = id;
 		this.name = name;

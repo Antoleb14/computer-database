@@ -7,16 +7,23 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import com.excilys.computerdatabase.model.Company;
-import com.excilys.computerdatabase.model.Computer;
+import com.excilys.computerdatabase.entity.Company;
+import com.excilys.computerdatabase.entity.Computer;
 
+/**
+ * DAO class for Computer
+ * @author excilys
+ *
+ */
 public class ComputerDB extends EntityDB {
-	
-	public ComputerDB(){
-		connect();
-	}
-	
+
+	/**
+	 * Method to persist a new Computer in the database
+	 * @param c Object Computer
+	 * @return boolean success of the operation
+	 */
 	public boolean create(Computer c){
+		connect();
 		PreparedStatement prep = null;
 		String query = "INSERT INTO computer(name, introduced, discontinued, company_id) VALUES(?, ?, ?, ?)";
 		try{
@@ -42,11 +49,19 @@ public class ComputerDB extends EntityDB {
 		}catch(SQLException e){
 			e.printStackTrace();
 			return false;
+		}finally{
+			closeConnection();
 		}
     	return true;
 	}
 	
+	/**
+	 * Method to update a computer in the database
+	 * @param c Computer
+	 * @return boolean success of the operation
+	 */
 	public boolean update(Computer c){
+		connect();
 		PreparedStatement prep = null;
 		String query = "UPDATE computer SET name = ?, introduced = ?, discontinued = ?, company_id = ? WHERE id = ?";
 		try{
@@ -74,26 +89,19 @@ public class ComputerDB extends EntityDB {
 		}catch(SQLException e){
 			e.printStackTrace();
 			return false;
+		}finally{
+			closeConnection();
 		}
     	return true;
 	}
 	
-	
-	public ResultSet findByName(String name){
-		PreparedStatement prep = null;
-		ResultSet res = null;
-		String query = "SELECT * FROM computer WHERE name = ?";
-		try{
-			prep = db.getConnection().prepareStatement(query);
-			prep.setString(1, name);
-			res = prep.executeQuery();
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-    	return res;
-    }
-
+	/**
+	 * Method to find a Computer by ID
+	 * @param id ID of the Computer
+	 * @return Computer found
+	 */
 	public Computer find(int id) {
+		connect();
 		PreparedStatement prep = null;
 		ResultSet res = null;
 		Company company = null;
@@ -123,16 +131,23 @@ public class ComputerDB extends EntityDB {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			closeConnection();
 		}
 
     	return c;
 	}
 	
+	/**
+	 * Method to find all Computers in the database
+	 * @return List of computers
+	 */
 	public ArrayList<Computer> findAll(){
+		connect();
     	ResultSet res = null;
     	ArrayList<Computer> list = new ArrayList<Computer>();
     	try{
-    		res = statement.executeQuery("SELECT * FROM computer ORDER BY name ASC");
+    		res = statement.executeQuery("SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id ORDER BY i.name ASC");
     		CompanyDB companies = new CompanyDB();
     		while(res.next()){
 				LocalDateTime introduced=null;
@@ -147,22 +162,78 @@ public class ComputerDB extends EntityDB {
 					 Timestamp t = Timestamp.valueOf(res.getString(4));
 					 discontinued = t.toLocalDateTime();
 				}
+				Long id = res.getLong(1);
+				String name = res.getString(2);
+				company = new Company(res.getLong(6), res.getString(7));
 				
-				company = companies.find(res.getInt(5));
-				
-				Computer c = new Computer(res.getLong(1), res.getString(2), introduced, discontinued, company);
-				
+				Computer c = new Computer(id, name, introduced, discontinued, company);
 				
 				list.add(c);
 			}
-    		companies.closeConnection();
     	}catch(SQLException e){
     		e.printStackTrace();
-    	}
+    	}finally{
+			closeConnection();
+		}
+    	return list;
+    }
+	
+	/**
+	 * Method to find all computers by range for pagination
+	 * @param page page requested
+	 * @param number number of computers by page
+	 * @return List of computers
+	 */
+	public ArrayList<Computer> findAll(int page, int number){
+		connect();
+    	ArrayList<Computer> list = new ArrayList<Computer>();
+    	PreparedStatement prep = null;
+		ResultSet res = null;
+		String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id ORDER BY i.name ASC LIMIT ?, ?";
+		
+    	try{
+    		prep = db.getConnection().prepareStatement(query);
+    		prep.setInt(1,  page);
+    		prep.setInt(2,  number);
+    		res = prep.executeQuery();
+    		
+    		CompanyDB companies = new CompanyDB();
+    		while(res.next()){
+				LocalDateTime introduced=null;
+				LocalDateTime discontinued=null;
+				Company company = null;
+				if(res.getString(3) != null){
+					 Timestamp t = Timestamp.valueOf(res.getString(3));
+					 introduced = t.toLocalDateTime();
+				}
+				
+				if(res.getString(4) != null){
+					 Timestamp t = Timestamp.valueOf(res.getString(4));
+					 discontinued = t.toLocalDateTime();
+				}
+				Long id = res.getLong(1);
+				String name = res.getString(2);
+				company = new Company(res.getLong(6), res.getString(7));
+				
+				Computer c = new Computer(id, name, introduced, discontinued, company);
+				
+				list.add(c);
+			}
+    	}catch(SQLException e){
+    		e.printStackTrace();
+    	}finally{
+			closeConnection();
+		}
     	return list;
     }
 
+	/**
+	 * Method to delete a computer in the database
+	 * @param cmp Computer to delete
+	 * @return boolean for the success of the operation
+	 */
 	public boolean delete(Computer cmp) {
+		connect();
 		PreparedStatement prep = null;
 		String query = "DELETE FROM computer WHERE id = ?";
 		try{
@@ -172,8 +243,36 @@ public class ComputerDB extends EntityDB {
 		}catch(SQLException e){
 			e.printStackTrace();
 			return false;
+		}finally{
+			closeConnection();
 		}
     	return true;
+	}
+
+	/**
+	 * Method to return the total number of computers in the database
+	 * @return integer number of computers
+	 */
+	public int count() {
+		connect();
+		PreparedStatement prep = null;
+		ResultSet res = null;
+		
+		int nb=0;
+		String query = "SELECT COUNT(*) FROM computer";
+		try {
+			prep = db.getConnection().prepareStatement(query);
+			res = prep.executeQuery();
+			if(res.next()){
+				nb = res.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeConnection();
+		}
+
+    	return nb;
 	}
 	
 }
