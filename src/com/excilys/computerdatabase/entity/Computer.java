@@ -74,13 +74,13 @@ public class Computer {
 	}
 	
 	public String toString(){
-		String res = id + " | ";
-		res += name + " | ";
-		res += introduced + " | ";
-		res += discontinued + " | ";
-		res += (company !=null?company.getName():"No company");
-
-		return res;
+		StringBuilder res = new StringBuilder();
+		res.append(id).append(" | ");
+		res.append(name).append(" | ");
+		res.append(introduced).append(" | ");
+		res.append(discontinued).append(" | ");
+		res.append((company !=null?company.getName():"No company"));
+		return res.toString();
 	}
 	
 	

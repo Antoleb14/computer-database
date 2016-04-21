@@ -16,7 +16,25 @@ import com.excilys.computerdatabase.entity.Computer;
  *
  */
 public class ComputerDB extends EntityDB {
+	
+	private static ComputerDB cdb = null;
+	
+	private ComputerDB(){
+		
+	}
+	
 
+	/**
+     * Method to get instance of ComputerDb or create one if null
+     * @return ComputerDB
+     */
+    public static synchronized ComputerDB getComputerDb() {
+        if ( cdb == null ) {
+            cdb = new ComputerDB();
+        }
+        return cdb;
+    }
+	
 	/**
 	 * Method to persist a new Computer in the database
 	 * @param c Object Computer
@@ -109,7 +127,7 @@ public class ComputerDB extends EntityDB {
 		LocalDateTime introduced = null;
 		LocalDateTime discontinued = null;
 		
-		String query = "SELECT c.id, c.name, c.introduced, c.discontinued, c.company_id FROM computer c WHERE c.id = ?";
+		String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id WHERE i.id = ? ORDER BY i.name ASC";
 		try {
 			prep = db.getConnection().prepareStatement(query);
 			prep.setInt(1, id);
@@ -123,8 +141,8 @@ public class ComputerDB extends EntityDB {
 					 Timestamp t = Timestamp.valueOf(res.getString(4));
 					 discontinued = t.toLocalDateTime();
 				}
-				CompanyDB companies = new CompanyDB();
-				company = companies.find(res.getInt(5));
+				CompanyDB companies = CompanyDB.getCompanyDb();
+				company = new Company(res.getLong(6), res.getString(7));
 				
 				c = new Computer(res.getLong(1), res.getString(2), introduced, discontinued, company);
 				companies.closeConnection();
@@ -148,7 +166,6 @@ public class ComputerDB extends EntityDB {
     	ArrayList<Computer> list = new ArrayList<Computer>();
     	try{
     		res = statement.executeQuery("SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id ORDER BY i.name ASC");
-    		CompanyDB companies = new CompanyDB();
     		while(res.next()){
 				LocalDateTime introduced=null;
 				LocalDateTime discontinued=null;
@@ -197,7 +214,6 @@ public class ComputerDB extends EntityDB {
     		prep.setInt(2,  number);
     		res = prep.executeQuery();
     		
-    		CompanyDB companies = new CompanyDB();
     		while(res.next()){
 				LocalDateTime introduced=null;
 				LocalDateTime discontinued=null;

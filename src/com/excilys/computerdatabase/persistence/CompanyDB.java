@@ -14,6 +14,23 @@ import com.excilys.computerdatabase.entity.Company;
  */
 public class CompanyDB extends EntityDB{
 	
+	private static CompanyDB cdb = null;
+	
+	private CompanyDB(){
+		
+	}
+	
+	/**
+     * Method to get instance of ComputerDb or create one if null
+     * @return ComputerDB
+     */
+    public static synchronized CompanyDB getCompanyDb() {
+        if ( cdb == null ) {
+            cdb = new CompanyDB();
+        }
+        return cdb;
+    }
+	
 	/**
 	 * Return all companies stored in the database
 	 * @return List of companies
