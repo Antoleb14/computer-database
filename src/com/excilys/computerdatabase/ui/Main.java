@@ -1,7 +1,7 @@
 package com.excilys.computerdatabase.ui;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import org.slf4j.Logger;
@@ -9,38 +9,47 @@ import org.slf4j.LoggerFactory;
 
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
-import com.excilys.computerdatabase.persistence.CompanyDB;
-import com.excilys.computerdatabase.persistence.ComputerDB;
 import com.excilys.computerdatabase.service.Paginator;
+import com.excilys.computerdatabase.service.ServiceCompany;
+import com.excilys.computerdatabase.service.ServiceComputer;
 
 /**
  * Main class for user interface
+ * 
  * @author excilys
  *
  */
 public class Main {
 
 	static final Logger LOG = LoggerFactory.getLogger(Main.class);
-	
+	private static ServiceComputer COMPUTER = ServiceComputer.getInstance();
+	private static ServiceCompany COMPANY = ServiceCompany.getInstance();
+	private static Scanner sc = null;
+
 	/**
 	 * Entry point of java program
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		LOG.info("Lancement du CLI UI");
 		LOG.warn("ATTENTION PB DETECTE !");
-
-		menu(0);	
+		sc = new Scanner(System.in);
+		menu(0);
+		sc.close();
+		
 	}
 
 	/**
 	 * Menu method
-	 * @param val Option selected
+	 * 
+	 * @param val
+	 *            Option selected
 	 */
 	private static void menu(int val) {
-		CompanyDB companies = CompanyDB.getCompanyDb();
-		ComputerDB computer = ComputerDB.getComputerDb();
-		while(val<=0 || val>5){
+		//CompanyDB companies = CompanyDB.getCompanyDb();
+		//ComputerDB computer = ComputerDB.getComputerDb();
+		while (val <= 0 || val > 5) {
 			System.out.println("Tapez un numéro correspondant à votre requète : ");
 			System.out.println("	1 - List computers");
 			System.out.println("	2 - List companies");
@@ -50,75 +59,76 @@ public class Main {
 			System.out.print("Indiquez votre choix : ");
 			val = enterInt();
 		}
-		switch(val){
-			case 1:
-				int entry = 1;
-				do{
-					Paginator p = new Paginator(15);
-					ArrayList<Computer> computers = p.pager(entry);
-					for(Computer c : computers){
-						System.out.println(c);
-					}
-					entry = p.hud();
-					if(entry >0){
-						p.pager(entry);
-					}
-				}while(entry != 0);
-				break;
-			
-			case 2:
-				ArrayList<Company> res = companies.findAll();
-				for(Company c : res){
+		switch (val) {
+		case 1:
+			int entry = 1;
+			do {
+				Paginator p = new Paginator(15);
+				List<Computer> computers = p.pager(entry);
+				for (Computer c : computers) {
 					System.out.println(c);
 				}
-				break;
-			case 3:
-				System.out.println();
-				System.out.print("Which computer would you like to view : ");
-				int id = enterInt();
-				
-				Computer cmp = computer.find(id);
-				System.out.println(cmp);
-				System.out.println();
-				if(cmp != null){
-					System.out.print("Options: 1-Modifier, 2-Supprimer, 0-Retour => Votre choix :");
-					int opt = enterInt();
-					options(cmp, opt);
+				entry = p.hud();
+				if (entry > 0) {
+					p.pager(entry);
 				}
-				break;
-			case 4:
-				Computer cmp1 = new Computer();
-				createComputer(cmp1);
-				break;
-			case 5:
-				System.exit(0);
-				break;
+			} while (entry != 0);
+			break;
+
+		case 2:
+			List<Company> res = COMPANY.findAll();
+			for (Company c : res) {
+				System.out.println(c);
+			}
+			break;
+		case 3:
+			System.out.println();
+			System.out.print("Which computer would you like to view : ");
+			Long id = new Long(enterInt());
+
+			Computer cmp = COMPUTER.find(id);
+			System.out.println(cmp);
+			System.out.println();
+			if (cmp != null) {
+				System.out.print("Options: 1-Modifier, 2-Supprimer, 0-Retour => Votre choix :");
+				int opt = enterInt();
+				options(cmp, opt);
+			}
+			break;
+		case 4:
+			Computer cmp1 = new Computer();
+			createComputer(cmp1);
+			break;
+		case 5:
+			System.exit(0);
+			break;
 		}
 		menu(0);
-
 	}
 
 	/**
 	 * UI method to create a computer
-	 * @param cmp object Computer in case of typing error
+	 * 
+	 * @param cmp
+	 *            object Computer in case of typing error
 	 */
 	private static void createComputer(Computer cmp) {
-		System.out.println("Entrer un nom: ");
+		System.out.println("Entrer un nom (0 to cancel): ");
 		String value = enterValue();
-		if(value.length()>0){
+		if (value.length() > 0) {
 			cmp.setName(value);
-		}else{
+		} else {
 			System.err.println("The name cannot be empty !");
 			createComputer(cmp);
 		}
-		
-		//INTRODUCED
+
+		// INTRODUCED
 		LocalDateTime ldt = null;
 		LocalDateTime ldt2 = null;
 		System.out.println("Date d'introduction (0 = no edit):");
 		System.out.print("Jour d'introduction (1-31): ");
 		int day = enterInt();
-		if(day != 0){
+		if (day != 0) {
 			System.out.print("Mois d'introduction (1-12): ");
 			int month = enterInt();
 			System.out.print("Année d'introduction (1900-2016): ");
@@ -126,79 +136,76 @@ public class Main {
 			ldt = LocalDateTime.of(year, month, day, 0, 0, 0);
 			cmp.setIntroduced(ldt);
 		}
-		//DISCONTINUED
+		// DISCONTINUED
 		System.out.println("Date d'arrêt (0 = no edit):");
 		System.out.print("Jour de mise en arrêt (1-31): ");
 		int day2 = enterInt();
-		if(day2 != 0){
+		if (day2 != 0) {
 			System.out.print("Mois de mise en arrêt (1-12): ");
 			int month2 = enterInt();
 			System.out.print("Année de mise en arrêt (1900-2016): ");
 			int year2 = enterInt();
 			ldt2 = LocalDateTime.of(year2, month2, day2, 0, 0, 0);
 		}
-		
-		if(ldt != null && ldt2 != null){
-			if(ldt.isBefore(ldt2)){
+
+		if (ldt != null && ldt2 != null) {
+			if (ldt.isBefore(ldt2)) {
 				cmp.setDiscontinued(ldt2);
-			}else{
+			} else {
 				System.err.println("The discontinued date must be after the introduced date ! Please try again !");
 				createComputer(cmp);
 			}
 		}
-		
+
 		// COMPANY INSERT
 		System.out.println("Liste des compagnies: ");
-		CompanyDB companies = CompanyDB.getCompanyDb();
-		ArrayList<Company> res = companies.findAll();
-		
-		for(Company c : res){
+		List<Company> res = COMPANY.findAll();
+
+		for (Company c : res) {
 			System.out.println(c);
 		}
-		
+
 		System.out.print("Computer's Company (0 = no company, empty = no change): ");
-		int company = enterInt();
-		Company comp = companies.find(company);
-		
-		if(comp != null){
+		Long company = new Long(enterInt());
+		Company comp = COMPANY.find(company);
+
+		if (comp != null) {
 			cmp.setCompany(comp);
 		}
-		
+
 		System.out.println(cmp);
-		ComputerDB computer = ComputerDB.getComputerDb();
-		computer.create(cmp);
+		COMPUTER.create(cmp);
 		System.out.println("Computer has been created!");
 	}
 
-	
 	/**
 	 * UI method for the different options of a computer
-	 * @param cmp Computer
-	 * @param opt option selected (edit, remove or go back)
+	 * 
+	 * @param cmp
+	 *            Computer
+	 * @param opt
+	 *            option selected (edit, remove or go back)
 	 */
 	private static void options(Computer cmp, int opt) {
-		ComputerDB computer = ComputerDB.getComputerDb();
-		CompanyDB companies = CompanyDB.getCompanyDb();
-		if(opt == 2){
-			computer.delete(cmp);
-			computer.closeConnection();
-			System.out.println("The computer \""+ cmp.getName() +"\" has been removed from the database!");
-			
+		if (opt == 2) {
+			COMPUTER.delete(cmp);
+			System.out.println("The computer \"" + cmp.getName() + "\" has been removed from the database!");
+
 		}
-		if(opt == 1){
+		if (opt == 1) {
 			System.out.println("Modifier le nom (vide = no edit): ");
 			String value = enterValue();
-			if(value.length()>0){
+			if (value.length() > 0) {
 				cmp.setName(value);
 			}
-			
-			//INTRODUCED
+
+			// INTRODUCED
 			LocalDateTime ldt = null;
 			LocalDateTime ldt2 = null;
 			System.out.println("Date d'introduction (0 = no edit):");
 			System.out.print("Jour d'introduction (1-31): ");
 			int day = enterInt();
-			if(day != 0){
+			if (day != 0) {
 				System.out.print("Mois d'introduction (1-12): ");
 				int month = enterInt();
 				System.out.print("Année d'introduction (1900-2016): ");
@@ -206,78 +213,78 @@ public class Main {
 				ldt = LocalDateTime.of(year, month, day, 0, 0, 0);
 				cmp.setIntroduced(ldt);
 			}
-			//DISCONTINUED
+			// DISCONTINUED
 			System.out.println("Date d'arrêt (0 = no edit):");
 			System.out.print("Jour de mise en arrêt (1-31): ");
 			int day2 = enterInt();
-			if(day2 != 0){
+			if (day2 != 0) {
 				System.out.print("Mois de mise en arrêt (1-12): ");
 				int month2 = enterInt();
 				System.out.print("Année de mise en arrêt (1900-2016): ");
 				int year2 = enterInt();
 				ldt2 = LocalDateTime.of(year2, month2, day2, 0, 0, 0);
 			}
-			
-			if(ldt != null && ldt2 != null){
-				if(ldt.isBefore(ldt2)){
+
+			if (ldt != null && ldt2 != null) {
+				if (ldt.isBefore(ldt2)) {
 					cmp.setDiscontinued(ldt2);
-				}else{
+				} else {
 					System.err.println("The discontinued date must be after the introduced date ! Please try again !");
 					options(cmp, opt);
 				}
 			}
-			
+
 			// COMPANY INSERT
 			System.out.println("Liste des compagnies: ");
-			ArrayList<Company> res = companies.findAll();
-			
-			for(Company c : res){
+			List<Company> res = COMPANY.findAll();
+
+			for (Company c : res) {
 				System.out.println(c);
 			}
-			
-			System.out.print("Compagnie du Computer (0 = no company: ");
-			int company = enterInt();
-			Company comp = companies.find(company);
 
-			if(comp != null){
+			System.out.print("Compagnie du Computer (0 = no company: ");
+			Long company = new Long(enterInt());
+			Company comp = COMPANY.find(company);
+
+			if (comp != null) {
 				cmp.setCompany(comp);
 			}
-			
+
 			System.out.println(cmp);
-			computer.update(cmp);
+			COMPUTER.update(cmp);
 
 			System.out.println("Computer has been successfully edited!");
 		}
-		
+
 	}
-	
+
 	/**
 	 * Method to verify the input
-	 * @param sc Scanner
+	 * 
+	 * @param sc
+	 *            Scanner
 	 * @return the value type, or 0 if not an integer
 	 */
-	public static int enterInt(){
-		Scanner sc = new Scanner(System.in);
+	public static int enterInt() {
 		String value = sc.nextLine();
 		int res = 0;
-		try{
+		try {
 			res = Integer.valueOf(value);
-		}catch(Exception e){
+		} catch (Exception e) {
 			res = 0;
 		}
-		sc.close();
 		return res;
 	}
-	
+
 	/**
 	 * Method to type a text
-	 * @param sc Scanner
+	 * 
+	 * @param sc
+	 *            Scanner
 	 * @return the value type, or 0 if not an integer
 	 */
-	public static String enterValue(){
-		Scanner sc = new Scanner(System.in);
+	public static String enterValue() {
 		String value = sc.nextLine();
-		sc.close();
 		return value;
 	}
 

@@ -1,6 +1,6 @@
 package com.excilys.computerdatabase.service;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.excilys.computerdatabase.entity.Computer;
@@ -16,6 +16,7 @@ public class Paginator{
 	private int page;
 	private int maxPages;
 	private int limitPerPage;
+	private Scanner sc = new Scanner(System.in);
 	
 	/**
 	 * Constructeur de classe
@@ -42,10 +43,10 @@ public class Paginator{
 	 * @param page number of the page
 	 * @return list of computers
 	 */
-	public ArrayList<Computer> pager(int page){
+	public List<Computer> pager(int page){
 		int current=(page-1)*limitPerPage;
 		ComputerDB cdb = ComputerDB.getComputerDb();
-		ArrayList<Computer> computers = cdb.findAll(current, limitPerPage);
+		List<Computer> computers = cdb.findAll(current, limitPerPage);
 		this.page = page;
 		return computers;
 		
@@ -65,7 +66,6 @@ public class Paginator{
 	 */
 	public int hud(){
 		System.out.print("Page: "+page+"/"+maxPages+"	Go to page (0 to quit) : ");
-		Scanner sc = new Scanner(System.in);
 		String value = sc.nextLine();
 		try{
 			this.page = Integer.valueOf(value);
@@ -73,7 +73,6 @@ public class Paginator{
 			e.printStackTrace();
 		}
 		System.out.println();
-		sc.close();
 		return page;
 	}
 	

@@ -1,37 +1,38 @@
 package com.excilys.computerdatabase.persistence;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.List;
+
+import com.excilys.computerdatabase.exception.DAOException;
+
+import java.sql.Connection;
 
 /**
- * Abstract class for DAOs
+ * Abstract class for DAOs with connection and disconnection method to invoke in each method of the DAO
  * @author excilys
  *
  */
-public abstract class EntityDB {
+public abstract class EntityDB<T>{
 
-	protected SQLUtils db;
-	protected Statement statement;
+	protected Connection db;
+	
+	abstract public T find(Long id);
+	abstract public List<T> findAll();
+	abstract public T update(T c);
+	abstract public T create(T c);
+	abstract public boolean delete(T c);
 	
 	/**
 	 * Method to connect to database
 	 */
 	public void connect(){
-		try{
-			db = SQLUtils.getDbCon();
-			statement = db.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-	                ResultSet.CONCUR_READ_ONLY, ResultSet.HOLD_CURSORS_OVER_COMMIT);
-		}catch( SQLException e){
-			System.out.println("Erreur de connexion à la base de données "+e);
-		}
+		db = SQLUtils.getInstance().getConnection();
 	}
 	
 	/**
 	 * Method to close a connection to the database
 	 */
 	public void closeConnection(){
-		SQLUtils.close();
+		SQLUtils.close(db);
 	}
 	
 }
