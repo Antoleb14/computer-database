@@ -1,0 +1,17 @@
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServiceCompany.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/MapperException.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/ComputerMapper.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServiceComputer.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/Company.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/CompanyMapper.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/DAOException.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/Computer.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/ui/Main.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/SQLUtils.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/IService.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/ComputerDB.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/IMapper.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServicePage.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/EntityDB.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/SQLUtilsException.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/CompanyDB.java

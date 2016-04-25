@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServicePage.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServiceComputer.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/IService.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServiceCompany.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/ui/Main.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/DAOException.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/MapperException.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/SQLUtilsException.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/CompanyMapper.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/IMapper.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/ComputerMapper.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/Computer.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/Company.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/EntityDB.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/CompanyDB.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/ComputerDB.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/SQLUtils.java">
+</file>
+</checkstyle>
