@@ -1,9 +1,11 @@
 package com.excilys.computerdatabase.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import com.excilys.computerdatabase.entity.Computer;
+import com.excilys.computerdatabase.entity.Page;
 
 /**
  * Pagination class for computers.
@@ -30,6 +32,10 @@ public class ServicePage {
         page = 1;
         this.limitPerPage = limitPerPage;
         this.maxPages = numberOfPages();
+    }
+
+    public ServicePage() {
+        page = 1;
     }
 
     /**
@@ -82,6 +88,24 @@ public class ServicePage {
         }
         System.out.println();
         return page;
+    }
+
+    /**
+     * Method to create a Page for a view.
+     * 
+     * @param currentPage
+     *            page number to show
+     * @param elementsByPage
+     *            number of elements by page
+     * @return Page
+     */
+    public Page<Computer> createPage(int currentPage, int elementsByPage) {
+        this.limitPerPage = elementsByPage;
+        this.page = currentPage;
+        int current = (currentPage - 1) * limitPerPage;
+        int maxPages = numberOfPages();
+        ArrayList<Computer> elements = (ArrayList<Computer>) cs.findAll(current, elementsByPage);
+        return new Page<Computer>(elements, maxPages, currentPage, elementsByPage);
     }
 
 }
