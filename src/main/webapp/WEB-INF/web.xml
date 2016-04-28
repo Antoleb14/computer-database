@@ -15,4 +15,13 @@
 		<servlet-name>Dashboard</servlet-name>
 		<url-pattern>/home</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AddComputer</servlet-name>
+		<servlet-class>com.excilys.computerdatabase.servlets.AddComputer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddComputer</servlet-name>
+		<url-pattern>/addcomputer</url-pattern>
+	</servlet-mapping>
 </web-app>

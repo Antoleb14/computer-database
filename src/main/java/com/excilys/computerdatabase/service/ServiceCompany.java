@@ -24,7 +24,7 @@ public class ServiceCompany implements IService<Company> {
      */
     public static ServiceCompany getInstance() {
         if (sc == null) {
-            synchronized (ServiceComputer.class) {
+            synchronized (ServiceCompany.class) {
                 if (sc == null) {
                     sc = new ServiceCompany();
                 }
@@ -43,7 +43,6 @@ public class ServiceCompany implements IService<Company> {
         return CDB.findAll();
     }
 
-    @Override
     public boolean isValid(Company t) throws DAOException {
         if (t.getName().equals("")) {
             return false;

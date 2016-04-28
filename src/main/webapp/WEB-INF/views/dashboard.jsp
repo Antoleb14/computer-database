@@ -23,9 +23,8 @@
 <body>
 	<header class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="home"> Application -
-				Computer Database </a>
-		</div>est
+			<mytag:link target="home" classes="navbar-brand" label="Application - Computer Database"  />
+		</div>
 	</header>
 
 	<section id="main">
@@ -83,9 +82,10 @@
 							<td class="editMode"><input type="checkbox" name="cb"
 								class="cb" value="0"></td>
 							<td><a href="editComputer.html" onclick="">${computer.name}</a></td>
-							<td><taglib:formatDate date="${computer.introduced}" pattern="dd-MM-yyyy" /></td>
-							<td><taglib:formatDate date="${computer.discontinued}" pattern="dd-MM-yyyy" /></td>
-							<td>${computer.company.name}</td>
+							
+							<td>${computer.introduced}</td>
+							<td>${computer.discontinued}</td>
+							<td>${computer.companyName}</td>
 						</tr>
 					</c:forEach>
 

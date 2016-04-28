@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.excilys.computerdatabase.entity.Computer;
+import com.excilys.computerdatabase.entity.ComputerDTO;
 import com.excilys.computerdatabase.entity.Page;
 import com.excilys.computerdatabase.service.ServiceComputer;
 import com.excilys.computerdatabase.service.ServicePage;
 
 /**
- * Servlet implementation class Dashboard
+ * Servlet implementation class Dashboard.
  */
 public class Dashboard extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -57,8 +58,7 @@ public class Dashboard extends HttpServlet {
         }
 
         ServicePage sp = new ServicePage();
-        Page<Computer> p = sp.createPage(page, itemsPage);
-
+        Page<ComputerDTO> p = sp.createPage(page, itemsPage);
         request.setAttribute("p", p);
 
         getServletContext().getRequestDispatcher("/WEB-INF/views/dashboard.jsp").forward(request, response);

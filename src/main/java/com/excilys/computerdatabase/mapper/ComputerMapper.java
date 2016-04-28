@@ -22,13 +22,13 @@ public class ComputerMapper implements IMapper<Computer> {
     }
 
     /**
-     * Method to get instance of ComputerDb or create one if null.
+     * Method to get instance of ComputerMapper or create one if null.
      *
-     * @return ComputerDB
+     * @return ComputerMapper
      */
     public static ComputerMapper getInstance() {
         if (cpm == null) {
-            synchronized (CompanyMapper.class) {
+            synchronized (ComputerMapper.class) {
                 if (cpm == null) {
                     cpm = new ComputerMapper();
                 }

@@ -2,12 +2,17 @@ package com.excilys.computerdatabase.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.exception.DAOException;
 import com.excilys.computerdatabase.persistence.ComputerDB;
+import com.excilys.computerdatabase.validator.ValidatorComputer;
 
 public class ServiceComputer implements IService<Computer> {
 
+    static final Logger LOG = LoggerFactory.getLogger(ServiceComputer.class);
     private static final ComputerDB CDB = ComputerDB.getComputerDb();
     private static ServiceComputer sc = null;
 
@@ -35,30 +40,20 @@ public class ServiceComputer implements IService<Computer> {
 
     @Override
     public Computer find(Long id) throws DAOException {
+        LOG.debug("find a Computer id : " + id);
         return CDB.find(id);
     }
 
     @Override
     public List<Computer> findAll() throws DAOException {
+        LOG.debug("find all computers");
         return CDB.findAll();
     }
 
     @Override
-    public boolean isValid(Computer t) throws DAOException {
-        if (t.getIntroduced() != null && t.getDiscontinued() != null) {
-            if (t.getIntroduced().isAfter(t.getDiscontinued())) {
-                return false;
-            }
-        } else if (t.getName().equals("")) {
-            return false;
-        }
-        return true;
-
-    }
-
-    @Override
     public Computer update(Computer t) throws DAOException {
-        if (!isValid(t)) {
+        ValidatorComputer v = ValidatorComputer.getInstance();
+        if (!v.isValid(t)) {
             return null;
         }
         CDB.update(t);
@@ -72,7 +67,8 @@ public class ServiceComputer implements IService<Computer> {
 
     @Override
     public Computer create(Computer t) throws DAOException {
-        if (!isValid(t)) {
+        ValidatorComputer v = ValidatorComputer.getInstance();
+        if (!v.isValid(t)) {
             return null;
         }
         return CDB.create(t);

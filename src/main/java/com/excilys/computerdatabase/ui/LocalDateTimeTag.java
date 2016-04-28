@@ -14,19 +14,11 @@ public class LocalDateTimeTag extends TagSupport {
     private String pattern = "dd/MM/yyyy";
     private LocalDateTime date;
 
-    /*
-     * public LocalDateTimeTag(LocalDateTime date) { this.date = date; }
-     */
-
     @Override
     public int doStartTag() throws JspException {
 
         try {
-            // Get the writer object for output.
-            System.out.println(date);
             JspWriter out = pageContext.getOut();
-
-            // Perform substr operation on string.
             if (date != null) {
                 out.println(date.format(DateTimeFormatter.ofPattern(pattern)));
             }

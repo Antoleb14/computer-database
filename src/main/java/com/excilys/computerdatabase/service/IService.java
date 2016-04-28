@@ -30,15 +30,6 @@ public interface IService<T> {
     T update(T t);
 
     /**
-     * Method to validate an entity.
-     *
-     * @param t
-     *            Entity
-     * @return boolean
-     */
-    boolean isValid(T t);
-
-    /**
      * Method to delete an entity.
      *
      * @param t
