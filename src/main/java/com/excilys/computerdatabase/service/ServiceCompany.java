@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.exception.DAOException;
+import com.excilys.computerdatabase.exception.ServiceException;
 import com.excilys.computerdatabase.persistence.CompanyDB;
 
 public class ServiceCompany implements IService<Company> {
@@ -34,16 +35,28 @@ public class ServiceCompany implements IService<Company> {
     }
 
     @Override
-    public Company find(Long id) throws DAOException {
-        return CDB.find(id);
+    public Company find(Long id) throws ServiceException {
+        Company c = null;
+        try {
+            c = CDB.find(id);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return c;
     }
 
     @Override
-    public List<Company> findAll() throws DAOException {
-        return CDB.findAll();
+    public List<Company> findAll() throws ServiceException {
+        List<Company> l = null;
+        try {
+            l = CDB.findAll();
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return l;
     }
 
-    public boolean isValid(Company t) throws DAOException {
+    public boolean isValid(Company t) throws ServiceException {
         if (t.getName().equals("")) {
             return false;
         }
@@ -52,22 +65,26 @@ public class ServiceCompany implements IService<Company> {
     }
 
     @Override
-    public Company update(Company t) throws DAOException {
+    public Company update(Company t) throws ServiceException {
         if (!isValid(t)) {
             return null;
         }
-        CDB.update(t);
+        try {
+            CDB.update(t);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
         return t;
     }
 
     @Override
-    public boolean delete(Company t) throws DAOException {
+    public boolean delete(Company t) throws ServiceException {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public Company create(Company t) throws DAOException {
+    public Company create(Company t) throws ServiceException {
         // TODO Auto-generated method stub
         return null;
     }
