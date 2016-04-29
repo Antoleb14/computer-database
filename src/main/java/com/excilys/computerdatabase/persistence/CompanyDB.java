@@ -1,5 +1,6 @@
 package com.excilys.computerdatabase.persistence;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +18,7 @@ import com.excilys.computerdatabase.mapper.CompanyMapper;
  * @author excilys
  *
  */
-public class CompanyDB extends EntityDB<Company> {
+public class CompanyDB implements EntityDB<Company> {
 
     private static CompanyDB cdb = null;
 
@@ -46,7 +47,7 @@ public class CompanyDB extends EntityDB<Company> {
      */
     @Override
     public List<Company> findAll() {
-        connect();
+        Connection db = connect();
         ResultSet res = null;
         List<Company> list = new ArrayList<Company>();
         try {
@@ -56,7 +57,7 @@ public class CompanyDB extends EntityDB<Company> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection();
+            closeConnection(db);
         }
         return list;
     }
@@ -70,7 +71,7 @@ public class CompanyDB extends EntityDB<Company> {
      */
     @Override
     public Company find(Long id) {
-        connect();
+        Connection db = connect();
         PreparedStatement prep = null;
         ResultSet res = null;
         Company c = null;
@@ -86,7 +87,7 @@ public class CompanyDB extends EntityDB<Company> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection();
+            closeConnection(db);
         }
         return c;
     }

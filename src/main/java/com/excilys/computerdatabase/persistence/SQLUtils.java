@@ -57,15 +57,11 @@ public final class SQLUtils {
      * @return Connection
      */
     public Connection getConnection() {
-        Connection co = null;
-        synchronized (this) {
-            try {
-                co = DriverManager.getConnection(URL + DBNAME, USER, PASS);
-            } catch (SQLException e) {
-                throw new SQLUtilsException(e);
-            }
+        try {
+            return DriverManager.getConnection(URL + DBNAME, USER, PASS);
+        } catch (SQLException e) {
+            throw new SQLUtilsException(e);
         }
-        return co;
     }
 
     /**

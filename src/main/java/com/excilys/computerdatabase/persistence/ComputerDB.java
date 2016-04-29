@@ -1,5 +1,6 @@
 package com.excilys.computerdatabase.persistence;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ import com.excilys.computerdatabase.mapper.ComputerMapper;
  * @author excilys
  *
  */
-public class ComputerDB extends EntityDB<Computer> {
+public class ComputerDB implements EntityDB<Computer> {
 
     private static ComputerDB cdb = null;
 
@@ -50,7 +51,7 @@ public class ComputerDB extends EntityDB<Computer> {
      */
     @Override
     public Computer create(Computer c) {
-        connect();
+        Connection db = connect();
         PreparedStatement prep = null;
         String query = "INSERT INTO computer(name, introduced, discontinued, company_id) VALUES(?, ?, ?, ?)";
         try {
@@ -79,7 +80,7 @@ public class ComputerDB extends EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection();
+            closeConnection(db);
         }
         return c;
     }
@@ -93,7 +94,7 @@ public class ComputerDB extends EntityDB<Computer> {
      */
     @Override
     public Computer update(Computer c) {
-        connect();
+        Connection db = connect();
         PreparedStatement prep = null;
         String query = "UPDATE computer SET name = ?, introduced = ?, discontinued = ?, company_id = ? WHERE id = ?";
         try {
@@ -122,7 +123,7 @@ public class ComputerDB extends EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection();
+            closeConnection(db);
         }
         return c;
     }
@@ -136,7 +137,7 @@ public class ComputerDB extends EntityDB<Computer> {
      */
     @Override
     public Computer find(Long id) {
-        connect();
+        Connection db = connect();
         PreparedStatement prep = null;
         ResultSet res = null;
         Computer c = null;
@@ -150,7 +151,7 @@ public class ComputerDB extends EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection();
+            closeConnection(db);
         }
 
         return c;
@@ -164,7 +165,7 @@ public class ComputerDB extends EntityDB<Computer> {
      * @return List of Computers found
      */
     public List<Computer> findByName(String name) {
-        connect();
+        Connection db = connect();
         PreparedStatement prep = null;
         ResultSet res = null;
         List<Computer> c = new ArrayList<Computer>();
@@ -178,7 +179,7 @@ public class ComputerDB extends EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection();
+            closeConnection(db);
         }
 
         return c;
@@ -191,7 +192,7 @@ public class ComputerDB extends EntityDB<Computer> {
      */
     @Override
     public List<Computer> findAll() {
-        connect();
+        Connection db = connect();
         ResultSet res = null;
         List<Computer> list = new ArrayList<Computer>();
         try {
@@ -204,7 +205,7 @@ public class ComputerDB extends EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection();
+            closeConnection(db);
         }
         return list;
     }
@@ -219,7 +220,7 @@ public class ComputerDB extends EntityDB<Computer> {
      * @return List of computers
      */
     public List<Computer> findAll(int page, int number) {
-        connect();
+        Connection db = connect();
         List<Computer> list = new ArrayList<Computer>();
         PreparedStatement prep = null;
         ResultSet res = null;
@@ -236,7 +237,7 @@ public class ComputerDB extends EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection();
+            closeConnection(db);
         }
         return list;
     }
@@ -250,7 +251,7 @@ public class ComputerDB extends EntityDB<Computer> {
      */
     @Override
     public boolean delete(Computer cmp) {
-        connect();
+        Connection db = connect();
         PreparedStatement prep = null;
         String query = "DELETE FROM computer WHERE id = ?";
         try {
@@ -261,7 +262,7 @@ public class ComputerDB extends EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection();
+            closeConnection(db);
         }
         return true;
     }
@@ -272,7 +273,7 @@ public class ComputerDB extends EntityDB<Computer> {
      * @return integer number of computers
      */
     public int count() {
-        connect();
+        Connection db = connect();
         PreparedStatement prep = null;
         ResultSet res = null;
 
@@ -288,7 +289,7 @@ public class ComputerDB extends EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection();
+            closeConnection(db);
         }
 
         return nb;

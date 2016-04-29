@@ -88,7 +88,9 @@ public class ValidatorComputer implements IValidator<Computer> {
     public Computer validate(String name, String introduced, String discontinued, String company)
             throws ValidatorException {
 
-        if (name == null || name.length() == 0) {
+        name = name.trim();
+
+        if (!name.matches("^[a-zA-Z0-9\\-\\ ]+$") || name.length() == 0) {
             throw new ValidatorException("The name is incorrect !");
         }
 

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
-import com.excilys.computerdatabase.exception.ServiceException;
 import com.excilys.computerdatabase.exception.ValidatorException;
 import com.excilys.computerdatabase.service.ServiceCompany;
 import com.excilys.computerdatabase.service.ServiceComputer;
@@ -70,11 +69,7 @@ public class AddComputer extends HttpServlet {
             doGet(request, response);
             return;
         } else {
-            try {
-                sc.create(t);
-            } catch (ServiceException e) {
-                getServletContext().getRequestDispatcher("/WEB-INF/views/500.html");
-            }
+            sc.create(t);
         }
 
         response.sendRedirect("home");

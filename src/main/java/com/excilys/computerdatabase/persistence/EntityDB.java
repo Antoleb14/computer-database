@@ -10,9 +10,7 @@ import java.util.List;
  * @author excilys
  *
  */
-public abstract class EntityDB<T> {
-
-    protected Connection db;
+public interface EntityDB<T> {
 
     /**
      * Method to find an Entity by id.
@@ -60,15 +58,15 @@ public abstract class EntityDB<T> {
     /**
      * Method to connect to database.
      */
-    public void connect() {
-        db = SQLUtils.getInstance().getConnection();
+    public default Connection connect() {
+        return SQLUtils.getInstance().getConnection();
     }
 
     /**
      * Method to close a connection to the database.
      */
-    public void closeConnection() {
-        SQLUtils.close(db);
+    public default void closeConnection(Connection c) {
+        SQLUtils.close(c);
     }
 
 }
