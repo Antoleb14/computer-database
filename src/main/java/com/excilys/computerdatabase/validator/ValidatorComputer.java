@@ -3,12 +3,12 @@ package com.excilys.computerdatabase.validator;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.exception.DAOException;
 import com.excilys.computerdatabase.exception.ValidatorException;
+import com.excilys.computerdatabase.mapper.LocalDateTimeMapper;
 import com.excilys.computerdatabase.service.ServiceCompany;
 
 public class ValidatorComputer implements IValidator<Computer> {
@@ -98,7 +98,7 @@ public class ValidatorComputer implements IValidator<Computer> {
         LocalDateTime disc = null;
         try {
             if (!introduced.equals("")) {
-                intro = LocalDate.parse(introduced, DateTimeFormatter.ofPattern("dd-MM-yyyy")).atStartOfDay();
+                intro = LocalDateTimeMapper.getInstance().map(introduced);
             }
         } catch (Exception e) {
             throw new ValidatorException("The introduced date is incorrect and must be format dd-mm-yyyy");
@@ -106,7 +106,7 @@ public class ValidatorComputer implements IValidator<Computer> {
 
         try {
             if (!discontinued.equals("")) {
-                disc = LocalDate.parse(discontinued, DateTimeFormatter.ofPattern("dd-MM-yyyy")).atStartOfDay();
+                disc = LocalDateTimeMapper.getInstance().map(discontinued);
             }
         } catch (Exception e) {
             throw new ValidatorException("The discontinued date is incorrect and must be format dd-mm-yyyy");
@@ -120,7 +120,6 @@ public class ValidatorComputer implements IValidator<Computer> {
                 throw new ValidatorException("The company doesn't exist !");
             }
         }
-
         Computer t = new Computer.ComputerBuilder().name(name).introduced(intro).discontinued(disc).company(c).build();
 
         if (!isValid(t)) {
@@ -128,6 +127,59 @@ public class ValidatorComputer implements IValidator<Computer> {
         }
         return t;
 
+    }
+
+    /**
+     * Method to validate a computer.
+     *
+     * @param name
+     *            name of the computer
+     * @param introduced
+     *            date of introduction
+     * @param discontinued
+     *            date of end
+     * @param company
+     *            id of the company
+     * @throws ValidatorException
+     * @return Computer
+     */
+    public boolean validate(String id, String name, String introduced, String discontinued, String company)
+            throws ValidatorException {
+
+        if (!id.trim().matches("^[1-9][0-9]*$")) {
+            throw new ValidatorException("ID invalid");
+        }
+        long computerid = Long.parseLong(id);
+        name = name.trim();
+        if (!name.matches("^[a-zA-Z0-9\\-\\ ]+$") || name.length() == 0) {
+            throw new ValidatorException("The name is incorrect !");
+        }
+
+        LocalDateTime intro = null;
+        LocalDateTime disc = null;
+
+        try {
+            if (!introduced.equals("")) {
+                intro = LocalDateTimeMapper.getInstance().map(introduced);
+            }
+        } catch (Exception e) {
+            throw new ValidatorException("The introduced date is incorrect and must be format dd-mm-yyyy");
+        }
+
+        try {
+            if (!discontinued.equals("")) {
+                disc = LocalDateTimeMapper.getInstance().map(discontinued);
+            }
+        } catch (Exception e) {
+            throw new ValidatorException("The discontinued date is incorrect and must be format dd-mm-yyyy");
+        }
+
+        Computer t = new Computer.ComputerBuilder().id(computerid).name(name).introduced(intro).discontinued(disc)
+                .build();
+        if (!isValid(t)) {
+            throw new ValidatorException("The computer contains invalid datas : Check your dates !");
+        }
+        return true;
     }
 
 }

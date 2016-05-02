@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib> 
+<tlibversion>2.0</tlibversion>
+<jspversion>2.0</jspversion>
+<shortname>formatDate</shortname>
+<info>Sample taglib for Substr operation</info>
+<uri>http://viralpatel.net/blogs/jsp/taglib/substr</uri>
+<tag>
+    <name>formatDate</name>
+    <tagclass>com.excilys.computerdatabase.ui.LocalDateTimeTag</tagclass>
+    <info>LocalDateTime formatter</info>
+    <attribute>
+      <name>date</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>LocalDateTime</type>
+  </attribute>
+    <attribute>
+      <name>pattern</name>
+      <required>false</required>
+  </attribute>
+</tag>
+</taglib> 

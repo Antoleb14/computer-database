@@ -80,7 +80,16 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jsp-api</artifactId>
             <version>${jsp}</version>
-        </dependency>       
+        </dependency>
+        
+        <!-- Connection pool -->
+        <dependency>
+		    <groupId>com.zaxxer</groupId>
+		    <artifactId>HikariCP</artifactId>
+		    <version>2.4.5</version>
+		    <scope>compile</scope>
+		</dependency>
+               
  	</dependencies>
 
 	<reporting>

@@ -25,6 +25,15 @@
 		<url-pattern>/addcomputer</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>EditComputer</servlet-name>
+		<servlet-class>com.excilys.computerdatabase.servlets.EditComputer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditComputer</servlet-name>
+		<url-pattern>/editcomputer</url-pattern>
+	</servlet-mapping>
+	
 	<error-page>
 		<!-- Forbidden directory listing -->
 	    <error-code>403</error-code>
