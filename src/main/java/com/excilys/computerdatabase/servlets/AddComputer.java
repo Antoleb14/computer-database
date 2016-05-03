@@ -65,8 +65,8 @@ public class AddComputer extends HttpServlet {
         }
 
         Company c = ServiceCompany.getInstance().find(Long.parseLong(company));
-        ComputerDTOMapper mapper = ComputerDTOMapper.getInstance();
-        Computer t = mapper.DTOToObject(name, introduced, discontinued, c.getId().toString(), c.getName());
+        Computer t = ComputerDTOMapper.INSTANCE.dtoToObject(name, introduced, discontinued, c.getId().toString(),
+                c.getName());
 
         if (t == null) {
             doGet(request, response);

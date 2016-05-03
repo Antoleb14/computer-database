@@ -36,8 +36,7 @@ public class EditComputer extends HttpServlet {
         ServiceComputer scomp = ServiceComputer.INSTANCE;
 
         Computer edit = scomp.find(id);
-        ComputerDTOMapper mapper = ComputerDTOMapper.getInstance();
-        ComputerDTO cdto = mapper.objetToDTO(edit);
+        ComputerDTO cdto = ComputerDTOMapper.INSTANCE.objetToDTO(edit);
         request.setAttribute("c", cdto);
         ServiceCompany sc = ServiceCompany.getInstance();
         List<Company> lc = sc.findAll();
@@ -74,8 +73,9 @@ public class EditComputer extends HttpServlet {
         }
 
         Company c = ServiceCompany.getInstance().find(Long.parseLong(company));
-        ComputerDTOMapper mapper = ComputerDTOMapper.getInstance();
-        Computer t = mapper.DTOToObject(id, name, introduced, discontinued, c.getId().toString(), c.getName());
+
+        Computer t = ComputerDTOMapper.INSTANCE.dtoToObject(id, name, introduced, discontinued, c.getId().toString(),
+                c.getName());
 
         if (t == null) {
             doGet(request, response);

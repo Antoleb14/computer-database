@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/RequestAnalyzer.java">
+<error line="9" column="5" severity="error" message="Commentaire javadoc manquant." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServicePage.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServiceComputer.java">
+<error line="95" column="64" severity="error" message="Balise javadoc @throws manquante pour &apos;ServiceException&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="112" column="31" severity="error" message="Balise javadoc @throws manquante pour &apos;ServiceException&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/IService.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServiceCompany.java">
+<error line="59" column="5" severity="error" message="Commentaire javadoc manquant." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/servlets/Dashboard.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/servlets/EditComputer.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/servlets/AddComputer.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/ui/LocalDateTimeTag.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/ui/Main.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/validator/ValidatorComputer.java">
+<error line="66" column="20" severity="error" message="Balise javadoc @throws manquante pour &apos;ValidatorException&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="123" column="36" severity="error" message="Balise javadoc @param manquante pour &apos;id&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="124" column="20" severity="error" message="Balise javadoc @throws manquante pour &apos;ValidatorException&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/validator/IValidator.java">
+<error line="9" column="5" severity="error" message="Mot-clef &apos;static&apos; redondant." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+<error line="11" column="5" severity="error" message="Commentaire javadoc manquant." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="11" column="5" severity="error" message="Mot-clef &apos;public&apos; redondant." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/DAOException.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/MapperException.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/ServiceException.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/SQLUtilsException.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/ValidatorException.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/CompanyDTOMapper.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/LocalDateTimeMapper.java">
+<error line="33" column="5" severity="error" message="Commentaire javadoc manquant." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="41" column="5" severity="error" message="Commentaire javadoc manquant." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/CompanyMapper.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/IMapper.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/ComputerDTOMapper.java">
+<error line="63" column="5" severity="error" message="Commentaire javadoc manquant." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="63" column="21" severity="error" message="Le nom &apos;DTOToObject&apos; n&apos;est pas conforme à l&apos;expression &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck"/>
+<error line="71" column="5" severity="error" message="Commentaire javadoc manquant." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="71" column="21" severity="error" message="Le nom &apos;DTOToObject&apos; n&apos;est pas conforme à l&apos;expression &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck"/>
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/ComputerMapper.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/ComputerDTO.java">
+<error line="44" column="95" severity="error" message="Balise javadoc @param manquante pour &apos;companyId&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="258" column="12" severity="error" message="Balise javadoc @param inutilisé pour &apos;company&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="262" column="52" severity="error" message="Balise javadoc @param manquante pour &apos;companyid&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/CompanyDTO.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/Computer.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/Page.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/Company.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/EntityDB.java">
+<error line="22" column="5" severity="error" message="Mot-clef &apos;public&apos; redondant." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+<error line="29" column="5" severity="error" message="Mot-clef &apos;public&apos; redondant." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+<error line="38" column="5" severity="error" message="Mot-clef &apos;public&apos; redondant." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+<error line="47" column="5" severity="error" message="Mot-clef &apos;public&apos; redondant." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+<error line="56" column="5" severity="error" message="Mot-clef &apos;public&apos; redondant." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+<error line="61" severity="error" message="Balise javadoc @return manquante." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="61" column="5" severity="error" message="Mot-clef &apos;public&apos; redondant." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+<error line="68" column="5" severity="error" message="Mot-clef &apos;public&apos; redondant." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+<error line="68" column="52" severity="error" message="Balise javadoc @param manquante pour &apos;c&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/CompanyDB.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/ComputerDB.java">
+<error line="172" column="8" severity="error" message="Balise javadoc @param inutilisé pour &apos;name&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="176" column="48" severity="error" message="Balise javadoc @param manquante pour &apos;id&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/SQLUtils.java">
+</file>
+<file name="/home/excilys/workspace/projetloic/src/main/resources/hikari.properties">
+</file>
+</checkstyle>

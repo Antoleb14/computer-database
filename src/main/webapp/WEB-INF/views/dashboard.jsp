@@ -26,15 +26,17 @@
 			<mytag:link target="home" classes="navbar-brand" label="Application - Computer Database"  />
 		</div>
 	</header>
-
 	<section id="main">
 		<div class="container">
+			<c:if test="${ not empty success }">
+				<div class="alert alert-success">${ success }</div>
+			</c:if>
 			<h1 id="homeTitle">${ count } Computers found</h1>
 			<div id="actions" class="form-horizontal">
 				<div class="pull-left">
 					<form id="searchForm" action="#" method="GET" class="form-inline">
 
-						<input type="search" id="searchbox" name="search"
+						<input type="search" id="searchbox" name="search" value="${ p.search }"
 							class="form-control" placeholder="Search name" /> <input
 							type="submit" id="searchsubmit" value="Filter by name"
 							class="btn btn-primary" />
@@ -80,7 +82,7 @@
 					<c:forEach items="${p.elements}" var="computer">
 						<tr>
 							<td class="editMode"><input type="checkbox" name="cb"
-								class="cb" value="0"></td>
+								class="cb" value="${ computer.id }"></td>
 							<td><mytag:link target="editcomputer" datas="id=${computer.id}" label="${ computer.name }"  /></td>
 							
 							<td>${computer.introduced}</td>

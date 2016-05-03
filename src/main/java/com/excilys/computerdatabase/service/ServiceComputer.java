@@ -1,5 +1,6 @@
 package com.excilys.computerdatabase.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -82,27 +83,6 @@ public enum ServiceComputer implements IService<Computer> {
     }
 
     /**
-     * Method to retrieve all computers for pagination.
-     *
-     * @param page
-     *            page number
-     * @param number
-     *            number of result to retrieve
-     * @return List of computers
-     * @throws DAOException
-     *             Exception
-     */
-    public List<Computer> findAll(int page, int number) throws ServiceException {
-        List<Computer> l = null;
-        try {
-            l = CDB.findAll(page, number);
-        } catch (DAOException e) {
-            throw new ServiceException(e);
-        }
-        return l;
-    }
-
-    /**
      * Method to count all computers in database.
      *
      * @return number of computers
@@ -117,6 +97,33 @@ public enum ServiceComputer implements IService<Computer> {
             throw new ServiceException(e);
         }
         return c;
+    }
+
+    /**
+     * Method to search by name with order.
+     *
+     * @param current
+     *            page
+     * @param elementsByPage
+     *            number of elements by page
+     * @param search
+     *            search if specified specified
+     * @param order
+     *            order of results
+     * @return list of computers
+     */
+    public ArrayList<Computer> findBySearch(int current, int elementsByPage, String search, String order) {
+        List<Computer> l = null;
+        try {
+            l = CDB.findBySearch(current, elementsByPage, search, order);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return (ArrayList<Computer>) l;
+    }
+
+    public long countBySearch(String search) {
+        return CDB.countBySearch(search);
     }
 
 }

@@ -36,14 +36,14 @@ public class Dashboard extends HttpServlet {
         List<Computer> listComputers = sc.findAll();
         request.setAttribute("computers", listComputers);
 
-        int count = sc.count();
-        request.setAttribute("count", count);
-
-        int itemsPage = RequestAnalyzer.INSTANCE.analyzeInt(request.getParameter("l"));
-        int page = RequestAnalyzer.INSTANCE.analyzeInt(request.getParameter("p"));
+        int itemsPage = RequestAnalyzer.INSTANCE.analyzeInt(request.getParameter("l"), 10);
+        int page = RequestAnalyzer.INSTANCE.analyzeInt(request.getParameter("p"), 1);
+        String search = RequestAnalyzer.INSTANCE.analyzeString(request.getParameter("search"), "");
+        String order = RequestAnalyzer.INSTANCE.analyzeString(request.getParameter("order"), "");
 
         ServicePage sp = new ServicePage();
-        Page<ComputerDTO> p = sp.createPage(page, itemsPage);
+        Page<ComputerDTO> p = sp.createPage(page, itemsPage, search, order);
+        request.setAttribute("count", p.getTotal());
         request.setAttribute("p", p);
 
         getServletContext().getRequestDispatcher("/WEB-INF/views/dashboard.jsp").forward(request, response);
@@ -56,7 +56,20 @@ public class Dashboard extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println(request.getParameterMap());
+
+        String selection = RequestAnalyzer.INSTANCE.analyzeString(request.getParameter("selection"), "");
+        String[] items = selection.split(",");
+
+        ServiceComputer sc = ServiceComputer.INSTANCE;
+        for (String item : items) {
+            long id = RequestAnalyzer.INSTANCE.analyzeInt(item, 0);
+            Computer c = sc.find(id);
+            sc.delete(c);
+        }
+
+        request.setAttribute("success", items.length + " computer(s) successfully deleted !");
+        doGet(request, response);
+
     }
 
 }

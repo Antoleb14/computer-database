@@ -6,8 +6,11 @@ public enum RequestAnalyzer {
 
     INSTANCE;
 
-    public String analyzeString(String parameter) {
-        return "";
+    public String analyzeString(String parameter, String defaultValue) {
+        if (parameter == null) {
+            return defaultValue;
+        }
+        return parameter;
     }
 
     /**
@@ -17,8 +20,8 @@ public enum RequestAnalyzer {
      *            string parameter
      * @return int parameter
      */
-    public int analyzeInt(String parameter) {
-        int itemsPage = 0;
+    public int analyzeInt(String parameter, int defaultValue) {
+        int itemsPage = defaultValue;
         try {
             if (parameter != null) {
                 itemsPage = Integer.parseInt(parameter);

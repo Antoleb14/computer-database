@@ -16,6 +16,8 @@ public class Page<T> {
     private int currentPage = 1;
     private int maxPages = 0;
     private int elementsByPage = 0;
+    private long total = 0;
+    private String search = "";
 
     /**
      * Class constructor.
@@ -29,11 +31,14 @@ public class Page<T> {
      * @param elementsByPage
      *            number of elements by page
      */
-    public Page(ArrayList<T> elements, int maxPages, int currentPage, int elementsByPage) {
+    public Page(ArrayList<T> elements, int maxPages, int currentPage, int elementsByPage, long totalElem,
+            String search) {
         this.currentPage = currentPage;
         this.elements = elements;
         this.maxPages = maxPages;
         this.elementsByPage = elementsByPage;
+        this.total = totalElem;
+        this.setSearch(search);
     }
 
     public ArrayList<T> getElements() {
@@ -66,6 +71,18 @@ public class Page<T> {
 
     public void setElementsByPage(int elementsByPage) {
         this.elementsByPage = elementsByPage;
+    }
+
+    public long getTotal() {
+        return this.total;
+    }
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
     }
 
 }

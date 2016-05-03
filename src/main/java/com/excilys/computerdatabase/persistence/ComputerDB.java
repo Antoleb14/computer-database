@@ -228,17 +228,22 @@ public enum ComputerDB implements EntityDB<Computer> {
      *            number of computers by page
      * @return List of computers
      */
-    public List<Computer> findAll(int page, int number) {
+    public List<Computer> findBySearch(int page, int number, String search, String order) {
         Connection db = connect();
         List<Computer> list = new ArrayList<Computer>();
         PreparedStatement prep = null;
         ResultSet res = null;
-        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id ORDER BY i.name ASC LIMIT ?, ?";
+        String searchQuery = "WHERE c.name LIKE ? OR i.name LIKE ?";
+        String limit = " LIMIT ?, ?";
+        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id " + searchQuery
+                + " ORDER BY i.name ASC" + limit;
 
         try {
             prep = db.prepareStatement(query);
-            prep.setInt(1, page);
-            prep.setInt(2, number);
+            prep.setString(1, "%" + search + "%");
+            prep.setString(2, "%" + search + "%");
+            prep.setInt(3, page);
+            prep.setInt(4, number);
             res = prep.executeQuery();
 
             list = ComputerMapper.getInstance().mapAll(res);
@@ -304,4 +309,26 @@ public enum ComputerDB implements EntityDB<Computer> {
         return nb;
     }
 
+    public long countBySearch(String search) {
+        Connection db = connect();
+        PreparedStatement prep = null;
+        ResultSet res = null;
+        String searchQuery = "WHERE c.name LIKE ? OR i.name LIKE ?";
+        String query = "SELECT COUNT(*) FROM computer i LEFT JOIN company c ON c.id = i.company_id " + searchQuery;
+        long l = 0;
+        try {
+            prep = db.prepareStatement(query);
+            prep.setString(1, "%" + search + "%");
+            prep.setString(2, "%" + search + "%");
+            res = prep.executeQuery();
+            res.next();
+            l = res.getLong(1);
+            prep.close();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            closeConnection(db);
+        }
+        return l;
+    }
 }
