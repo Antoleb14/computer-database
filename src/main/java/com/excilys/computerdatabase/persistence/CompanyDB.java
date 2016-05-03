@@ -8,6 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.exception.DAOException;
 import com.excilys.computerdatabase.mapper.CompanyMapper;
@@ -20,6 +23,7 @@ import com.excilys.computerdatabase.mapper.CompanyMapper;
  */
 public class CompanyDB implements EntityDB<Company> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(CompanyDB.class);
     private static CompanyDB cdb = null;
 
     /**
@@ -124,8 +128,34 @@ public class CompanyDB implements EntityDB<Company> {
      */
     @Override
     public boolean delete(Company c) {
-        // Not Implemented
-        return false;
+        LOG.debug("DELETING Company: " + c.getName());
+        Connection db = connect();
+        PreparedStatement prep = null;
+        String query2 = "DELETE FROM company WHERE id = ?";
+        String query = "DELETE FROM computer WHERE company_id = ?";
+        try {
+            db.setAutoCommit(false);
+            prep = db.prepareStatement(query);
+            prep.setLong(1, c.getId());
+            prep.executeUpdate();
+            prep.close();
+            prep = db.prepareStatement(query2);
+            prep.setLong(1, c.getId());
+            prep.executeUpdate();
+            prep.close();
+            db.commit();
+        } catch (SQLException e) {
+            LOG.error(e.getMessage());
+            try {
+                db.rollback();
+            } catch (SQLException e1) {
+                throw new DAOException(e);
+            }
+            throw new DAOException(e);
+        } finally {
+            closeConnection(db);
+        }
+        return true;
     }
 
 }

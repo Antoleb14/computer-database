@@ -22,7 +22,7 @@ import com.excilys.computerdatabase.service.ServicePage;
 public class Main {
 
     static final Logger LOG = LoggerFactory.getLogger(Main.class);
-    private static final ServiceComputer COMPUTER = ServiceComputer.getInstance();
+    private static final ServiceComputer COMPUTER = ServiceComputer.INSTANCE;
     private static final ServiceCompany COMPANY = ServiceCompany.getInstance();
     private static Scanner sc = null;
 
@@ -33,6 +33,7 @@ public class Main {
      *            arguments
      */
     public static void main(String[] args) {
+        LOG.debug("Entering CLI mode");
         sc = new Scanner(System.in);
         menu(0);
         sc.close();
@@ -54,7 +55,8 @@ public class Main {
             System.out.println("    2 - List companies");
             System.out.println("    3 - Computer details (view, edit, delete)");
             System.out.println("    4 - Create a computer");
-            System.out.println("    5 - Quitter");
+            System.out.println("    5 - Delete a company");
+            System.out.println("    6 - Quitter");
             System.out.print("Indiquez votre choix : ");
             val = enterInt();
         }
@@ -99,6 +101,19 @@ public class Main {
             createComputer(cmp1);
             break;
         case 5:
+            System.out.println();
+            System.out.print("Which company would you like to delete : ");
+            Long comp = new Long(enterInt());
+            Company company = COMPANY.find(comp);
+            LOG.debug(company.toString());
+            try {
+                COMPANY.delete(company);
+            } catch (Exception e) {
+                LOG.error(e.getMessage());
+            }
+            System.out.println(company.getName() + " & all computers have been deleted !");
+            break;
+        case 6:
             System.exit(0);
             break;
         }

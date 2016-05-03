@@ -11,31 +11,8 @@ import com.excilys.computerdatabase.exception.ValidatorException;
 import com.excilys.computerdatabase.mapper.LocalDateTimeMapper;
 import com.excilys.computerdatabase.service.ServiceCompany;
 
-public class ValidatorComputer implements IValidator<Computer> {
-
-    private static ValidatorComputer v;
-
-    /**
-     * Class constructor.
-     */
-    private ValidatorComputer() {
-    }
-
-    /**
-     * Method getInstance() for singleton pattern.
-     *
-     * @return ValidatorComputer
-     */
-    public static ValidatorComputer getInstance() {
-        if (v == null) {
-            synchronized (ValidatorComputer.class) {
-                if (v == null) {
-                    v = new ValidatorComputer();
-                }
-            }
-        }
-        return v;
-    }
+public enum ValidatorComputer implements IValidator<Computer> {
+    INSTANCE;
 
     /**
      * Method to know if a computer is valid.

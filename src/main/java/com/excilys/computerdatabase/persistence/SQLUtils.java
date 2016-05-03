@@ -14,9 +14,9 @@ import com.zaxxer.hikari.HikariDataSource;
  *
  * @author excilys
  */
-public final class SQLUtils {
+public enum SQLUtils {
 
-    private static SQLUtils db;
+    INSTANCE;
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static HikariDataSource ds;
 
@@ -51,29 +51,10 @@ public final class SQLUtils {
         ds.setJdbcUrl(dbname);
         ds.setUsername(username);
         ds.setPassword(password);
+        ds.addDataSourceProperty("cachePrepStmts", "true");
+        ds.addDataSourceProperty("prepStmtCacheSize", "250");
+        ds.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
 
-    }
-
-    /**
-     * Constructor of the class.
-     */
-    private SQLUtils() {
-    }
-
-    /**
-     * Method to get instance of SQLUtils or create one if null.
-     *
-     * @return SQLUtils Database connection object
-     */
-    public static SQLUtils getInstance() {
-        if (db == null) {
-            synchronized (SQLUtils.class) {
-                if (db == null) {
-                    db = new SQLUtils();
-                }
-            }
-        }
-        return db;
     }
 
     /**

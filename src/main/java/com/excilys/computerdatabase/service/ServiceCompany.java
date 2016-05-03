@@ -79,13 +79,11 @@ public class ServiceCompany implements IService<Company> {
 
     @Override
     public boolean delete(Company t) throws ServiceException {
-        // TODO Auto-generated method stub
-        return false;
+        return CDB.delete(t);
     }
 
     @Override
     public Company create(Company t) throws ServiceException {
-        // TODO Auto-generated method stub
-        return null;
+        return CDB.create(t);
     }
 }

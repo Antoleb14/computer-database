@@ -19,28 +19,9 @@ import com.excilys.computerdatabase.mapper.ComputerMapper;
  * @author excilys
  *
  */
-public class ComputerDB implements EntityDB<Computer> {
+public enum ComputerDB implements EntityDB<Computer> {
 
-    private static ComputerDB cdb = null;
-
-    /**
-     * Class constructor of the class.
-     */
-    private ComputerDB() {
-
-    }
-
-    /**
-     * Method to get instance of ComputerDb or create one if null.
-     *
-     * @return ComputerDB
-     */
-    public static synchronized ComputerDB getComputerDb() {
-        if (cdb == null) {
-            cdb = new ComputerDB();
-        }
-        return cdb;
-    }
+    INSTANCE;
 
     /**
      * Method to persist a new Computer in the database.
@@ -173,6 +154,34 @@ public class ComputerDB implements EntityDB<Computer> {
         try {
             prep = db.prepareStatement(query);
             prep.setString(1, name);
+            res = prep.executeQuery();
+            c = ComputerMapper.getInstance().mapAll(res);
+            prep.close();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            closeConnection(db);
+        }
+
+        return c;
+    }
+
+    /**
+     * Method to find a Computer by Name.
+     *
+     * @param name
+     *            Name of the Computer
+     * @return List of Computers found
+     */
+    public List<Computer> findByCompany(String id) {
+        Connection db = connect();
+        PreparedStatement prep = null;
+        ResultSet res = null;
+        List<Computer> c = new ArrayList<Computer>();
+        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id WHERE i.company_id = ? ORDER BY i.id ASC";
+        try {
+            prep = db.prepareStatement(query);
+            prep.setString(1, id);
             res = prep.executeQuery();
             c = ComputerMapper.getInstance().mapAll(res);
             prep.close();

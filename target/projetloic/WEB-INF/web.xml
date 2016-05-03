@@ -31,7 +31,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>EditComputer</servlet-name>
-		<url-pattern>/editcomputer/([0-9]+)</url-pattern>
+		<url-pattern>/editcomputer</url-pattern>
 	</servlet-mapping>
 	
 	<error-page>

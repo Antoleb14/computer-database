@@ -56,8 +56,8 @@ public class AddComputer extends HttpServlet {
         request.setAttribute("discontinued", discontinued);
         request.setAttribute("company", company);
 
-        ServiceComputer sc = ServiceComputer.getInstance();
-        ValidatorComputer v = ValidatorComputer.getInstance();
+        ServiceComputer sc = ServiceComputer.INSTANCE;
+        ValidatorComputer v = ValidatorComputer.INSTANCE;
         try {
             v.validate(name, introduced, discontinued, company);
         } catch (ValidatorException e) {

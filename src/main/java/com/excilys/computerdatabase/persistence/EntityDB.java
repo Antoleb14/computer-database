@@ -59,7 +59,7 @@ public interface EntityDB<T> {
      * Method to connect to database.
      */
     public default Connection connect() {
-        return SQLUtils.getInstance().getConnection();
+        return SQLUtils.INSTANCE.getConnection();
     }
 
     /**

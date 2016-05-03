@@ -12,6 +12,7 @@
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/ValidatorException.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/IMapper.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/SQLUtilsException.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/LocalDateTimeMapper.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/CompanyDB.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServiceCompany.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/ServiceException.java

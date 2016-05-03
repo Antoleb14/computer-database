@@ -11,33 +11,12 @@ import com.excilys.computerdatabase.exception.ServiceException;
 import com.excilys.computerdatabase.persistence.ComputerDB;
 import com.excilys.computerdatabase.validator.ValidatorComputer;
 
-public class ServiceComputer implements IService<Computer> {
+public enum ServiceComputer implements IService<Computer> {
+
+    INSTANCE;
 
     static final Logger LOG = LoggerFactory.getLogger(ServiceComputer.class);
-    private static final ComputerDB CDB = ComputerDB.getComputerDb();
-    private static ServiceComputer sc = null;
-
-    /**
-     * Class constructor.
-     */
-    private ServiceComputer() {
-    }
-
-    /**
-     * Method getInstance for the Singleton pattern.
-     *
-     * @return ServiceComputer
-     */
-    public static ServiceComputer getInstance() {
-        if (sc == null) {
-            synchronized (ServiceComputer.class) {
-                if (sc == null) {
-                    sc = new ServiceComputer();
-                }
-            }
-        }
-        return sc;
-    }
+    private final ComputerDB CDB = ComputerDB.INSTANCE;
 
     @Override
     public Computer find(Long id) throws ServiceException {
@@ -66,7 +45,7 @@ public class ServiceComputer implements IService<Computer> {
     @Override
     public Computer update(Computer t) throws ServiceException {
         try {
-            ValidatorComputer v = ValidatorComputer.getInstance();
+            ValidatorComputer v = ValidatorComputer.INSTANCE;
             if (!v.isValid(t)) {
                 return null;
             }
@@ -91,7 +70,7 @@ public class ServiceComputer implements IService<Computer> {
     public Computer create(Computer t) throws ServiceException {
         Computer c = null;
         try {
-            ValidatorComputer v = ValidatorComputer.getInstance();
+            ValidatorComputer v = ValidatorComputer.INSTANCE;
             if (!v.isValid(t)) {
                 return null;
             }

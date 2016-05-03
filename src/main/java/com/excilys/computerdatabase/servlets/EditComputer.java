@@ -33,7 +33,7 @@ public class EditComputer extends HttpServlet {
 
         long id = Long.parseLong(request.getParameter("id"));
 
-        ServiceComputer scomp = ServiceComputer.getInstance();
+        ServiceComputer scomp = ServiceComputer.INSTANCE;
 
         Computer edit = scomp.find(id);
         ComputerDTOMapper mapper = ComputerDTOMapper.getInstance();
@@ -65,8 +65,8 @@ public class EditComputer extends HttpServlet {
         request.setAttribute("discontinued", discontinued);
         request.setAttribute("company", company);
 
-        ServiceComputer sc = ServiceComputer.getInstance();
-        ValidatorComputer v = ValidatorComputer.getInstance();
+        ServiceComputer sc = ServiceComputer.INSTANCE;
+        ValidatorComputer v = ValidatorComputer.INSTANCE;
         try {
             v.validate(id, name, introduced, discontinued, company);
         } catch (ValidatorException e) {

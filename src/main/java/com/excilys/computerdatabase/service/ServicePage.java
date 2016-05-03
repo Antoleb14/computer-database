@@ -17,7 +17,7 @@ import com.excilys.computerdatabase.mapper.ComputerDTOMapper;
  */
 public class ServicePage {
 
-    private static ServiceComputer cs = ServiceComputer.getInstance();
+    private static ServiceComputer cs = ServiceComputer.INSTANCE;
 
     private int page;
     private int maxPages;

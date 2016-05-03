@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.entity.ComputerDTO;
 import com.excilys.computerdatabase.entity.Page;
+import com.excilys.computerdatabase.service.RequestAnalyzer;
 import com.excilys.computerdatabase.service.ServiceComputer;
 import com.excilys.computerdatabase.service.ServicePage;
 
@@ -31,31 +32,15 @@ public class Dashboard extends HttpServlet {
         // response.getWriter().append("Served at:
         // ").append(request.getContextPath());
 
-        ServiceComputer sc = ServiceComputer.getInstance();
+        ServiceComputer sc = ServiceComputer.INSTANCE;
         List<Computer> listComputers = sc.findAll();
         request.setAttribute("computers", listComputers);
 
         int count = sc.count();
         request.setAttribute("count", count);
 
-        int itemsPage = 10;
-        try {
-            String limit = request.getParameter("l");
-            if (limit != null) {
-                itemsPage = Integer.parseInt(limit);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        int page = 1;
-        try {
-            if (request.getParameter("p") != null) {
-                page = Integer.parseInt(request.getParameter("p"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        int itemsPage = RequestAnalyzer.INSTANCE.analyzeInt(request.getParameter("l"));
+        int page = RequestAnalyzer.INSTANCE.analyzeInt(request.getParameter("p"));
 
         ServicePage sp = new ServicePage();
         Page<ComputerDTO> p = sp.createPage(page, itemsPage);
@@ -71,8 +56,7 @@ public class Dashboard extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        doGet(request, response);
+        System.out.println(request.getParameterMap());
     }
 
 }

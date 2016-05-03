@@ -1,0 +1,629 @@
+10:56:03.437 [main] ERROR com.excilys.computerdatabase.ui.Main - ERROR FOUND
+10:58:38.527 [main] ERROR com.excilys.computerdatabase.ui.Main - ERROR FOUND
+10:59:14.842 [main] ERROR com.excilys.computerdatabase.ui.Main - ERROR FOUND
+11:01:17.541 [main] ERROR com.excilys.computerdatabase.ui.Main - ERROR FOUND
+11:01:35.212 [main] ERROR com.excilys.computerdatabase.ui.Main - ERROR FOUND
+11:03:28.841 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:05:31.376 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:05:39.900 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:05:39.909 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:05:39.910 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:05:39.910 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:05:39.910 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:05:39.910 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:05:39.910 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:05:39.910 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:05:39.910 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:05:39.910 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:05:39.911 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:05:39.911 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:05:39.911 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:05:39.911 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:05:39.911 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:05:39.911 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:05:39.912 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:05:39.912 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:05:39.912 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:05:39.912 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:05:39.912 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:05:39.912 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:05:39.912 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:05:39.912 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:05:39.912 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:05:39.912 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:05:39.913 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:05:39.913 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:05:39.913 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:05:39.913 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:05:39.913 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:05:39.913 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:05:39.913 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:05:39.913 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:05:39.913 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:05:40.198 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@7417462f
+11:06:41.048 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:06:45.829 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:06:45.837 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:06:45.838 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:06:45.838 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:06:45.838 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:06:45.838 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:06:45.838 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:06:45.838 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:06:45.838 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:06:45.838 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:06:45.839 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:06:45.839 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:06:45.839 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:06:45.839 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:06:45.839 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:06:45.839 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:06:45.839 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:06:45.840 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:06:45.840 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:06:45.840 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:06:45.840 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:06:45.840 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:06:45.840 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:06:45.840 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:06:45.840 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:06:45.840 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:06:45.841 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:06:45.841 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:06:45.841 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:06:45.841 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:06:45.841 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:06:45.845 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:06:45.846 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:06:45.846 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:06:45.846 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:06:46.129 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@7417462f
+11:09:23.965 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:09:27.937 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:09:27.946 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:09:27.946 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:09:27.946 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:09:27.946 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:09:27.946 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:09:27.946 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:09:27.947 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:09:27.947 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:09:27.947 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:09:27.947 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:09:27.947 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:09:27.947 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:09:27.947 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:09:27.947 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:09:27.948 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:09:27.948 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:09:27.948 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:09:27.948 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:09:27.948 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:09:27.948 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:09:27.948 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:09:27.948 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:09:27.949 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:09:27.949 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:09:27.949 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:09:27.949 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:09:27.949 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:09:27.949 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:09:27.949 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:09:27.950 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:09:27.950 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:09:27.950 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:09:27.950 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:09:27.950 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:09:28.233 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@7417462f
+11:10:30.841 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:10:34.989 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:10:34.998 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:10:34.998 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:10:34.998 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:10:34.998 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:10:34.998 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:10:34.999 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:10:34.999 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:10:34.999 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:10:34.999 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:10:34.999 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:10:34.999 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:10:34.999 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:10:34.999 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:10:35.000 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:10:35.000 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:10:35.000 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:10:35.000 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:10:35.000 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:10:35.000 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:10:35.000 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:10:35.000 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:10:35.000 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:10:35.001 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:10:35.001 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:10:35.001 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:10:35.001 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:10:35.001 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:10:35.001 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:10:35.001 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:10:35.001 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:10:35.002 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:10:35.002 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:10:35.002 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:10:35.002 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:10:35.294 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@4e6d5ad0
+11:11:30.586 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:11:36.118 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:11:36.126 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:11:36.127 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:11:36.127 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:11:36.127 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:11:36.127 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:11:36.127 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:11:36.127 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:11:36.127 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:11:36.127 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:11:36.127 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:11:36.128 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:11:36.128 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:11:36.128 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:11:36.128 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:11:36.128 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:11:36.128 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:11:36.128 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:11:36.128 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:11:36.128 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:11:36.129 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:11:36.129 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:11:36.129 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:11:36.129 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:11:36.129 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:11:36.129 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:11:36.129 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:11:36.130 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:11:36.130 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:11:36.130 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:11:36.130 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:11:36.130 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:11:36.130 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:11:36.130 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:11:36.130 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:11:36.422 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@42de00e9
+11:11:36.456 [main] DEBUG com.excilys.computerdatabase.ui.Main - 15 - Canon
+11:12:52.952 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:12:56.439 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:12:56.448 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:12:56.448 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:12:56.448 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:12:56.448 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:12:56.448 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:12:56.448 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:12:56.448 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:12:56.449 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:12:56.449 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:12:56.449 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:12:56.449 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:12:56.449 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:12:56.449 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:12:56.449 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:12:56.449 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:12:56.450 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:12:56.450 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:12:56.450 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:12:56.450 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:12:56.450 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:12:56.450 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:12:56.450 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:12:56.450 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:12:56.451 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:12:56.451 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:12:56.451 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:12:56.451 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:12:56.451 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:12:56.451 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:12:56.451 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:12:56.452 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:12:56.452 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:12:56.452 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:12:56.452 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:12:56.732 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@7417462f
+11:13:28.010 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:13:31.406 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:13:31.414 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:13:31.415 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:13:31.415 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:13:31.415 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:13:31.415 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:13:31.415 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:13:31.415 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:13:31.415 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:13:31.415 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:13:31.416 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:13:31.416 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:13:31.416 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:13:31.416 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:13:31.416 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:13:31.416 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:13:31.416 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:13:31.417 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:13:31.417 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:13:31.417 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:13:31.417 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:13:31.417 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:13:31.417 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:13:31.417 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:13:31.417 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:13:31.417 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:13:31.418 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:13:31.418 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:13:31.418 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:13:31.418 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:13:31.418 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:13:31.418 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:13:31.418 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:13:31.419 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:13:31.419 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:13:31.694 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@7417462f
+11:13:31.726 [main] DEBUG com.excilys.computerdatabase.ui.Main - 15 - Canon
+11:13:31.727 [main] DEBUG c.e.c.persistence.CompanyDB - DELETING Company: Canon
+11:13:31.733 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@1859ada5
+11:13:31.740 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Canon
+11:13:31.748 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Canon
+11:13:31.758 [main] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Reset (autoCommit) on connection com.mysql.jdbc.JDBC4Connection@7417462f
+11:15:24.698 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:15:27.102 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:15:27.109 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:15:27.110 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:15:27.110 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:15:27.110 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:15:27.110 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:15:27.110 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:15:27.110 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:15:27.110 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:15:27.110 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:15:27.110 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:15:27.111 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:15:27.111 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:15:27.111 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:15:27.111 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:15:27.111 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:15:27.111 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:15:27.111 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:15:27.111 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:15:27.112 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:15:27.112 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:15:27.112 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:15:27.112 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:15:27.112 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:15:27.112 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:15:27.112 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:15:27.112 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:15:27.112 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:15:27.113 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:15:27.113 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:15:27.113 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:15:27.113 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:15:27.113 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:15:27.113 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:15:27.113 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:15:27.389 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@58908c12
+11:15:37.463 [main] DEBUG com.excilys.computerdatabase.ui.Main - 6 - Commodore International
+11:15:37.464 [main] DEBUG c.e.c.persistence.CompanyDB - DELETING Company: Commodore International
+11:15:37.470 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@662c9645
+11:15:37.480 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.484 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.490 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.494 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.498 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.501 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.509 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.513 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.520 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.524 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.529 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.533 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.541 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.545 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.549 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.553 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.557 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.559 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.562 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.570 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.574 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.577 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.581 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.585 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:15:37.591 [main] ERROR c.e.c.persistence.CompanyDB - null
+11:15:37.591 [main] ERROR c.e.c.exception.DAOException - null
+11:15:37.591 [main] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Reset (autoCommit) on connection com.mysql.jdbc.JDBC4Connection@58908c12
+11:15:37.591 [main] ERROR com.excilys.computerdatabase.ui.Main - java.sql.SQLException
+11:23:32.812 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:23:34.678 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:23:34.686 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:23:34.686 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:23:34.686 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:23:34.686 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:23:34.687 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:23:34.687 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:23:34.687 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:23:34.687 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:23:34.687 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:23:34.687 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:23:34.687 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:23:34.687 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:23:34.688 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:23:34.688 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:23:34.688 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:23:34.688 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:23:34.688 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:23:34.688 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:23:34.688 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:23:34.688 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:23:34.689 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:23:34.689 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:23:34.689 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:23:34.689 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:23:34.689 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:23:34.689 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:23:34.689 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:23:34.689 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:23:34.689 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:23:34.690 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:23:34.690 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:23:34.690 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:23:34.690 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:23:34.690 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:23:34.964 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@59d6269a
+11:23:55.259 [main] DEBUG com.excilys.computerdatabase.ui.Main - 6 - Commodore International
+11:23:55.260 [main] DEBUG c.e.c.persistence.CompanyDB - DELETING Company: Commodore International
+11:23:55.267 [main] ERROR c.e.c.persistence.CompanyDB - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELETE FROM computer WHERE company_id = 6' at line 1
+11:23:55.268 [main] ERROR c.e.c.exception.DAOException - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELETE FROM computer WHERE company_id = 6' at line 1
+11:23:55.268 [main] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Reset (autoCommit) on connection com.mysql.jdbc.JDBC4Connection@59d6269a
+11:23:55.268 [main] ERROR com.excilys.computerdatabase.ui.Main - com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELETE FROM computer WHERE company_id = 6' at line 1
+11:24:35.534 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:24:38.423 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:24:38.431 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:24:38.432 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:24:38.432 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:24:38.432 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:24:38.432 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:24:38.432 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:24:38.432 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:24:38.432 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:24:38.432 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:24:38.432 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:24:38.433 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:24:38.433 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:24:38.433 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:24:38.433 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:24:38.433 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:24:38.433 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:24:38.433 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:24:38.433 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:24:38.434 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:24:38.434 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:24:38.434 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:24:38.434 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:24:38.434 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:24:38.434 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:24:38.434 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:24:38.434 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:24:38.434 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:24:38.435 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:24:38.435 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:24:38.435 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:24:38.435 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:24:38.435 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:24:38.435 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:24:38.435 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:24:38.711 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@59d6269a
+11:24:49.283 [main] DEBUG com.excilys.computerdatabase.ui.Main - 6 - Commodore International
+11:24:49.283 [main] DEBUG c.e.c.persistence.CompanyDB - DELETING Company: Commodore International
+11:24:49.291 [main] ERROR c.e.c.persistence.CompanyDB - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELETE FROM computer WHERE company_id = 6' at line 1
+11:24:49.292 [main] ERROR c.e.c.exception.DAOException - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELETE FROM computer WHERE company_id = 6' at line 1
+11:24:49.292 [main] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Reset (autoCommit) on connection com.mysql.jdbc.JDBC4Connection@59d6269a
+11:24:49.292 [main] ERROR com.excilys.computerdatabase.ui.Main - com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELETE FROM computer WHERE company_id = 6' at line 1
+11:26:32.893 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:26:36.182 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:26:36.190 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:26:36.191 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:26:36.191 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:26:36.191 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:26:36.191 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:26:36.191 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:26:36.191 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:26:36.191 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:26:36.191 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:26:36.192 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:26:36.192 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:26:36.192 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:26:36.192 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:26:36.192 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:26:36.192 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:26:36.192 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:26:36.193 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:26:36.193 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:26:36.193 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:26:36.193 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:26:36.193 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:26:36.193 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:26:36.193 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:26:36.193 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:26:36.193 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:26:36.194 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:26:36.194 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:26:36.194 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:26:36.194 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:26:36.194 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:26:36.194 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:26:36.194 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:26:36.194 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:26:36.194 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:26:36.471 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@109b6b5b
+11:26:46.635 [main] DEBUG com.excilys.computerdatabase.ui.Main - 6 - Commodore International
+11:26:46.636 [main] DEBUG c.e.c.persistence.CompanyDB - DELETING Company: Commodore International
+11:26:46.644 [main] ERROR c.e.c.persistence.CompanyDB - Cannot delete or update a parent row: a foreign key constraint fails (`computer-database-db`.`computer`, CONSTRAINT `fk_computer_company_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`))
+11:26:46.648 [main] ERROR c.e.c.exception.DAOException - Cannot delete or update a parent row: a foreign key constraint fails (`computer-database-db`.`computer`, CONSTRAINT `fk_computer_company_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`))
+11:26:46.649 [main] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Reset (autoCommit) on connection com.mysql.jdbc.JDBC4Connection@109b6b5b
+11:26:46.649 [main] ERROR com.excilys.computerdatabase.ui.Main - com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`computer-database-db`.`computer`, CONSTRAINT `fk_computer_company_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`))
+11:28:56.208 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:29:00.399 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:29:00.408 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:29:00.408 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:29:00.408 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:29:00.408 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:29:00.408 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:29:00.408 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:29:00.408 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:29:00.408 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:29:00.409 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:29:00.409 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:29:00.409 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:29:00.409 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:29:00.409 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:29:00.409 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:29:00.409 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:29:00.409 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:29:00.410 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:29:00.410 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:29:00.410 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:29:00.410 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:29:00.410 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:29:00.410 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:29:00.410 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:29:00.410 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:29:00.410 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:29:00.411 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:29:00.411 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:29:00.411 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:29:00.411 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:29:00.411 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:29:00.411 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:29:00.411 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:29:00.411 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:29:00.411 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:29:00.689 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@681a51dc
+11:29:00.723 [main] DEBUG com.excilys.computerdatabase.ui.Main - 6 - Commodore International
+11:29:00.723 [main] DEBUG c.e.c.persistence.CompanyDB - DELETING Company: Commodore International
+11:29:00.729 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@7749f1ce
+11:29:00.739 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:29:36.329 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:29:39.171 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:29:39.179 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:29:39.179 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:29:39.179 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:29:39.180 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:29:39.180 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:29:39.180 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:29:39.180 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:29:39.180 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:29:39.180 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:29:39.180 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:29:39.180 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:29:39.181 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:29:39.181 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:29:39.181 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:29:39.181 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:29:39.181 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:29:39.181 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:29:39.181 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:29:39.181 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:29:39.182 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:29:39.182 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:29:39.182 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:29:39.182 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:29:39.182 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:29:39.182 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:29:39.182 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:29:39.182 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:29:39.182 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:29:39.183 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:29:39.183 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:29:39.183 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:29:39.183 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:29:39.183 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:29:39.183 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:29:39.462 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@54fdd31
+11:31:58.685 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:32:01.854 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:32:01.863 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:32:01.863 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:32:01.863 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:32:01.863 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:32:01.863 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:32:01.863 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:32:01.863 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:32:01.863 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:32:01.863 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:32:01.864 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:32:01.864 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:32:01.864 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:32:01.864 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:32:01.864 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:32:01.864 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:32:01.864 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:32:01.865 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:32:01.865 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:32:01.865 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:32:01.865 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:32:01.865 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:32:01.865 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:32:01.865 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:32:01.865 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:32:01.865 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:32:01.865 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:32:01.866 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:32:01.866 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:32:01.866 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:32:01.866 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:32:01.866 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:32:01.866 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:32:01.866 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:32:01.866 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:32:02.150 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@58908c12
+11:32:02.182 [main] DEBUG com.excilys.computerdatabase.ui.Main - 6 - Commodore International
+11:32:02.183 [main] DEBUG c.e.c.persistence.CompanyDB - DELETING Company: Commodore International
+11:32:02.189 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@59c99d2c
+11:32:02.198 [main] DEBUG c.e.c.persistence.CompanyDB - Deleting Commodore International
+11:34:01.997 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+11:34:05.174 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+11:34:05.182 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+11:34:05.182 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+11:34:05.183 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................null
+11:34:05.183 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............null
+11:34:05.183 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............null
+11:34:05.183 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+11:34:05.183 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................null
+11:34:05.183 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............null
+11:34:05.183 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................null
+11:34:05.183 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+11:34:05.183 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName.................null
+11:34:05.184 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+11:34:05.184 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............null
+11:34:05.184 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+11:34:05.184 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailFast..........true
+11:34:05.184 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+11:34:05.184 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbc4ConnectionTest.............false
+11:34:05.184 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl........................."jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+11:34:05.184 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+11:34:05.185 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+11:34:05.185 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+11:34:05.185 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................null
+11:34:05.185 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........null
+11:34:05.185 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+11:34:05.185 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+11:34:05.185 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+11:34:05.185 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+11:34:05.186 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+11:34:05.186 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutorService........null
+11:34:05.186 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................null
+11:34:05.186 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............null
+11:34:05.186 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"admincdb"
+11:34:05.186 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+11:34:05.186 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Started.
+11:34:05.462 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@7921c806
+11:34:05.494 [main] DEBUG com.excilys.computerdatabase.ui.Main - 6 - Commodore International
+11:34:05.495 [main] DEBUG c.e.c.persistence.CompanyDB - DELETING Company: Commodore International
+11:34:05.501 [main] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Reset (autoCommit) on connection com.mysql.jdbc.JDBC4Connection@7921c806
+12:03:49.560 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection com.mysql.jdbc.JDBC4Connection@7921c806: (connection has passed maxLifetime)

@@ -81,7 +81,7 @@
 						<tr>
 							<td class="editMode"><input type="checkbox" name="cb"
 								class="cb" value="0"></td>
-							<td><a href="editComputer.html" onclick="">${computer.name}</a></td>
+							<td><mytag:link target="editcomputer" datas="id=${computer.id}" label="${ computer.name }"  /></td>
 							
 							<td>${computer.introduced}</td>
 							<td>${computer.discontinued}</td>

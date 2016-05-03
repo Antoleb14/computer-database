@@ -20,6 +20,7 @@ com/excilys/computerdatabase/persistence/SQLUtils.class
 com/excilys/computerdatabase/ui/Main.class
 com/excilys/computerdatabase/exception/SQLUtilsException.class
 com/excilys/computerdatabase/entity/Computer$ComputerBuilder.class
+com/excilys/computerdatabase/mapper/LocalDateTimeMapper.class
 com/excilys/computerdatabase/ui/LocalDateTimeTag.class
 com/excilys/computerdatabase/persistence/EntityDB.class
 com/excilys/computerdatabase/entity/CompanyDTO.class

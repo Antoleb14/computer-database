@@ -3,6 +3,7 @@
 <%@ attribute name="target" required="true" type="java.lang.String" %>
 <%@ attribute name="label" required="true" type="java.lang.String"%>
 <%@ attribute name="classes" required="false" type="java.lang.String"%>
+<%@ attribute name="datas" required="false" type="java.lang.String"%>
 <%@ attribute name="page" required="false" type="java.lang.String" %>
 <%@ attribute name="limit" required="false" type="java.lang.String" %>
 
@@ -39,11 +40,20 @@
 </c:choose>
 
 <c:choose>
+	<c:when test="${ not empty datas }">
+		<c:set var="nDatas" value="${ datas }" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="nDatas" value="" />
+	</c:otherwise>
+</c:choose>
+
+<c:choose>
 	<c:when test="${ target == '#' }">
 		<a href="#">${ label }</a>
 	</c:when>
 	<c:otherwise>
-		<a href="${ target }?${nPage}${nLimit}" class="${ nClass }">${ label }</a>
+		<a href="${ target }?${nDatas}${nPage}${nLimit}" class="${ nClass }">${ label }</a>
 	</c:otherwise>
 </c:choose>
 
