@@ -62,7 +62,7 @@ public class ServicePage {
      */
     public List<Computer> pager(int page) {
         int current = (page - 1) * limitPerPage;
-        List<Computer> computers = cs.findBySearch(current, limitPerPage, "", "");
+        List<Computer> computers = cs.findBySearch(current, limitPerPage, "", null);
         this.page = page;
         return computers;
 
@@ -104,16 +104,14 @@ public class ServicePage {
      *            number of elements by page
      * @return Page
      */
-    public Page<ComputerDTO> createPage(int currentPage, int elementsByPage, String search, String order) {
+    public Page<ComputerDTO> createPage(int currentPage, int elementsByPage, String search, Order order) {
         this.limitPerPage = elementsByPage;
         this.page = currentPage;
         int current = (currentPage - 1) * limitPerPage;
         ArrayList<Computer> elements = cs.findBySearch(current, elementsByPage, search, order);
         ArrayList<ComputerDTO> elements2 = ComputerDTOMapper.INSTANCE.listObjetToDTO(elements);
         long totalNumber = cs.countBySearch(search);
-        System.out.println("COMPUTERS : " + totalNumber);
         int totalPages = (int) ((totalNumber / limitPerPage) + (totalNumber % limitPerPage > 0 ? 1 : 0));
-        System.out.println("TOTAL PAGES : " + totalPages);
         return new Page<ComputerDTO>(elements2, totalPages, currentPage, elementsByPage, totalNumber, search);
     }
 

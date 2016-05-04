@@ -68,12 +68,68 @@
 									class="fa fa-trash-o fa-lg"></i>
 							</a>
 						</span></th>
-						<th>Computer name</th>
-						<th>Introduced date</th>
+						<th>Computer name 
+							<mytag:link target="home" label="" search="${p.search}" classes="glyphicon glyphicon-chevron-up" page="${ page.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="name" 
+														sort="ASC" />
+							<mytag:link target="home" label="" search="${p.search}" classes="glyphicon glyphicon-chevron-down" page="${ page.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="name" 
+														sort="DESC" />
+					    </th>
+						<th>Introduced date <mytag:link target="home" 
+														label="" 
+														search="${p.search}" 
+														classes="glyphicon glyphicon-chevron-up"
+														page="${ p.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="introduced" 
+														sort="ASC" />
+											<mytag:link target="home" 
+														label="" 
+														search="${p.search}" 
+														classes="glyphicon glyphicon-chevron-down"
+														page="${ p.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="introduced" 
+														sort="DESC" /></th>
 						<!-- Table header for Discontinued Date -->
-						<th>Discontinued date</th>
+						<th>Discontinued date <mytag:link target="home" 
+														label="" 
+														search="${p.search}" 
+														classes="glyphicon glyphicon-chevron-up" 
+														page="${ p.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="discontinued" 
+														sort="ASC" />
+											  <mytag:link target="home" 
+														label="" 
+														search="${p.search}" 
+														classes="glyphicon glyphicon-chevron-down" 
+														page="${ p.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="discontinued" 
+														sort="DESC" />
+														</th>
 						<!-- Table header for Company -->
-						<th>Company</th>
+						<th>Company	<mytag:link target="home" 
+														label="" 
+														search="${p.search}" 
+														classes="glyphicon glyphicon-chevron-up" 
+														page="${ p.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="company" 
+														sort="ASC" />
+											  <mytag:link target="home" 
+														label="" 
+														search="${p.search}" 
+														classes="glyphicon glyphicon-chevron-down" 
+														page="${ p.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="company" 
+														sort="DESC" />
+														</th></th>
 
 					</tr>
 				</thead>

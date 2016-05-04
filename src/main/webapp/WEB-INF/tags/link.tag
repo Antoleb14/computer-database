@@ -7,6 +7,8 @@
 <%@ attribute name="page" required="false" type="java.lang.String" %>
 <%@ attribute name="limit" required="false" type="java.lang.String" %>
 <%@ attribute name="search" required="false" type="java.lang.String" %>
+<%@ attribute name="order" required="false" type="java.lang.String" %>
+<%@ attribute name="sort" required="false" type="java.lang.String" %>
 
 
 <c:choose>
@@ -59,11 +61,29 @@
 </c:choose>
 
 <c:choose>
+	<c:when test="${ not empty order }">
+		<c:set var="nOrder" value="&order=${ order }" />
+		<c:choose>
+			<c:when	test="${ not empty sort }">
+				<c:set var="nSort" value="&sort=${ sort }" />
+			</c:when>
+			<c:otherwise>
+				<c:set var="nSort" value="" />
+			</c:otherwise>
+		</c:choose>
+	</c:when>
+	<c:otherwise>
+		<c:set var="nOrder" value="" />
+		<c:set var="nSort" value="" />
+	</c:otherwise>
+</c:choose>
+
+<c:choose>
 	<c:when test="${ target == '#' }">
 		<a href="#">${ label }</a>
 	</c:when>
 	<c:otherwise>
-		<a href="${ target }?${nDatas}${nPage}${nLimit}${nSearch}" class="${ nClass }">${ label }</a>
+		<a href="${ target }?${nDatas}${nPage}${nLimit}${nSearch}${nOrder}${nSort}" class="${ nClass }">${ label }</a>
 	</c:otherwise>
 </c:choose>
 

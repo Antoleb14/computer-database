@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.entity.ComputerDTO;
 import com.excilys.computerdatabase.entity.Page;
+import com.excilys.computerdatabase.service.Order;
 import com.excilys.computerdatabase.service.RequestAnalyzer;
 import com.excilys.computerdatabase.service.ServiceComputer;
 import com.excilys.computerdatabase.service.ServicePage;
@@ -39,10 +40,16 @@ public class Dashboard extends HttpServlet {
         int itemsPage = RequestAnalyzer.INSTANCE.analyzeInt(request.getParameter("l"), 10);
         int page = RequestAnalyzer.INSTANCE.analyzeInt(request.getParameter("p"), 1);
         String search = RequestAnalyzer.INSTANCE.analyzeString(request.getParameter("search"), "");
-        String order = RequestAnalyzer.INSTANCE.analyzeString(request.getParameter("order"), "");
+        String champ = RequestAnalyzer.INSTANCE.analyzeString(request.getParameter("order"), "");
+        String ascdesc = RequestAnalyzer.INSTANCE.analyzeString(request.getParameter("sort"), "ASC");
+        Order order = null;
+        if (!champ.equals("")) {
+            order = new Order(champ, ascdesc);
+        }
 
         ServicePage sp = new ServicePage();
         Page<ComputerDTO> p = sp.createPage(page, itemsPage, search, order);
+        p.setOrder(order);
         request.setAttribute("count", p.getTotal());
         request.setAttribute("p", p);
 

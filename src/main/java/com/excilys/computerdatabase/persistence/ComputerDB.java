@@ -12,6 +12,7 @@ import java.util.List;
 import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.exception.DAOException;
 import com.excilys.computerdatabase.mapper.ComputerMapper;
+import com.excilys.computerdatabase.service.Order;
 
 /**
  * DAO class for Computer.
@@ -228,15 +229,23 @@ public enum ComputerDB implements EntityDB<Computer> {
      *            number of computers by page
      * @return List of computers
      */
-    public List<Computer> findBySearch(int page, int number, String search, String order) {
+    public List<Computer> findBySearch(int page, int number, String search, Order order) {
         Connection db = connect();
         List<Computer> list = new ArrayList<Computer>();
         PreparedStatement prep = null;
         ResultSet res = null;
+        String orderQuery = " ORDER BY i.name ASC";
+        if (order != null) {
+            if (order.getChamp().equals("company")) {
+                orderQuery = " ORDER BY c.name " + order.getOrder() + " ";
+            } else if (order.getChamp().matches("name|introduced|discontinued")) {
+                orderQuery = " ORDER BY i." + order.getChamp() + " " + order.getOrder() + " ";
+            }
+        }
         String searchQuery = "WHERE c.name LIKE ? OR i.name LIKE ?";
         String limit = " LIMIT ?, ?";
-        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id " + searchQuery
-                + " ORDER BY i.name ASC" + limit;
+        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id " + searchQuery + orderQuery
+                + limit;
 
         try {
             prep = db.prepareStatement(query);

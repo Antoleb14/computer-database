@@ -2,6 +2,8 @@ package com.excilys.computerdatabase.entity;
 
 import java.util.ArrayList;
 
+import com.excilys.computerdatabase.service.Order;
+
 /**
  * Class Page.
  *
@@ -18,6 +20,7 @@ public class Page<T> {
     private int elementsByPage = 0;
     private long total = 0;
     private String search = "";
+    private Order order;
 
     /**
      * Class constructor.
@@ -38,7 +41,7 @@ public class Page<T> {
         this.maxPages = maxPages;
         this.elementsByPage = elementsByPage;
         this.total = totalElem;
-        this.setSearch(search);
+        this.search = search;
     }
 
     public ArrayList<T> getElements() {
@@ -83,6 +86,14 @@ public class Page<T> {
 
     public void setSearch(String search) {
         this.search = search;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
 }

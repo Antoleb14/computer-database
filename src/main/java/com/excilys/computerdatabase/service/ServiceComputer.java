@@ -112,7 +112,7 @@ public enum ServiceComputer implements IService<Computer> {
      *            order of results
      * @return list of computers
      */
-    public ArrayList<Computer> findBySearch(int current, int elementsByPage, String search, String order) {
+    public ArrayList<Computer> findBySearch(int current, int elementsByPage, String search, Order order) {
         List<Computer> l = null;
         try {
             l = CDB.findBySearch(current, elementsByPage, search, order);
