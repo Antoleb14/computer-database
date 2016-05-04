@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
@@ -25,10 +26,11 @@ public class SeleniumTest {
     @Before
     public void openBrowser() {
         // baseUrl = System.getProperty("webdriver.base.url");
-        baseUrl = "http://localhost:8080/projetloic/home?p=1&l=100";
+        baseUrl = "http://localhost:8080/projetloic/home?p=1&l=10";
         driver = new FirefoxDriver();
         driver.get(baseUrl);
         screenshotHelper = new ScreenshotHelper();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @After
@@ -40,6 +42,18 @@ public class SeleniumTest {
     @Test
     public void pageTest() throws IOException {
         assertNotNull(driver.findElement(By.id("actions")));
+
+        // make a search
+        driver.findElement(By.id("searchbox")).clear();
+        driver.findElement(By.id("searchbox")).sendKeys("amiga");
+        driver.findElement(By.id("searchsubmit")).click();
+
+        // go back home
+        driver.findElement(By.className("navbar-brand")).click();
+
+        // pagination test
+        driver.findElement(By.id("nextPage")).click();
+
         // assertEquals("The page title should equal Google at the start of the
         // test.", "Google", driver.getTitle());
         // WebElement searchField = driver.findElement(By.name("q"));

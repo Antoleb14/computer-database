@@ -12,8 +12,10 @@ com/excilys/computerdatabase/mapper/CompanyDTOMapper.class
 com/excilys/computerdatabase/service/ServicePage.class
 com/excilys/computerdatabase/servlets/Dashboard.class
 com/excilys/computerdatabase/exception/DAOException.class
+com/excilys/computerdatabase/service/RequestAnalyzer.class
 com/excilys/computerdatabase/service/ServiceComputer.class
 com/excilys/computerdatabase/exception/MapperException.class
+com/excilys/computerdatabase/service/Order.class
 com/excilys/computerdatabase/entity/Company.class
 com/excilys/computerdatabase/exception/ServiceException.class
 com/excilys/computerdatabase/persistence/SQLUtils.class

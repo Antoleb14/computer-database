@@ -1,4 +1,5 @@
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/validator/ValidatorComputer.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/Order.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/Page.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/MapperException.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServiceComputer.java
@@ -23,6 +24,7 @@
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/ComputerDTO.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/validator/IValidator.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/IService.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/RequestAnalyzer.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/CompanyDTO.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServicePage.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/CompanyDTOMapper.java

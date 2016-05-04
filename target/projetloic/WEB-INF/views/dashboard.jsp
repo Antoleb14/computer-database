@@ -26,15 +26,17 @@
 			<mytag:link target="home" classes="navbar-brand" label="Application - Computer Database"  />
 		</div>
 	</header>
-
 	<section id="main">
 		<div class="container">
+			<c:if test="${ not empty success }">
+				<div class="alert alert-success">${ success }</div>
+			</c:if>
 			<h1 id="homeTitle">${ count } Computers found</h1>
 			<div id="actions" class="form-horizontal">
 				<div class="pull-left">
 					<form id="searchForm" action="#" method="GET" class="form-inline">
 
-						<input type="search" id="searchbox" name="search"
+						<input type="search" id="searchbox" name="search" value="${ p.search }"
 							class="form-control" placeholder="Search name" /> <input
 							type="submit" id="searchsubmit" value="Filter by name"
 							class="btn btn-primary" />
@@ -66,12 +68,68 @@
 									class="fa fa-trash-o fa-lg"></i>
 							</a>
 						</span></th>
-						<th>Computer name</th>
-						<th>Introduced date</th>
+						<th>Computer name 
+							<mytag:link target="home" label="" search="${p.search}" classes="glyphicon glyphicon-chevron-up" page="${ page.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="name" 
+														sort="ASC" />
+							<mytag:link target="home" label="" search="${p.search}" classes="glyphicon glyphicon-chevron-down" page="${ page.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="name" 
+														sort="DESC" />
+					    </th>
+						<th>Introduced date <mytag:link target="home" 
+														label="" 
+														search="${p.search}" 
+														classes="glyphicon glyphicon-chevron-up"
+														page="${ p.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="introduced" 
+														sort="ASC" />
+											<mytag:link target="home" 
+														label="" 
+														search="${p.search}" 
+														classes="glyphicon glyphicon-chevron-down"
+														page="${ p.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="introduced" 
+														sort="DESC" /></th>
 						<!-- Table header for Discontinued Date -->
-						<th>Discontinued date</th>
+						<th>Discontinued date <mytag:link target="home" 
+														label="" 
+														search="${p.search}" 
+														classes="glyphicon glyphicon-chevron-up" 
+														page="${ p.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="discontinued" 
+														sort="ASC" />
+											  <mytag:link target="home" 
+														label="" 
+														search="${p.search}" 
+														classes="glyphicon glyphicon-chevron-down" 
+														page="${ p.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="discontinued" 
+														sort="DESC" />
+														</th>
 						<!-- Table header for Company -->
-						<th>Company</th>
+						<th>Company	<mytag:link target="home" 
+														label="" 
+														search="${p.search}" 
+														classes="glyphicon glyphicon-chevron-up" 
+														page="${ p.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="company" 
+														sort="ASC" />
+											  <mytag:link target="home" 
+														label="" 
+														search="${p.search}" 
+														classes="glyphicon glyphicon-chevron-down" 
+														page="${ p.currentPage }" 
+														limit="${p.elementsByPage}" 
+														order="company" 
+														sort="DESC" />
+														</th></th>
 
 					</tr>
 				</thead>
@@ -80,7 +138,7 @@
 					<c:forEach items="${p.elements}" var="computer">
 						<tr>
 							<td class="editMode"><input type="checkbox" name="cb"
-								class="cb" value="0"></td>
+								class="cb" value="${ computer.id }"></td>
 							<td><mytag:link target="editcomputer" datas="id=${computer.id}" label="${ computer.name }"  /></td>
 							
 							<td>${computer.introduced}</td>

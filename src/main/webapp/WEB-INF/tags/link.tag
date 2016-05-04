@@ -9,6 +9,7 @@
 <%@ attribute name="search" required="false" type="java.lang.String" %>
 <%@ attribute name="order" required="false" type="java.lang.String" %>
 <%@ attribute name="sort" required="false" type="java.lang.String" %>
+<%@ attribute name="id" required="false" type="java.lang.String" %>
 
 
 <c:choose>
@@ -83,7 +84,7 @@
 		<a href="#">${ label }</a>
 	</c:when>
 	<c:otherwise>
-		<a href="${ target }?${nDatas}${nPage}${nLimit}${nSearch}${nOrder}${nSort}" class="${ nClass }">${ label }</a>
+		<a href="${ target }?${nDatas}${nPage}${nLimit}${nSearch}${nOrder}${nSort}" id="${ id }" class="${ nClass }">${ label }</a>
 	</c:otherwise>
 </c:choose>
 
