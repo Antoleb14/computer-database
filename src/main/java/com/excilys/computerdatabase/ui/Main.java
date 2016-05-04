@@ -23,7 +23,7 @@ public class Main {
 
     static final Logger LOG = LoggerFactory.getLogger(Main.class);
     private static final ServiceComputer COMPUTER = ServiceComputer.INSTANCE;
-    private static final ServiceCompany COMPANY = ServiceCompany.getInstance();
+    private static final ServiceCompany COMPANY = ServiceCompany.INSTANCE;
     private static Scanner sc = null;
 
     /**

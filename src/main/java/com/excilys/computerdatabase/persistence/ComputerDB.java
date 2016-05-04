@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.exception.DAOException;
 import com.excilys.computerdatabase.mapper.ComputerMapper;
@@ -196,6 +197,34 @@ public enum ComputerDB implements EntityDB<Computer> {
     }
 
     /**
+     * Method to find a Computer by Name.
+     *
+     * @param name
+     *            Name of the Computer
+     * @return List of Computers found
+     */
+    public List<Computer> findByCompany(Company t) {
+        Connection db = connect();
+        PreparedStatement prep = null;
+        ResultSet res = null;
+        List<Computer> c = new ArrayList<Computer>();
+        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id WHERE i.company_id = ? ORDER BY i.id ASC";
+        try {
+            prep = db.prepareStatement(query);
+            prep.setLong(1, t.getId());
+            res = prep.executeQuery();
+            c = ComputerMapper.getInstance().mapAll(res);
+            prep.close();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            closeConnection(db);
+        }
+
+        return c;
+    }
+
+    /**
      * Method to find all Computers in the database.
      *
      * @return List of computers
@@ -272,7 +301,6 @@ public enum ComputerDB implements EntityDB<Computer> {
      *            Computer to delete
      * @return boolean for the success of the operation
      */
-    @Override
     public boolean delete(Computer cmp) {
         Connection db = connect();
         PreparedStatement prep = null;
@@ -286,6 +314,29 @@ public enum ComputerDB implements EntityDB<Computer> {
             throw new DAOException(e);
         } finally {
             closeConnection(db);
+        }
+        return true;
+    }
+
+    /**
+     * Method to delete a computer in the database.
+     *
+     * @param db2
+     *
+     * @param cmp
+     *            Computer to delete
+     * @return boolean for the success of the operation
+     */
+    public boolean deleteByCompany(Long id, Connection db) {
+        PreparedStatement prep = null;
+        String query = "DELETE FROM computer WHERE company_id = ?";
+        try {
+            prep = db.prepareStatement(query);
+            prep.setLong(1, id);
+            prep.executeUpdate();
+            prep.close();
+        } catch (SQLException e) {
+            throw new DAOException(e);
         }
         return true;
     }
@@ -339,5 +390,11 @@ public enum ComputerDB implements EntityDB<Computer> {
             closeConnection(db);
         }
         return l;
+    }
+
+    @Override
+    public boolean delete(Company c, Connection connection) throws DAOException {
+        // TODO Auto-generated method stub
+        return false;
     }
 }

@@ -38,7 +38,7 @@ public class EditComputer extends HttpServlet {
         Computer edit = scomp.find(id);
         ComputerDTO cdto = ComputerDTOMapper.INSTANCE.objetToDTO(edit);
         request.setAttribute("c", cdto);
-        ServiceCompany sc = ServiceCompany.getInstance();
+        ServiceCompany sc = ServiceCompany.INSTANCE;
         List<Company> lc = sc.findAll();
 
         request.setAttribute("listcompanies", lc);
@@ -72,7 +72,7 @@ public class EditComputer extends HttpServlet {
             request.setAttribute("errors", e.getMessage());
         }
 
-        Company c = ServiceCompany.getInstance().find(Long.parseLong(company));
+        Company c = ServiceCompany.INSTANCE.find(Long.parseLong(company));
 
         Computer t = ComputerDTOMapper.INSTANCE.dtoToObject(id, name, introduced, discontinued, c.getId().toString(),
                 c.getName());

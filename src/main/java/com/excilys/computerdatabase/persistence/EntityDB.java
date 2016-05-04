@@ -3,6 +3,9 @@ package com.excilys.computerdatabase.persistence;
 import java.sql.Connection;
 import java.util.List;
 
+import com.excilys.computerdatabase.entity.Company;
+import com.excilys.computerdatabase.exception.DAOException;
+
 /**
  * Abstract class for DAOs with connection and disconnection method to invoke in
  * each method of the DAO.
@@ -47,15 +50,6 @@ public interface EntityDB<T> {
     public abstract T create(T c);
 
     /**
-     * Method to delete an entity in the database.
-     *
-     * @param c
-     *            Entity to persist
-     * @return boolean
-     */
-    public abstract boolean delete(T c);
-
-    /**
      * Method to connect to database.
      */
     public default Connection connect() {
@@ -68,5 +62,14 @@ public interface EntityDB<T> {
     public default void closeConnection(Connection c) {
         SQLUtils.close(c);
     }
+
+    /**
+     * Method to delete an entity in the database.
+     *
+     * @param c
+     *            Entity to persist
+     * @return boolean
+     */
+    boolean delete(Company c, Connection connection) throws DAOException;
 
 }

@@ -30,7 +30,7 @@ public class AddComputer extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ServiceCompany sc = ServiceCompany.getInstance();
+        ServiceCompany sc = ServiceCompany.INSTANCE;
         List<Company> lc = sc.findAll();
 
         request.setAttribute("listcompanies", lc);
@@ -64,7 +64,7 @@ public class AddComputer extends HttpServlet {
             request.setAttribute("errors", e.getMessage());
         }
 
-        Company c = ServiceCompany.getInstance().find(Long.parseLong(company));
+        Company c = ServiceCompany.INSTANCE.find(Long.parseLong(company));
         Computer t = ComputerDTOMapper.INSTANCE.dtoToObject(name, introduced, discontinued, c.getId().toString(),
                 c.getName());
 

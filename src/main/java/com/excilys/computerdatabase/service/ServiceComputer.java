@@ -20,7 +20,7 @@ public enum ServiceComputer implements IService<Computer> {
     private final ComputerDB CDB = ComputerDB.INSTANCE;
 
     @Override
-    public Computer find(Long id) throws ServiceException {
+    public Computer find(Long id) {
         LOG.debug("find a Computer id : " + id);
         Computer c = null;
         try {
@@ -32,7 +32,7 @@ public enum ServiceComputer implements IService<Computer> {
     }
 
     @Override
-    public List<Computer> findAll() throws ServiceException {
+    public List<Computer> findAll() {
         LOG.debug("find all computers");
         List<Computer> l = null;
         try {
@@ -44,7 +44,7 @@ public enum ServiceComputer implements IService<Computer> {
     }
 
     @Override
-    public Computer update(Computer t) throws ServiceException {
+    public Computer update(Computer t) {
         try {
             ValidatorComputer v = ValidatorComputer.INSTANCE;
             if (!v.isValid(t)) {
@@ -58,7 +58,7 @@ public enum ServiceComputer implements IService<Computer> {
     }
 
     @Override
-    public boolean delete(Computer t) throws ServiceException {
+    public boolean delete(Computer t) {
         try {
             CDB.delete(t);
         } catch (DAOException e) {
@@ -68,7 +68,7 @@ public enum ServiceComputer implements IService<Computer> {
     }
 
     @Override
-    public Computer create(Computer t) throws ServiceException {
+    public Computer create(Computer t) {
         Computer c = null;
         try {
             ValidatorComputer v = ValidatorComputer.INSTANCE;
@@ -89,7 +89,7 @@ public enum ServiceComputer implements IService<Computer> {
      * @throws DAOException
      *             Exception
      */
-    public int count() throws ServiceException {
+    public int count() {
         int c = 0;
         try {
             c = CDB.count();
@@ -97,6 +97,23 @@ public enum ServiceComputer implements IService<Computer> {
             throw new ServiceException(e);
         }
         return c;
+    }
+
+    /**
+     * Method to find a computer by name.
+     *
+     * @param current
+     *            name to find
+     * @return list of computers
+     */
+    public List<Computer> findByName(String name) {
+        List<Computer> l = null;
+        try {
+            l = CDB.findByName(name);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return l;
     }
 
     /**
@@ -122,6 +139,13 @@ public enum ServiceComputer implements IService<Computer> {
         return (ArrayList<Computer>) l;
     }
 
+    /**
+     * Method to count the number of rows of a search.
+     *
+     * @param search
+     *            search
+     * @return number of rows
+     */
     public long countBySearch(String search) {
         return CDB.countBySearch(search);
     }

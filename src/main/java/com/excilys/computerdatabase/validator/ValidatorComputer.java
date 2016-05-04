@@ -67,7 +67,7 @@ public enum ValidatorComputer implements IValidator<Computer> {
 
         name = name.trim();
 
-        if (!name.matches("^[a-zA-Z0-9\\-\\ ]+$") || name.length() == 0) {
+        if (!name.matches("^[a-zA-Z0-9\\-\\ &]+$") || name.length() == 0) {
             throw new ValidatorException("The name is incorrect !");
         }
 
@@ -91,7 +91,7 @@ public enum ValidatorComputer implements IValidator<Computer> {
 
         Company c = null;
         if (!company.equals("0")) {
-            ServiceCompany sp = ServiceCompany.getInstance();
+            ServiceCompany sp = ServiceCompany.INSTANCE;
             c = sp.find(new Long(company));
             if (c == null) {
                 throw new ValidatorException("The company doesn't exist !");

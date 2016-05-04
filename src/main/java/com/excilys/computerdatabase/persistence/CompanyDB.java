@@ -127,33 +127,18 @@ public class CompanyDB implements EntityDB<Company> {
      *            Company
      */
     @Override
-    public boolean delete(Company c) {
+    public boolean delete(Company c, Connection db) throws DAOException {
         LOG.debug("DELETING Company: " + c.getName());
-        Connection db = connect();
         PreparedStatement prep = null;
-        String query2 = "DELETE FROM company WHERE id = ?";
-        String query = "DELETE FROM computer WHERE company_id = ?";
+        String query = "DELETE FROM company WHERE id = ?";
         try {
-            db.setAutoCommit(false);
             prep = db.prepareStatement(query);
             prep.setLong(1, c.getId());
             prep.executeUpdate();
             prep.close();
-            prep = db.prepareStatement(query2);
-            prep.setLong(1, c.getId());
-            prep.executeUpdate();
-            prep.close();
-            db.commit();
         } catch (SQLException e) {
             LOG.error(e.getMessage());
-            try {
-                db.rollback();
-            } catch (SQLException e1) {
-                throw new DAOException(e);
-            }
             throw new DAOException(e);
-        } finally {
-            closeConnection(db);
         }
         return true;
     }
