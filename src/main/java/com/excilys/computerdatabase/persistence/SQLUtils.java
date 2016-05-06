@@ -19,6 +19,7 @@ public enum SQLUtils {
     INSTANCE;
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static HikariDataSource ds;
+    public static ThreadLocal<Connection> tlocal = new ThreadLocal<Connection>();
 
     static {
         // HikariConfig config = new
@@ -63,8 +64,18 @@ public enum SQLUtils {
      * @return Connection
      */
     public Connection getConnection() {
+        if (tlocal.get() == null) {
+            createConnection();
+        }
+        return tlocal.get();
+    }
+
+    /**
+     * Method to create a connection and set it in ThreadLocal.
+     */
+    public void createConnection() {
         try {
-            return ds.getConnection();
+            tlocal.set(ds.getConnection());
         } catch (SQLException e) {
             throw new SQLUtilsException(e);
         }
@@ -76,13 +87,38 @@ public enum SQLUtils {
      * @param c
      *            Connection
      */
-    public static void close(Connection c) {
+    public void close() {
         synchronized (SQLUtils.class) {
             try {
-                c.close();
+                tlocal.get().close();
+                tlocal.remove();
             } catch (SQLException e) {
                 throw new SQLUtilsException(e);
             }
+        }
+    }
+
+    public void commit() {
+        try {
+            tlocal.get().commit();
+        } catch (SQLException e) {
+            throw new SQLUtilsException(e);
+        }
+    }
+
+    public void setAutoCommit(boolean val) {
+        try {
+            tlocal.get().setAutoCommit(val);
+        } catch (SQLException e) {
+            throw new SQLUtilsException(e);
+        }
+    }
+
+    public void rollback() {
+        try {
+            tlocal.get().rollback();
+        } catch (SQLException e) {
+            throw new SQLUtilsException(e);
         }
     }
 

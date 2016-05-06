@@ -5,7 +5,7 @@
 
 <ul class="pagination">
 	<li><a href="home?p=${page.currentPage > 1 ? page.currentPage - 1 : 1}&l=${page.elementsByPage}" aria-label="Previous"> <span
-			aria-hidden="true">&laquo;</span>
+			aria-hidden="true" id="prevPage">&laquo;</span>
 	</a></li>
 	<c:forEach var="i" begin="${ page.currentPage < 3 ? 1 : page.currentPage - 2 }"
 			 end="${ page.currentPage >= page.maxPages-2 ? page.maxPages : page.currentPage + 2 }">
@@ -13,7 +13,7 @@
 			<mylib:link target="home" order="${ page.order.champ }" sort="${ page.order.order }" search="${ page.search }" page="${i}" limit="${ page.elementsByPage }" label="${i}"/>
 		</li>
 	</c:forEach>
-	<li><a href="home?p=${page.currentPage < page.maxPages ? page.currentPage + 1 : page.maxPages }&l=${page.elementsByPage}" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+	<li><a href="home?p=${page.currentPage < page.maxPages ? page.currentPage + 1 : page.maxPages }&l=${page.elementsByPage}" id="nextPage" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 	</a></li>
 </ul>
 

@@ -61,7 +61,7 @@ public class CompanyDB implements EntityDB<Company> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection(db);
+            closeConnection();
         }
         return list;
     }
@@ -91,7 +91,7 @@ public class CompanyDB implements EntityDB<Company> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection(db);
+            closeConnection();
         }
         return c;
     }
@@ -127,12 +127,12 @@ public class CompanyDB implements EntityDB<Company> {
      *            Company
      */
     @Override
-    public boolean delete(Company c, Connection db) throws DAOException {
+    public boolean delete(Company c) throws DAOException {
         LOG.debug("DELETING Company: " + c.getName());
         PreparedStatement prep = null;
         String query = "DELETE FROM company WHERE id = ?";
         try {
-            prep = db.prepareStatement(query);
+            prep = SQLUtils.INSTANCE.getConnection().prepareStatement(query);
             prep.setLong(1, c.getId());
             prep.executeUpdate();
             prep.close();

@@ -24,9 +24,17 @@
 		<jstl>1.2</jstl>
 		<jsp>2.0</jsp>
 		<checkstyle>2.17</checkstyle>
+		<gatling>2.2.0</gatling>
 	</properties>
 	
 	<dependencies>
+	
+		<!-- GATLING.io -->
+		<dependency>
+		    <groupId>io.gatling.highcharts</groupId>
+		    <artifactId>gatling-charts-highcharts</artifactId>
+		    <version>${gatling}</version>
+		</dependency>
 	
 		<!-- Unit tests -->
 		<dependency>

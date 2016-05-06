@@ -1,7 +1,5 @@
 package com.excilys.computerdatabase.service;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 import com.excilys.computerdatabase.entity.Company;
@@ -63,24 +61,16 @@ public enum ServiceCompany implements IService<Company> {
 
     @Override
     public boolean delete(Company t) throws ServiceException {
-        Connection db = SQLUtils.INSTANCE.getConnection();
+        SQLUtils.INSTANCE.createConnection();
         try {
-            db.setAutoCommit(false);
-            CDC.deleteByCompany(t.getId(), db);
-            CDB.delete(t, db);
-            db.commit();
-        } catch (SQLException | DAOException e) {
-            try {
-                db.rollback();
-            } catch (SQLException e1) {
-                throw new ServiceException(e);
-            }
+            SQLUtils.INSTANCE.setAutoCommit(false);
+            CDC.deleteByCompany(t.getId());
+            CDB.delete(t);
+            SQLUtils.INSTANCE.commit();
+        } catch (DAOException e) {
+            SQLUtils.INSTANCE.rollback();
         } finally {
-            try {
-                db.close();
-            } catch (SQLException e) {
-                throw new ServiceException(e);
-            }
+            SQLUtils.INSTANCE.close();
         }
 
         return true;

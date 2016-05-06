@@ -63,7 +63,7 @@ public enum ComputerDB implements EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection(db);
+            closeConnection();
         }
         return c;
     }
@@ -106,7 +106,7 @@ public enum ComputerDB implements EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection(db);
+            closeConnection();
         }
         return c;
     }
@@ -134,7 +134,7 @@ public enum ComputerDB implements EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection(db);
+            closeConnection();
         }
 
         return c;
@@ -162,7 +162,7 @@ public enum ComputerDB implements EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection(db);
+            closeConnection();
         }
 
         return c;
@@ -190,7 +190,7 @@ public enum ComputerDB implements EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection(db);
+            closeConnection();
         }
 
         return c;
@@ -218,7 +218,7 @@ public enum ComputerDB implements EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection(db);
+            closeConnection();
         }
 
         return c;
@@ -244,7 +244,7 @@ public enum ComputerDB implements EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection(db);
+            closeConnection();
         }
         return list;
     }
@@ -289,7 +289,7 @@ public enum ComputerDB implements EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection(db);
+            closeConnection();
         }
         return list;
     }
@@ -301,6 +301,7 @@ public enum ComputerDB implements EntityDB<Computer> {
      *            Computer to delete
      * @return boolean for the success of the operation
      */
+    @Override
     public boolean delete(Computer cmp) {
         Connection db = connect();
         PreparedStatement prep = null;
@@ -313,7 +314,7 @@ public enum ComputerDB implements EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection(db);
+            closeConnection();
         }
         return true;
     }
@@ -327,7 +328,8 @@ public enum ComputerDB implements EntityDB<Computer> {
      *            Computer to delete
      * @return boolean for the success of the operation
      */
-    public boolean deleteByCompany(Long id, Connection db) {
+    public boolean deleteByCompany(Long id) {
+        Connection db = SQLUtils.tlocal.get();
         PreparedStatement prep = null;
         String query = "DELETE FROM computer WHERE company_id = ?";
         try {
@@ -363,7 +365,7 @@ public enum ComputerDB implements EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection(db);
+            closeConnection();
         }
 
         return nb;
@@ -387,14 +389,9 @@ public enum ComputerDB implements EntityDB<Computer> {
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            closeConnection(db);
+            closeConnection();
         }
         return l;
     }
 
-    @Override
-    public boolean delete(Company c, Connection connection) throws DAOException {
-        // TODO Auto-generated method stub
-        return false;
-    }
 }

@@ -129,7 +129,7 @@
 														limit="${p.elementsByPage}" 
 														order="company" 
 														sort="DESC" />
-														</th></th>
+														</th>
 
 					</tr>
 				</thead>

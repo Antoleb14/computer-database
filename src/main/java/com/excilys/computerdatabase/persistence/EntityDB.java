@@ -3,7 +3,6 @@ package com.excilys.computerdatabase.persistence;
 import java.sql.Connection;
 import java.util.List;
 
-import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.exception.DAOException;
 
 /**
@@ -59,8 +58,8 @@ public interface EntityDB<T> {
     /**
      * Method to close a connection to the database.
      */
-    public default void closeConnection(Connection c) {
-        SQLUtils.close(c);
+    public default void closeConnection() {
+        SQLUtils.INSTANCE.close();
     }
 
     /**
@@ -70,6 +69,6 @@ public interface EntityDB<T> {
      *            Entity to persist
      * @return boolean
      */
-    boolean delete(Company c, Connection connection) throws DAOException;
+    boolean delete(T c) throws DAOException;
 
 }
