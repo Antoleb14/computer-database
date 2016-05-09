@@ -67,6 +67,15 @@ public enum ServiceComputer implements IService<Computer> {
         return true;
     }
 
+    public boolean delete(List<Long> ls) {
+        try {
+            CDB.delete(ls);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return true;
+    }
+
     @Override
     public Computer create(Computer t) {
         Computer c = null;
@@ -131,6 +140,7 @@ public enum ServiceComputer implements IService<Computer> {
      */
     public ArrayList<Computer> findBySearch(int current, int elementsByPage, String search, Order order) {
         List<Computer> l = null;
+        LOG.debug("find by search");
         try {
             l = CDB.findBySearch(current, elementsByPage, search, order);
         } catch (DAOException e) {

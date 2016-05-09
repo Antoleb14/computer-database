@@ -137,9 +137,9 @@
 				<tbody id="results">
 					<c:forEach items="${p.elements}" var="computer">
 						<tr>
-							<td class="editMode"><input type="checkbox" name="cb"
+							<td class="editMode"><input type="checkbox" name="cb" id="${ computer.name }_id"
 								class="cb" value="${ computer.id }"></td>
-							<td><mytag:link target="editcomputer" datas="id=${computer.id}" label="${ computer.name }"  /></td>
+							<td><mytag:link target="editcomputer" id="${ computer.name }_name" datas="computerId=${computer.id}" label="${ computer.name }"  /></td>
 							
 							<td>${computer.introduced}</td>
 							<td>${computer.discontinued}</td>

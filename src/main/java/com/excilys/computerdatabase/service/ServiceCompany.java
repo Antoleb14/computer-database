@@ -61,7 +61,7 @@ public enum ServiceCompany implements IService<Company> {
 
     @Override
     public boolean delete(Company t) throws ServiceException {
-        SQLUtils.INSTANCE.createConnection();
+        SQLUtils.INSTANCE.getConnection();
         try {
             SQLUtils.INSTANCE.setAutoCommit(false);
             CDC.deleteByCompany(t.getId());

@@ -52,9 +52,7 @@ public enum SQLUtils {
         ds.setJdbcUrl(dbname);
         ds.setUsername(username);
         ds.setPassword(password);
-        ds.addDataSourceProperty("cachePrepStmts", "true");
-        ds.addDataSourceProperty("prepStmtCacheSize", "250");
-        ds.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+        ds.setMaximumPoolSize(50);
 
     }
 
@@ -64,21 +62,15 @@ public enum SQLUtils {
      * @return Connection
      */
     public Connection getConnection() {
-        if (tlocal.get() == null) {
-            createConnection();
-        }
-        return tlocal.get();
-    }
-
-    /**
-     * Method to create a connection and set it in ThreadLocal.
-     */
-    public void createConnection() {
         try {
-            tlocal.set(ds.getConnection());
+            if (tlocal.get() == null) {
+                tlocal.set(ds.getConnection());
+            }
         } catch (SQLException e) {
             throw new SQLUtilsException(e);
         }
+        return tlocal.get();
+
     }
 
     /**
@@ -88,13 +80,13 @@ public enum SQLUtils {
      *            Connection
      */
     public void close() {
-        synchronized (SQLUtils.class) {
-            try {
+        try {
+            if (tlocal.get() != null) {
                 tlocal.get().close();
-                tlocal.remove();
-            } catch (SQLException e) {
-                throw new SQLUtilsException(e);
             }
+            tlocal.remove();
+        } catch (SQLException e) {
+            throw new SQLUtilsException(e);
         }
     }
 

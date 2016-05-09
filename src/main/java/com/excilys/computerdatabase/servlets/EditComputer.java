@@ -31,7 +31,7 @@ public class EditComputer extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        long id = Long.parseLong(request.getParameter("id"));
+        long id = Long.parseLong(request.getParameter("computerId"));
 
         ServiceComputer scomp = ServiceComputer.INSTANCE;
 

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -231,16 +230,18 @@ public enum ComputerDB implements EntityDB<Computer> {
      */
     @Override
     public List<Computer> findAll() {
-        Connection db = connect();
-        ResultSet res = null;
         List<Computer> list = new ArrayList<Computer>();
+        PreparedStatement prep = null;
+        ResultSet res = null;
+
+        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id ORDER BY i.name ASC";
+        Connection db = connect();
         try {
-            Statement statement = db.createStatement();
-            res = statement.executeQuery(
-                    "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id ORDER BY i.name ASC");
+            prep = db.prepareStatement(query);
+            res = prep.executeQuery();
+
             list = ComputerMapper.getInstance().mapAll(res);
-            statement.close();
-            res.close();
+            prep.close();
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
@@ -259,11 +260,14 @@ public enum ComputerDB implements EntityDB<Computer> {
      * @return List of computers
      */
     public List<Computer> findBySearch(int page, int number, String search, Order order) {
-        Connection db = connect();
         List<Computer> list = new ArrayList<Computer>();
         PreparedStatement prep = null;
         ResultSet res = null;
-        String orderQuery = " ORDER BY i.name ASC";
+        String orderQuery = "";
+        StringBuilder sb = new StringBuilder();
+
+        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id WHERE c.name LIKE ? OR i.name LIKE ?";
+
         if (order != null) {
             if (order.getChamp().equals("company")) {
                 orderQuery = " ORDER BY c.name " + order.getOrder() + " ";
@@ -271,15 +275,12 @@ public enum ComputerDB implements EntityDB<Computer> {
                 orderQuery = " ORDER BY i." + order.getChamp() + " " + order.getOrder() + " ";
             }
         }
-        String searchQuery = "WHERE c.name LIKE ? OR i.name LIKE ?";
-        String limit = " LIMIT ?, ?";
-        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id " + searchQuery + orderQuery
-                + limit;
+        sb.append(query).append(orderQuery).append(" LIMIT ?, ?");
 
         try {
-            prep = db.prepareStatement(query);
-            prep.setString(1, "%" + search + "%");
-            prep.setString(2, "%" + search + "%");
+            prep = connect().prepareStatement(sb.toString());
+            prep.setString(1, search + "%");
+            prep.setString(2, search + "%");
             prep.setInt(3, page);
             prep.setInt(4, number);
             res = prep.executeQuery();
@@ -309,6 +310,36 @@ public enum ComputerDB implements EntityDB<Computer> {
         try {
             prep = db.prepareStatement(query);
             prep.setLong(1, cmp.getId());
+            prep.executeUpdate();
+            prep.close();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            closeConnection();
+        }
+        return true;
+    }
+
+    public boolean delete(List<Long> cmp) {
+        Connection db = connect();
+        PreparedStatement prep = null;
+        StringBuilder sb = new StringBuilder();
+        sb.append("(");
+        for (int i = 0; i < cmp.size(); i++) {
+            if (i < cmp.size() - 1) {
+                sb.append("?, ");
+            } else {
+                sb.append("?");
+            }
+        }
+        sb.append(")");
+        cmp.toArray();
+        String query = "DELETE FROM computer WHERE id IN " + sb.toString();
+        try {
+            prep = db.prepareStatement(query);
+            for (int i = 0; i < cmp.size(); i++) {
+                prep.setLong(i + 1, cmp.get(i));
+            }
             prep.executeUpdate();
             prep.close();
         } catch (SQLException e) {

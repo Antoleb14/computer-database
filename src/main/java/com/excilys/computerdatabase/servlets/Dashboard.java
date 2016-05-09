@@ -1,6 +1,7 @@
 package com.excilys.computerdatabase.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -8,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.entity.ComputerDTO;
 import com.excilys.computerdatabase.entity.Page;
 import com.excilys.computerdatabase.service.Order;
@@ -32,10 +32,6 @@ public class Dashboard extends HttpServlet {
 
         // response.getWriter().append("Served at:
         // ").append(request.getContextPath());
-
-        ServiceComputer sc = ServiceComputer.INSTANCE;
-        List<Computer> listComputers = sc.findAll();
-        request.setAttribute("computers", listComputers);
 
         int itemsPage = RequestAnalyzer.INSTANCE.analyzeInt(request.getParameter("l"), 10);
         int page = RequestAnalyzer.INSTANCE.analyzeInt(request.getParameter("p"), 1);
@@ -68,11 +64,12 @@ public class Dashboard extends HttpServlet {
         String[] items = selection.split(",");
 
         ServiceComputer sc = ServiceComputer.INSTANCE;
+        List<Long> ls = new ArrayList<Long>();
         for (String item : items) {
             long id = RequestAnalyzer.INSTANCE.analyzeInt(item, 0);
-            Computer c = sc.find(id);
-            sc.delete(c);
+            ls.add(id);
         }
+        sc.delete(ls);
 
         request.setAttribute("success", items.length + " computer(s) successfully deleted !");
         doGet(request, response);

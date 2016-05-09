@@ -29,7 +29,7 @@
                     <h1>Edit Computer</h1>
 
                     <form id="form" action="editcomputer" method="POST">
-                    	<input type="hidden" name="id" value="${ c.id }" />
+                    	<input type="hidden" name="id" id="id" value="${ c.id }" />
                         <fieldset>
                             <div class="form-group name">
                                 <label class="control-label" for="computerName">Computer name</label>
