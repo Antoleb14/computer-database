@@ -52,7 +52,7 @@ public enum SQLUtils {
         ds.setJdbcUrl(dbname);
         ds.setUsername(username);
         ds.setPassword(password);
-        ds.setMaximumPoolSize(50);
+        ds.setMaximumPoolSize(1000);
 
     }
 

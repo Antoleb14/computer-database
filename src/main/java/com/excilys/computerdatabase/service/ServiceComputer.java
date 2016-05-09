@@ -21,7 +21,7 @@ public enum ServiceComputer implements IService<Computer> {
 
     @Override
     public Computer find(Long id) {
-        LOG.debug("find a Computer id : " + id);
+        // LOG.debug("find a Computer id : " + id);
         Computer c = null;
         try {
             c = CDB.find(id);
@@ -33,7 +33,7 @@ public enum ServiceComputer implements IService<Computer> {
 
     @Override
     public List<Computer> findAll() {
-        LOG.debug("find all computers");
+        // LOG.debug("find all computers");
         List<Computer> l = null;
         try {
             l = CDB.findAll();
@@ -140,7 +140,7 @@ public enum ServiceComputer implements IService<Computer> {
      */
     public ArrayList<Computer> findBySearch(int current, int elementsByPage, String search, Order order) {
         List<Computer> l = null;
-        LOG.debug("find by search");
+        // LOG.debug("find by search");
         try {
             l = CDB.findBySearch(current, elementsByPage, search, order);
         } catch (DAOException e) {

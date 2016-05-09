@@ -34,14 +34,15 @@ public class Page<T> {
      * @param elementsByPage
      *            number of elements by page
      */
-    public Page(ArrayList<T> elements, int maxPages, int currentPage, int elementsByPage, long totalElem,
-            String search) {
+    public Page(ArrayList<T> elements, int maxPages, int currentPage, int elementsByPage, long totalElem, String search,
+            Order order) {
         this.currentPage = currentPage;
         this.elements = elements;
         this.maxPages = maxPages;
         this.elementsByPage = elementsByPage;
         this.total = totalElem;
         this.search = search;
+        this.order = order;
     }
 
     public ArrayList<T> getElements() {

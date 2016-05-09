@@ -64,7 +64,7 @@ public class Main {
         case 1:
             int entry = 1;
             do {
-                ServicePage p = new ServicePage(15);
+                ServicePage p = ServicePage.INSTANCE;
                 List<Computer> computers = p.pager(entry);
                 for (Computer c : computers) {
                     System.out.println(c);

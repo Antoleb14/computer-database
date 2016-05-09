@@ -266,7 +266,7 @@ public enum ComputerDB implements EntityDB<Computer> {
         String orderQuery = "";
         StringBuilder sb = new StringBuilder();
 
-        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id WHERE c.name LIKE ? OR i.name LIKE ?";
+        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id WHERE i.name LIKE ? OR c.name LIKE ?";
 
         if (order != null) {
             if (order.getChamp().equals("company")) {

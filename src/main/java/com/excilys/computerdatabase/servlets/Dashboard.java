@@ -43,9 +43,7 @@ public class Dashboard extends HttpServlet {
             order = new Order(champ, ascdesc);
         }
 
-        ServicePage sp = new ServicePage();
-        Page<ComputerDTO> p = sp.createPage(page, itemsPage, search, order);
-        p.setOrder(order);
+        Page<ComputerDTO> p = ServicePage.INSTANCE.createPage(page, itemsPage, search, order);
         request.setAttribute("count", p.getTotal());
         request.setAttribute("p", p);
 

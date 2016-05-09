@@ -15,33 +15,16 @@ import com.excilys.computerdatabase.mapper.ComputerDTOMapper;
  * @author excilys
  *
  */
-public class ServicePage {
+public enum ServicePage {
+
+    INSTANCE;
 
     private static ServiceComputer cs = ServiceComputer.INSTANCE;
 
-    private int page;
+    private int page = 1;
     private int maxPages;
-    private int limitPerPage;
+    private int limitPerPage = 10;
     private Scanner sc = new Scanner(System.in);
-
-    /**
-     * Constructeur de classe.
-     *
-     * @param limitPerPage
-     *            Number of results by page
-     */
-    public ServicePage(int limitPerPage) {
-        page = 1;
-        this.limitPerPage = limitPerPage;
-        this.maxPages = numberOfPages();
-    }
-
-    /**
-     * Constructor of the class.
-     */
-    public ServicePage() {
-        page = 1;
-    }
 
     /**
      * Method to return the total number of pages needed.
@@ -110,9 +93,9 @@ public class ServicePage {
         int current = (currentPage - 1) * limitPerPage;
         ArrayList<Computer> elements = cs.findBySearch(current, elementsByPage, search, order);
         ArrayList<ComputerDTO> elements2 = ComputerDTOMapper.INSTANCE.listObjetToDTO(elements);
-        long totalNumber = cs.countBySearch(search);
+        long totalNumber = 100; // cs.countBySearch(search);
         int totalPages = (int) ((totalNumber / limitPerPage) + (totalNumber % limitPerPage > 0 ? 1 : 0));
-        return new Page<ComputerDTO>(elements2, totalPages, currentPage, elementsByPage, totalNumber, search);
+        return new Page<ComputerDTO>(elements2, totalPages, currentPage, elementsByPage, totalNumber, search, order);
     }
 
 }

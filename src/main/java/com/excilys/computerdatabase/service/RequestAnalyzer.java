@@ -6,6 +6,13 @@ public enum RequestAnalyzer {
 
     INSTANCE;
 
+    /**
+     * Methode to analyse if a parameter is a String.
+     *
+     * @param parameter
+     *            string parameter
+     * @return int parameter
+     */
     public String analyzeString(String parameter, String defaultValue) {
         if (parameter == null) {
             return defaultValue;
