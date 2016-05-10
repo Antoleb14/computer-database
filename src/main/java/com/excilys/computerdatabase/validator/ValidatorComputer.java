@@ -3,6 +3,8 @@ package com.excilys.computerdatabase.validator;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
@@ -62,13 +64,14 @@ public enum ValidatorComputer implements IValidator<Computer> {
      * @throws ValidatorException
      * @return Computer
      */
-    public Computer validate(String name, String introduced, String discontinued, String company)
+    public List<String> validate(String name, String introduced, String discontinued, String company)
             throws ValidatorException {
 
+        List<String> resls = new ArrayList<String>();
         name = name.trim();
 
         if (!name.matches("^[a-zA-Z0-9\\-\\ &]+$") || name.length() == 0) {
-            throw new ValidatorException("The name is incorrect !");
+            resls.add("The name is incorrect");
         }
 
         LocalDateTime intro = null;
@@ -78,7 +81,7 @@ public enum ValidatorComputer implements IValidator<Computer> {
                 intro = LocalDateTimeMapper.getInstance().map(introduced);
             }
         } catch (Exception e) {
-            throw new ValidatorException("The introduced date is incorrect and must be format dd-mm-yyyy");
+            resls.add("The introduced date is incorrect and must be format dd-mm-yyyy");
         }
 
         try {
@@ -86,7 +89,7 @@ public enum ValidatorComputer implements IValidator<Computer> {
                 disc = LocalDateTimeMapper.getInstance().map(discontinued);
             }
         } catch (Exception e) {
-            throw new ValidatorException("The discontinued date is incorrect and must be format dd-mm-yyyy");
+            resls.add("The discontinued date is incorrect and must be format dd-mm-yyyy");
         }
 
         Company c = null;
@@ -94,15 +97,15 @@ public enum ValidatorComputer implements IValidator<Computer> {
             ServiceCompany sp = ServiceCompany.INSTANCE;
             c = sp.find(new Long(company));
             if (c == null) {
-                throw new ValidatorException("The company doesn't exist !");
+                resls.add("The company doesn't exist !");
             }
         }
         Computer t = new Computer.ComputerBuilder().name(name).introduced(intro).discontinued(disc).company(c).build();
 
         if (!isValid(t)) {
-            throw new ValidatorException("The computer contains invalid datas : Check your dates !");
+            resls.add("The computer contains invalid datas : Check your dates !");
         }
-        return t;
+        return resls;
 
     }
 
@@ -120,27 +123,28 @@ public enum ValidatorComputer implements IValidator<Computer> {
      * @throws ValidatorException
      * @return Computer
      */
-    public boolean validate(String id, String name, String introduced, String discontinued, String company)
+    public List<String> validate(String id, String name, String introduced, String discontinued, String company)
             throws ValidatorException {
 
+        List<String> resls = new ArrayList<String>();
         if (!id.trim().matches("^[1-9][0-9]*$")) {
-            throw new ValidatorException("ID invalid");
+            resls.add("Invalid ID");
         }
         long computerid = Long.parseLong(id);
         name = name.trim();
-        if (!name.matches("^[a-zA-Z0-9\\-\\ ]+$") || name.length() == 0) {
-            throw new ValidatorException("The name is incorrect !");
+
+        if (!name.matches("^[a-zA-Z0-9\\-\\ &]+$") || name.length() == 0) {
+            resls.add("The name is incorrect");
         }
 
         LocalDateTime intro = null;
         LocalDateTime disc = null;
-
         try {
             if (!introduced.equals("")) {
                 intro = LocalDateTimeMapper.getInstance().map(introduced);
             }
         } catch (Exception e) {
-            throw new ValidatorException("The introduced date is incorrect and must be format dd-mm-yyyy");
+            resls.add("The introduced date is incorrect and must be format dd-mm-yyyy");
         }
 
         try {
@@ -148,15 +152,24 @@ public enum ValidatorComputer implements IValidator<Computer> {
                 disc = LocalDateTimeMapper.getInstance().map(discontinued);
             }
         } catch (Exception e) {
-            throw new ValidatorException("The discontinued date is incorrect and must be format dd-mm-yyyy");
+            resls.add("The discontinued date is incorrect and must be format dd-mm-yyyy");
         }
 
-        Computer t = new Computer.ComputerBuilder().id(computerid).name(name).introduced(intro).discontinued(disc)
-                .build();
-        if (!isValid(t)) {
-            throw new ValidatorException("The computer contains invalid datas : Check your dates !");
+        Company c = null;
+        if (!company.equals("0")) {
+            ServiceCompany sp = ServiceCompany.INSTANCE;
+            c = sp.find(new Long(company));
+            if (c == null) {
+                resls.add("The company doesn't exist !");
+            }
         }
-        return true;
+        Computer t = new Computer.ComputerBuilder().id(computerid).name(name).introduced(intro).discontinued(disc)
+                .company(c).build();
+
+        if (!isValid(t)) {
+            resls.add("The computer contains invalid datas.");
+        }
+        return resls;
     }
 
 }

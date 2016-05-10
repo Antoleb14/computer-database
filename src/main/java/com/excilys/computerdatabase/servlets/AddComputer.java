@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
-import com.excilys.computerdatabase.exception.ValidatorException;
 import com.excilys.computerdatabase.mapper.ComputerDTOMapper;
 import com.excilys.computerdatabase.service.ServiceCompany;
 import com.excilys.computerdatabase.service.ServiceComputer;
@@ -58,12 +57,13 @@ public class AddComputer extends HttpServlet {
 
         ServiceComputer sc = ServiceComputer.INSTANCE;
         ValidatorComputer v = ValidatorComputer.INSTANCE;
-        try {
-            v.validate(name, introduced, discontinued, company);
-        } catch (ValidatorException e) {
-            request.setAttribute("errors", e.getMessage());
-        }
+        List<String> errors = v.validate(name, introduced, discontinued, company);
+        request.setAttribute("errors", errors);
 
+        if (!errors.isEmpty()) {
+            doGet(request, response);
+            return;
+        }
         Company c = ServiceCompany.INSTANCE.find(Long.parseLong(company));
         Computer t = ComputerDTOMapper.INSTANCE.dtoToObject(name, introduced, discontinued, c.getId().toString(),
                 c.getName());

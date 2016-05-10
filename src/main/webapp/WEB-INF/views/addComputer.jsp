@@ -31,10 +31,14 @@
                 <div class="col-xs-8 col-xs-offset-2 box">
                     <h1>Add Computer</h1>
                     <c:if test="${ not empty errors }">
-	                    <div class="alert alert-danger">
-	                    	${errors}
-	                    </div>
-                    </c:if>
+						<div class="alert alert-danger">
+							<ul>
+							<c:forEach var="c" items="${ errors }">
+								<li>${ c }</li>
+							</c:forEach>
+							</ul>
+						</div>
+					</c:if>
                     <div class="alert alert-danger res" style="display:none"></div>
                     <form id="form" action="addcomputer" method="POST">
                         <fieldset>
