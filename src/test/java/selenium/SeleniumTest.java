@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -23,6 +24,7 @@ public class SeleniumTest {
     private WebDriver driver;
     private ScreenshotHelper screenshotHelper;
 
+    @Ignore
     @Before
     public void openBrowser() {
         // baseUrl = System.getProperty("webdriver.base.url");
@@ -33,12 +35,14 @@ public class SeleniumTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
+    @Ignore
     @After
     public void saveScreenshotAndCloseBrowser() throws IOException {
         screenshotHelper.saveScreenshot("screenshots/screenshot" + LocalDateTime.now() + ".png");
         driver.quit();
     }
 
+    @Ignore
     @Test
     public void pageTest() throws IOException {
         assertNotNull(driver.findElement(By.id("actions")));

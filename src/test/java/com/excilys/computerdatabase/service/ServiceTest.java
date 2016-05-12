@@ -13,7 +13,7 @@ import com.excilys.computerdatabase.exception.ServiceException;
 
 public class ServiceTest {
 
-    private static ServiceComputer mockedSComputer;
+    // private static ServiceComputer mockedSComputer;
     private static Computer c1;
     private static Computer c2;
     //
