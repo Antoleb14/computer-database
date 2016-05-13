@@ -27,7 +27,15 @@
                         id: ${ c.id }
                     </div>
                     <h1>Edit Computer</h1>
-
+					<c:if test="${ not empty errors }">
+						<div class="alert alert-danger">
+							<ul>
+							<c:forEach var="c" items="${ errors }">
+								<li>${ c }</li>
+							</c:forEach>
+							</ul>
+						</div>
+					</c:if>
                     <form id="form" action="editcomputer" method="POST">
                     	<input type="hidden" name="id" id="id" value="${ c.id }" />
                         <fieldset>
