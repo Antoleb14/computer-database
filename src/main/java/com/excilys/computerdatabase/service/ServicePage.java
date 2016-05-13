@@ -93,7 +93,7 @@ public enum ServicePage {
         int current = (currentPage - 1) * limitPerPage;
         ArrayList<Computer> elements = cs.findBySearch(current, elementsByPage, search, order);
         ArrayList<ComputerDTO> elements2 = ComputerDTOMapper.INSTANCE.listObjetToDTO(elements);
-        long totalNumber = 100; // cs.countBySearch(search);
+        long totalNumber = cs.countBySearch(search);
         int totalPages = (int) ((totalNumber / limitPerPage) + (totalNumber % limitPerPage > 0 ? 1 : 0));
         return new Page<ComputerDTO>(elements2, totalPages, currentPage, elementsByPage, totalNumber, search, order);
     }
