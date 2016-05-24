@@ -41,7 +41,10 @@ public class SQLUtils {
         } catch (SQLException e) {
             throw new SQLUtilsException(e);
         }
+    }
 
+    public HikariDataSource getDataSource() {
+        return ds;
     }
 
 }

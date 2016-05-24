@@ -66,6 +66,6 @@ public interface EntityDB<T> {
      *            Entity to persist
      * @return boolean
      */
-    boolean delete(T c) throws DAOException;
+    int delete(T c) throws DAOException;
 
 }

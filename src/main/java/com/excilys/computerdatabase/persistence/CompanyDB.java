@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.excilys.computerdatabase.entity.Company;
@@ -34,11 +35,13 @@ public class CompanyDB implements EntityDB<Company> {
 
     @Autowired
     @Qualifier("sqlutils")
-    private SQLUtils sql;
+    private SQLUtils sc;
 
     @Autowired
     @Qualifier("companyMapper")
     private CompanyMapper cmapper;
+
+    private JdbcTemplate jdbcTemplate;
 
     /**
      * Constructor of the class.
@@ -48,7 +51,7 @@ public class CompanyDB implements EntityDB<Company> {
 
     @Override
     public Connection connect() {
-        return sql.getConnection();
+        return sc.getConnection();
     }
 
     /**
@@ -134,20 +137,11 @@ public class CompanyDB implements EntityDB<Company> {
      *            Company
      */
     @Override
-    public boolean delete(Company c) throws DAOException {
+    public int delete(Company c) throws DAOException {
         LOG.debug("DELETING Company: " + c.getName());
-        PreparedStatement prep = null;
         String query = "DELETE FROM company WHERE id = ?";
-        try {
-            prep = sql.getConnection().prepareStatement(query);
-            prep.setLong(1, c.getId());
-            prep.executeUpdate();
-            prep.close();
-        } catch (SQLException e) {
-            LOG.error(e.getMessage());
-            throw new DAOException(e);
-        }
-        return true;
+        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
+        return jdbcTemplate.queryForObject(query, new Object[] { c.getId() }, Integer.class);
     }
 
 }

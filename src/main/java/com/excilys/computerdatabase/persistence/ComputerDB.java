@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.excilys.computerdatabase.entity.Company;
@@ -29,6 +30,8 @@ import com.excilys.computerdatabase.service.Order;
 @Repository("computerDB")
 @Scope("singleton")
 public class ComputerDB implements EntityDB<Computer> {
+
+    private JdbcTemplate jdbcTemplate;
 
     @Autowired
     @Qualifier("computerMapper")
@@ -123,24 +126,9 @@ public class ComputerDB implements EntityDB<Computer> {
 
     @Override
     public Computer find(Long id) {
-        Connection db = connect();
-        PreparedStatement prep = null;
-        ResultSet res = null;
-        Computer c = null;
         String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id WHERE i.id = ?";
-        try {
-            prep = db.prepareStatement(query);
-            prep.setLong(1, id);
-            res = prep.executeQuery();
-            c = cmapper.map(res);
-            prep.close();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        } finally {
-            closeConnection();
-        }
-
-        return c;
+        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
+        return jdbcTemplate.queryForObject(query, new Object[] { id }, new ComputerMapper());
     }
 
     /**
@@ -151,24 +139,9 @@ public class ComputerDB implements EntityDB<Computer> {
      * @return List of Computers found
      */
     public List<Computer> findByName(String name) {
-        Connection db = connect();
-        PreparedStatement prep = null;
-        ResultSet res = null;
-        List<Computer> c = new ArrayList<Computer>();
         String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id WHERE i.name = ? ORDER BY i.id ASC";
-        try {
-            prep = db.prepareStatement(query);
-            prep.setString(1, name);
-            res = prep.executeQuery();
-            c = cmapper.mapAll(res);
-            prep.close();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        } finally {
-            closeConnection();
-        }
-
-        return c;
+        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
+        return jdbcTemplate.query(query, new Object[] { name }, new ComputerMapper());
     }
 
     /**
@@ -207,45 +180,16 @@ public class ComputerDB implements EntityDB<Computer> {
      * @return List of Computers found
      */
     public List<Computer> findByCompany(Company t) {
-        Connection db = connect();
-        PreparedStatement prep = null;
-        ResultSet res = null;
-        List<Computer> c = new ArrayList<Computer>();
         String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id WHERE i.company_id = ? ORDER BY i.id ASC";
-        try {
-            prep = db.prepareStatement(query);
-            prep.setLong(1, t.getId());
-            res = prep.executeQuery();
-            c = cmapper.mapAll(res);
-            prep.close();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        } finally {
-            closeConnection();
-        }
-
-        return c;
+        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
+        return jdbcTemplate.query(query, new Object[] { t.getId() }, new ComputerMapper());
     }
 
     @Override
     public List<Computer> findAll() {
-        List<Computer> list = new ArrayList<Computer>();
-        PreparedStatement prep = null;
-        ResultSet res = null;
-
         String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id ORDER BY i.name ASC";
-        Connection db = connect();
-        try {
-            prep = db.prepareStatement(query);
-            res = prep.executeQuery();
-
-            list = cmapper.mapAll(res);
-            prep.close();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        } finally {
-            closeConnection();
-        }
+        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
+        List<Computer> list = jdbcTemplate.query(query, new ComputerMapper());
         return list;
     }
 
@@ -259,9 +203,6 @@ public class ComputerDB implements EntityDB<Computer> {
      * @return List of computers
      */
     public List<Computer> findBySearch(int page, int number, String search, Order order) {
-        List<Computer> list = new ArrayList<Computer>();
-        PreparedStatement prep = null;
-        ResultSet res = null;
         String orderQuery = "";
         StringBuilder sb = new StringBuilder();
 
@@ -276,45 +217,20 @@ public class ComputerDB implements EntityDB<Computer> {
         }
         sb.append(query).append(orderQuery).append(" LIMIT ?, ?");
 
-        try {
-            prep = connect().prepareStatement(sb.toString());
-            prep.setString(1, search + "%");
-            prep.setString(2, search + "%");
-            prep.setInt(3, page);
-            prep.setInt(4, number);
-            res = prep.executeQuery();
-
-            list = cmapper.mapAll(res);
-            prep.close();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        } finally {
-            closeConnection();
-        }
-        return list;
+        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
+        String searchQ = search + "%";
+        System.out.println(number);
+        return jdbcTemplate.query(sb.toString(), new Object[] { searchQ, searchQ, page, number }, new ComputerMapper());
     }
 
     @Override
-    public boolean delete(Computer cmp) {
-        Connection db = connect();
-        PreparedStatement prep = null;
+    public int delete(Computer cmp) {
         String query = "DELETE FROM computer WHERE id = ?";
-        try {
-            prep = db.prepareStatement(query);
-            prep.setLong(1, cmp.getId());
-            prep.executeUpdate();
-            prep.close();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        } finally {
-            closeConnection();
-        }
-        return true;
+        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
+        return jdbcTemplate.update(query, new Object[] { cmp.getId() });
     }
 
-    public boolean delete(List<Long> cmp) {
-        Connection db = connect();
-        PreparedStatement prep = null;
+    public int delete(List<Long> cmp) {
         StringBuilder sb = new StringBuilder();
         sb.append("(");
         for (int i = 0; i < cmp.size(); i++) {
@@ -326,20 +242,14 @@ public class ComputerDB implements EntityDB<Computer> {
         }
         sb.append(")");
         cmp.toArray();
-        String query = "DELETE FROM computer WHERE id IN " + sb.toString();
-        try {
-            prep = db.prepareStatement(query);
-            for (int i = 0; i < cmp.size(); i++) {
-                prep.setLong(i + 1, cmp.get(i));
-            }
-            prep.executeUpdate();
-            prep.close();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        } finally {
-            closeConnection();
+        Object[] objs = new Object[cmp.size()];
+        for (int i = 0; i < cmp.size(); i++) {
+            objs[i] = cmp.get(i);
         }
-        return true;
+
+        String query = "DELETE FROM computer WHERE id IN " + sb.toString();
+        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
+        return jdbcTemplate.update(query, objs);
     }
 
     /**
@@ -351,19 +261,10 @@ public class ComputerDB implements EntityDB<Computer> {
      *            Computer to delete
      * @return boolean for the success of the operation
      */
-    public boolean deleteByCompany(Long id) {
-        Connection db = connect();
-        PreparedStatement prep = null;
+    public int deleteByCompany(Long id) {
         String query = "DELETE FROM computer WHERE company_id = ?";
-        try {
-            prep = db.prepareStatement(query);
-            prep.setLong(1, id);
-            prep.executeUpdate();
-            prep.close();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        }
-        return true;
+        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
+        return jdbcTemplate.update(query, new Object[] { id });
     }
 
     /**
@@ -372,49 +273,17 @@ public class ComputerDB implements EntityDB<Computer> {
      * @return integer number of computers
      */
     public int count() {
-        Connection db = connect();
-        PreparedStatement prep = null;
-        ResultSet res = null;
-
-        int nb = 0;
         String query = "SELECT COUNT(*) FROM computer";
-        try {
-            prep = db.prepareStatement(query);
-            res = prep.executeQuery();
-            if (res.next()) {
-                nb = res.getInt(1);
-            }
-            prep.close();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        } finally {
-            closeConnection();
-        }
-
-        return nb;
+        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
+        return jdbcTemplate.queryForObject(query, Integer.class);
     }
 
-    public long countBySearch(String search) {
-        Connection db = connect();
-        PreparedStatement prep = null;
-        ResultSet res = null;
+    public int countBySearch(String search) {
         String searchQuery = "WHERE c.name LIKE ? OR i.name LIKE ?";
         String query = "SELECT COUNT(*) FROM computer i LEFT JOIN company c ON c.id = i.company_id " + searchQuery;
-        long l = 0;
-        try {
-            prep = db.prepareStatement(query);
-            prep.setString(1, "%" + search + "%");
-            prep.setString(2, "%" + search + "%");
-            res = prep.executeQuery();
-            res.next();
-            l = res.getLong(1);
-            prep.close();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        } finally {
-            closeConnection();
-        }
-        return l;
+        String searchQ = search + "%";
+        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
+        return jdbcTemplate.queryForObject(query, new Object[] { searchQ, searchQ }, Integer.class);
     }
 
 }
