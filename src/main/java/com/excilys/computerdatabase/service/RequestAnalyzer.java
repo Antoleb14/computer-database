@@ -2,9 +2,27 @@ package com.excilys.computerdatabase.service;
 
 import com.excilys.computerdatabase.exception.ValidatorException;
 
-public enum RequestAnalyzer {
+public class RequestAnalyzer {
 
-    INSTANCE;
+    private static RequestAnalyzer INSTANCE = null;
+
+    /**
+     * Constructor of the class.
+     */
+    public RequestAnalyzer() {
+    }
+
+    /**
+     * Method to get instance of ComputerDb or create one if null.
+     *
+     * @return ComputerDB
+     */
+    public static synchronized RequestAnalyzer getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new RequestAnalyzer();
+        }
+        return INSTANCE;
+    }
 
     /**
      * Methode to analyse if a parameter is a String.

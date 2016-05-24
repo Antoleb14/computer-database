@@ -5,6 +5,10 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
 import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.exception.DAOException;
@@ -12,12 +16,25 @@ import com.excilys.computerdatabase.exception.ServiceException;
 import com.excilys.computerdatabase.persistence.ComputerDB;
 import com.excilys.computerdatabase.validator.ValidatorComputer;
 
-public enum ServiceComputer implements IService<Computer> {
+@Service("serviceComputer")
+@Scope("singleton")
+public class ServiceComputer implements IService<Computer> {
 
-    INSTANCE;
+    private Logger LOG = LoggerFactory.getLogger(ServiceComputer.class);
 
-    static final Logger LOG = LoggerFactory.getLogger(ServiceComputer.class);
-    private final ComputerDB CDB = ComputerDB.INSTANCE;
+    @Autowired
+    @Qualifier("computerDB")
+    private ComputerDB CDB;
+
+    @Autowired
+    @Qualifier("validatorComputer")
+    public ValidatorComputer validator;
+
+    /**
+     * Constructor of the class.
+     */
+    public ServiceComputer() {
+    }
 
     @Override
     public Computer find(Long id) {
@@ -46,8 +63,7 @@ public enum ServiceComputer implements IService<Computer> {
     @Override
     public Computer update(Computer t) {
         try {
-            ValidatorComputer v = ValidatorComputer.INSTANCE;
-            if (!v.isValid(t)) {
+            if (!validator.isValid(t)) {
                 return null;
             }
             CDB.update(t);
@@ -80,8 +96,7 @@ public enum ServiceComputer implements IService<Computer> {
     public Computer create(Computer t) {
         Computer c = null;
         try {
-            ValidatorComputer v = ValidatorComputer.INSTANCE;
-            if (!v.isValid(t)) {
+            if (!validator.isValid(t)) {
                 return null;
             }
             c = CDB.create(t);
@@ -139,14 +154,12 @@ public enum ServiceComputer implements IService<Computer> {
      * @return list of computers
      */
     public ArrayList<Computer> findBySearch(int current, int elementsByPage, String search, Order order) {
-        List<Computer> l = null;
         // LOG.debug("find by search");
         try {
-            l = CDB.findBySearch(current, elementsByPage, search, order);
+            return (ArrayList<Computer>) CDB.findBySearch(current, elementsByPage, search, order);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
-        return (ArrayList<Computer>) l;
     }
 
     /**

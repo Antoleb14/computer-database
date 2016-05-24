@@ -2175,3 +2175,12 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Can't call
 15:41:55.822 [main] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Before closing stats (total=0, active=0, idle=0, waiting=0)
 15:41:55.822 [main] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - After closing stats (total=0, active=0, idle=0, waiting=0)
 15:41:55.822 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Closed.
+09:54:15.258 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+17:39:16.160 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+17:40:10.578 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+17:46:20.403 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+17:47:41.725 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+17:48:34.046 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+17:49:17.591 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+17:50:19.923 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+17:50:41.553 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode

@@ -2,6 +2,8 @@ package com.excilys.computerdatabase.entity;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Component;
+
 import com.excilys.computerdatabase.service.Order;
 
 /**
@@ -12,6 +14,7 @@ import com.excilys.computerdatabase.service.Order;
  * @param <T>
  *            Object to paginate
  */
+@Component("page")
 public class Page<T> {
 
     private ArrayList<T> elements;
@@ -21,6 +24,9 @@ public class Page<T> {
     private long total = 0;
     private String search = "";
     private Order order;
+
+    public Page() {
+    }
 
     /**
      * Class constructor.

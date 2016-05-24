@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
+
 import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.entity.ComputerDTO;
 import com.excilys.computerdatabase.entity.Page;
@@ -15,16 +19,26 @@ import com.excilys.computerdatabase.mapper.ComputerDTOMapper;
  * @author excilys
  *
  */
-public enum ServicePage {
+@Service("servicePage")
+@Scope("singleton")
+public class ServicePage {
 
-    INSTANCE;
-
-    private static ServiceComputer cs = ServiceComputer.INSTANCE;
+    @Autowired
+    private ServiceComputer cs;
 
     private int page = 1;
     private int maxPages;
     private int limitPerPage = 10;
     private Scanner sc = new Scanner(System.in);
+
+    @Autowired
+    private ComputerDTOMapper computerDTOMapper;
+
+    /**
+     * Constructor of the class.
+     */
+    public ServicePage() {
+    }
 
     /**
      * Method to return the total number of pages needed.
@@ -45,8 +59,10 @@ public enum ServicePage {
      */
     public List<Computer> pager(int page) {
         int current = (page - 1) * limitPerPage;
+        System.out.println(current);
         List<Computer> computers = cs.findBySearch(current, limitPerPage, "", null);
         this.page = page;
+        System.out.println(computers);
         return computers;
 
     }
@@ -92,7 +108,7 @@ public enum ServicePage {
         this.page = currentPage;
         int current = (currentPage - 1) * limitPerPage;
         ArrayList<Computer> elements = cs.findBySearch(current, elementsByPage, search, order);
-        ArrayList<ComputerDTO> elements2 = ComputerDTOMapper.INSTANCE.listObjetToDTO(elements);
+        ArrayList<ComputerDTO> elements2 = computerDTOMapper.listObjetToDTO(elements);
         long totalNumber = cs.countBySearch(search);
         int totalPages = (int) ((totalNumber / limitPerPage) + (totalNumber % limitPerPage > 0 ? 1 : 0));
         return new Page<ComputerDTO>(elements2, totalPages, currentPage, elementsByPage, totalNumber, search, order);

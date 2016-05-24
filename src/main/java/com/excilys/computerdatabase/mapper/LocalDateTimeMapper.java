@@ -4,30 +4,17 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class LocalDateTimeMapper {
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-    private static LocalDateTimeMapper ldtm;
+@Component("localdatetimemapper")
+@Scope("singleton")
+public class LocalDateTimeMapper {
 
     /**
      * Class constructor.
      */
     private LocalDateTimeMapper() {
-    }
-
-    /**
-     * Method to get instance of ComputerDb or create one if null.
-     *
-     * @return ComputerDB
-     */
-    public static LocalDateTimeMapper getInstance() {
-        if (ldtm == null) {
-            synchronized (LocalDateTimeMapper.class) {
-                if (ldtm == null) {
-                    ldtm = new LocalDateTimeMapper();
-                }
-            }
-        }
-        return ldtm;
     }
 
     public LocalDateTime map(String date) {

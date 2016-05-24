@@ -8,6 +8,11 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Repository;
+
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.exception.DAOException;
@@ -20,17 +25,30 @@ import com.excilys.computerdatabase.service.Order;
  * @author excilys
  *
  */
-public enum ComputerDB implements EntityDB<Computer> {
 
-    INSTANCE;
+@Repository("computerDB")
+@Scope("singleton")
+public class ComputerDB implements EntityDB<Computer> {
+
+    @Autowired
+    @Qualifier("computerMapper")
+    private ComputerMapper cmapper;
+
+    @Autowired
+    @Qualifier("sqlutils")
+    private SQLUtils sc;
 
     /**
-     * Method to persist a new Computer in the database.
-     *
-     * @param c
-     *            Object Computer
-     * @return boolean success of the operation
+     * Constructor of the class.
      */
+    public ComputerDB() {
+    }
+
+    @Override
+    public Connection connect() {
+        return sc.getConnection();
+    }
+
     @Override
     public Computer create(Computer c) {
         Connection db = connect();
@@ -67,13 +85,6 @@ public enum ComputerDB implements EntityDB<Computer> {
         return c;
     }
 
-    /**
-     * Method to update a computer in the database.
-     *
-     * @param c
-     *            Computer
-     * @return boolean success of the operation
-     */
     @Override
     public Computer update(Computer c) {
         Connection db = connect();
@@ -110,13 +121,6 @@ public enum ComputerDB implements EntityDB<Computer> {
         return c;
     }
 
-    /**
-     * Method to find a Computer by ID.
-     *
-     * @param id
-     *            ID of the Computer
-     * @return Computer found
-     */
     @Override
     public Computer find(Long id) {
         Connection db = connect();
@@ -128,7 +132,7 @@ public enum ComputerDB implements EntityDB<Computer> {
             prep = db.prepareStatement(query);
             prep.setLong(1, id);
             res = prep.executeQuery();
-            c = ComputerMapper.getInstance().map(res);
+            c = cmapper.map(res);
             prep.close();
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -156,7 +160,7 @@ public enum ComputerDB implements EntityDB<Computer> {
             prep = db.prepareStatement(query);
             prep.setString(1, name);
             res = prep.executeQuery();
-            c = ComputerMapper.getInstance().mapAll(res);
+            c = cmapper.mapAll(res);
             prep.close();
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -184,7 +188,7 @@ public enum ComputerDB implements EntityDB<Computer> {
             prep = db.prepareStatement(query);
             prep.setString(1, id);
             res = prep.executeQuery();
-            c = ComputerMapper.getInstance().mapAll(res);
+            c = cmapper.mapAll(res);
             prep.close();
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -212,7 +216,7 @@ public enum ComputerDB implements EntityDB<Computer> {
             prep = db.prepareStatement(query);
             prep.setLong(1, t.getId());
             res = prep.executeQuery();
-            c = ComputerMapper.getInstance().mapAll(res);
+            c = cmapper.mapAll(res);
             prep.close();
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -223,11 +227,6 @@ public enum ComputerDB implements EntityDB<Computer> {
         return c;
     }
 
-    /**
-     * Method to find all Computers in the database.
-     *
-     * @return List of computers
-     */
     @Override
     public List<Computer> findAll() {
         List<Computer> list = new ArrayList<Computer>();
@@ -240,7 +239,7 @@ public enum ComputerDB implements EntityDB<Computer> {
             prep = db.prepareStatement(query);
             res = prep.executeQuery();
 
-            list = ComputerMapper.getInstance().mapAll(res);
+            list = cmapper.mapAll(res);
             prep.close();
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -285,7 +284,7 @@ public enum ComputerDB implements EntityDB<Computer> {
             prep.setInt(4, number);
             res = prep.executeQuery();
 
-            list = ComputerMapper.getInstance().mapAll(res);
+            list = cmapper.mapAll(res);
             prep.close();
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -295,13 +294,6 @@ public enum ComputerDB implements EntityDB<Computer> {
         return list;
     }
 
-    /**
-     * Method to delete a computer in the database.
-     *
-     * @param cmp
-     *            Computer to delete
-     * @return boolean for the success of the operation
-     */
     @Override
     public boolean delete(Computer cmp) {
         Connection db = connect();
@@ -360,7 +352,7 @@ public enum ComputerDB implements EntityDB<Computer> {
      * @return boolean for the success of the operation
      */
     public boolean deleteByCompany(Long id) {
-        Connection db = SQLUtils.tlocal.get();
+        Connection db = connect();
         PreparedStatement prep = null;
         String query = "DELETE FROM computer WHERE company_id = ?";
         try {

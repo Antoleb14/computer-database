@@ -2,6 +2,9 @@ package com.excilys.computerdatabase.entity;
 
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 /**
  * Computer Entity.
  *
@@ -14,6 +17,9 @@ public class Computer {
     private String name;
     private LocalDateTime introduced;
     private LocalDateTime discontinued;
+
+    @Autowired
+    @Qualifier("Company")
     private Company company;
 
     /**

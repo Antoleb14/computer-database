@@ -1,11 +1,14 @@
 package com.excilys.computerdatabase.entity;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Computer Entity.
  *
  * @author excilys
  *
  */
+@Component("computerDTO")
 public class ComputerDTO {
 
     private String id;

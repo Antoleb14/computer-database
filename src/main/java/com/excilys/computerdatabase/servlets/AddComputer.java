@@ -3,10 +3,15 @@ package com.excilys.computerdatabase.servlets;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
@@ -21,6 +26,28 @@ import com.excilys.computerdatabase.validator.ValidatorComputer;
 public class AddComputer extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    @Autowired
+    @Qualifier("serviceCompany")
+    public ServiceCompany sc;
+
+    @Autowired
+    @Qualifier("serviceComputer")
+    public ServiceComputer scp;
+
+    @Autowired
+    @Qualifier("computerDTOMapper")
+    public ComputerDTOMapper cdto;
+
+    @Autowired
+    @Qualifier("validatorComputer")
+    public ValidatorComputer v;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+    }
+
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      *      response)
@@ -29,7 +56,6 @@ public class AddComputer extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ServiceCompany sc = ServiceCompany.INSTANCE;
         List<Company> lc = sc.findAll();
 
         request.setAttribute("listcompanies", lc);
@@ -55,8 +81,6 @@ public class AddComputer extends HttpServlet {
         request.setAttribute("discontinued", discontinued);
         request.setAttribute("company", company);
 
-        ServiceComputer sc = ServiceComputer.INSTANCE;
-        ValidatorComputer v = ValidatorComputer.INSTANCE;
         List<String> errors = v.validate(name, introduced, discontinued, company);
         request.setAttribute("errors", errors);
 
@@ -64,15 +88,14 @@ public class AddComputer extends HttpServlet {
             doGet(request, response);
             return;
         }
-        Company c = ServiceCompany.INSTANCE.find(Long.parseLong(company));
-        Computer t = ComputerDTOMapper.INSTANCE.dtoToObject(name, introduced, discontinued, c.getId().toString(),
-                c.getName());
+        Company c = sc.find(Long.parseLong(company));
+        Computer t = cdto.dtoToObject(name, introduced, discontinued, c.getId().toString(), c.getName());
 
         if (t == null) {
             doGet(request, response);
             return;
         } else {
-            sc.create(t);
+            scp.create(t);
         }
 
         response.sendRedirect("home");

@@ -4,10 +4,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.excilys.computerdatabase.entity.ComputerDTO;
 import com.excilys.computerdatabase.entity.Page;
@@ -22,6 +27,20 @@ import com.excilys.computerdatabase.service.ServicePage;
 public class Dashboard extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+    }
+
+    @Autowired
+    @Qualifier("servicePage")
+    public ServicePage sp;
+
+    @Autowired
+    @Qualifier("serviceComputer")
+    public ServiceComputer sc;
+
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      *      response)
@@ -33,17 +52,17 @@ public class Dashboard extends HttpServlet {
         // response.getWriter().append("Served at:
         // ").append(request.getContextPath());
 
-        int itemsPage = RequestAnalyzer.INSTANCE.analyzeInt(request.getParameter("l"), 10);
-        int page = RequestAnalyzer.INSTANCE.analyzeInt(request.getParameter("p"), 1);
-        String search = RequestAnalyzer.INSTANCE.analyzeString(request.getParameter("search"), "");
-        String champ = RequestAnalyzer.INSTANCE.analyzeString(request.getParameter("order"), "");
-        String ascdesc = RequestAnalyzer.INSTANCE.analyzeString(request.getParameter("sort"), "ASC");
+        int itemsPage = RequestAnalyzer.getInstance().analyzeInt(request.getParameter("l"), 10);
+        int page = RequestAnalyzer.getInstance().analyzeInt(request.getParameter("p"), 1);
+        String search = RequestAnalyzer.getInstance().analyzeString(request.getParameter("search"), "");
+        String champ = RequestAnalyzer.getInstance().analyzeString(request.getParameter("order"), "");
+        String ascdesc = RequestAnalyzer.getInstance().analyzeString(request.getParameter("sort"), "ASC");
         Order order = null;
         if (!champ.equals("")) {
             order = new Order(champ, ascdesc);
         }
 
-        Page<ComputerDTO> p = ServicePage.INSTANCE.createPage(page, itemsPage, search, order);
+        Page<ComputerDTO> p = sp.createPage(page, itemsPage, search, order);
         request.setAttribute("count", p.getTotal());
         request.setAttribute("p", p);
 
@@ -58,13 +77,12 @@ public class Dashboard extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String selection = RequestAnalyzer.INSTANCE.analyzeString(request.getParameter("selection"), "");
+        String selection = RequestAnalyzer.getInstance().analyzeString(request.getParameter("selection"), "");
         String[] items = selection.split(",");
 
-        ServiceComputer sc = ServiceComputer.INSTANCE;
         List<Long> ls = new ArrayList<Long>();
         for (String item : items) {
-            long id = RequestAnalyzer.INSTANCE.analyzeInt(item, 0);
+            long id = RequestAnalyzer.getInstance().analyzeInt(item, 0);
             ls.add(id);
         }
         sc.delete(ls);

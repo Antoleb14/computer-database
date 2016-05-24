@@ -7,34 +7,21 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.exception.MapperException;
 
+@Component("computerMapper")
+@Scope("singleton")
 public class ComputerMapper implements IMapper<Computer> {
 
-    private static ComputerMapper cpm = null;
-
     /**
-     * Class constructor.
+     * Constructor of the class.
      */
-    private ComputerMapper() {
-    }
-
-    /**
-     * Method to get instance of ComputerMapper or create one if null.
-     *
-     * @return ComputerMapper
-     */
-    public static ComputerMapper getInstance() {
-        if (cpm == null) {
-            synchronized (ComputerMapper.class) {
-                if (cpm == null) {
-                    cpm = new ComputerMapper();
-                }
-            }
-        }
-        return cpm;
+    public ComputerMapper() {
     }
 
     @Override

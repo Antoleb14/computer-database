@@ -10,6 +10,10 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Repository;
 
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.exception.DAOException;
@@ -21,27 +25,30 @@ import com.excilys.computerdatabase.mapper.CompanyMapper;
  * @author excilys
  *
  */
+
+@Repository("companyDB")
+@Scope("singleton")
 public class CompanyDB implements EntityDB<Company> {
 
     private static final Logger LOG = LoggerFactory.getLogger(CompanyDB.class);
-    private static CompanyDB cdb = null;
+
+    @Autowired
+    @Qualifier("sqlutils")
+    private SQLUtils sql;
+
+    @Autowired
+    @Qualifier("companyMapper")
+    private CompanyMapper cmapper;
 
     /**
      * Constructor of the class.
      */
-    private CompanyDB() {
+    public CompanyDB() {
     }
 
-    /**
-     * Method to get instance of ComputerDb or create one if null.
-     *
-     * @return ComputerDB
-     */
-    public static synchronized CompanyDB getCompanyDb() {
-        if (cdb == null) {
-            cdb = new CompanyDB();
-        }
-        return cdb;
+    @Override
+    public Connection connect() {
+        return sql.getConnection();
     }
 
     /**
@@ -57,7 +64,7 @@ public class CompanyDB implements EntityDB<Company> {
         try {
             Statement statement = db.createStatement();
             res = statement.executeQuery("SELECT * FROM company ORDER BY name ASC");
-            list = CompanyMapper.getInstance().mapAll(res);
+            list = cmapper.mapAll(res);
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
@@ -85,7 +92,7 @@ public class CompanyDB implements EntityDB<Company> {
             prep.setLong(1, id);
             res = prep.executeQuery();
             if (res.next()) {
-                c = CompanyMapper.getInstance().map(res);
+                c = cmapper.map(res);
             }
             prep.close();
         } catch (SQLException e) {
@@ -132,7 +139,7 @@ public class CompanyDB implements EntityDB<Company> {
         PreparedStatement prep = null;
         String query = "DELETE FROM company WHERE id = ?";
         try {
-            prep = SQLUtils.INSTANCE.getConnection().prepareStatement(query);
+            prep = sql.getConnection().prepareStatement(query);
             prep.setLong(1, c.getId());
             prep.executeUpdate();
             prep.close();

@@ -1,32 +1,25 @@
 package com.excilys.computerdatabase.mapper;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.CompanyDTO;
 
+@Component("companyDTOMapper")
+@Scope("singleton")
 public class CompanyDTOMapper {
 
-    private static CompanyDTOMapper cdtom;
+    @Autowired
+    @Qualifier("companyDTO")
+    private CompanyDTO cdto;
 
     /**
      * Class constructor.
      */
-    private CompanyDTOMapper() {
-    }
-
-    /**
-     * Method to get instance of ComputerDb or create one if null.
-     *
-     * @return ComputerDB
-     */
-    public static CompanyDTOMapper getInstance() {
-        if (cdtom == null) {
-            synchronized (CompanyDTOMapper.class) {
-                if (cdtom == null) {
-                    cdtom = new CompanyDTOMapper();
-                }
-            }
-        }
-        return cdtom;
+    public CompanyDTOMapper() {
     }
 
     /**

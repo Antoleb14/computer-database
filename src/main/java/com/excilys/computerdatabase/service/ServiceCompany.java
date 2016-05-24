@@ -2,6 +2,13 @@ package com.excilys.computerdatabase.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.exception.DAOException;
 import com.excilys.computerdatabase.exception.ServiceException;
@@ -9,12 +16,28 @@ import com.excilys.computerdatabase.persistence.CompanyDB;
 import com.excilys.computerdatabase.persistence.ComputerDB;
 import com.excilys.computerdatabase.persistence.SQLUtils;
 
-public enum ServiceCompany implements IService<Company> {
+@Service("serviceCompany")
+public class ServiceCompany implements IService<Company> {
 
-    INSTANCE;
+    private Logger LOG = LoggerFactory.getLogger(ServiceComputer.class);
 
-    private static final CompanyDB CDB = CompanyDB.getCompanyDb();
-    private static final ComputerDB CDC = ComputerDB.INSTANCE;
+    @Autowired
+    @Qualifier("companyDB")
+    private CompanyDB CDB;
+
+    @Autowired
+    @Qualifier("computerDB")
+    private ComputerDB CDC;
+
+    @Autowired
+    @Qualifier("sqlutils")
+    private SQLUtils sql;
+
+    /**
+     * Constructor of the class.
+     */
+    public ServiceCompany() {
+    }
 
     @Override
     public Company find(Long id) throws ServiceException {
@@ -59,20 +82,11 @@ public enum ServiceCompany implements IService<Company> {
         return t;
     }
 
+    @Transactional
     @Override
     public boolean delete(Company t) throws ServiceException {
-        SQLUtils.INSTANCE.getConnection();
-        try {
-            SQLUtils.INSTANCE.setAutoCommit(false);
-            CDC.deleteByCompany(t.getId());
-            CDB.delete(t);
-            SQLUtils.INSTANCE.commit();
-        } catch (DAOException e) {
-            SQLUtils.INSTANCE.rollback();
-        } finally {
-            SQLUtils.INSTANCE.close();
-        }
-
+        CDC.deleteByCompany(t.getId());
+        CDB.delete(t);
         return true;
     }
 

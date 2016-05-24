@@ -14,8 +14,6 @@ import com.excilys.computerdatabase.exception.DAOException;
  */
 public interface EntityDB<T> {
 
-    static final SQLUtils sc = SQLUtils.INSTANCE;
-
     /**
      * Method to find an Entity by id.
      *
@@ -53,15 +51,12 @@ public interface EntityDB<T> {
     /**
      * Method to connect to database.
      */
-    public default Connection connect() {
-        return sc.getConnection();
-    }
+    public Connection connect();
 
     /**
      * Method to close a connection to the database.
      */
     public default void closeConnection() {
-        sc.close();
     }
 
     /**

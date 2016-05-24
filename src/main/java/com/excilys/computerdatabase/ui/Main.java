@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
@@ -21,9 +22,16 @@ import com.excilys.computerdatabase.service.ServicePage;
  */
 public class Main {
 
+    @Autowired
+    private ServiceComputer COMPUTER;
+
+    @Autowired
+    private ServiceCompany COMPANY;
+
+    @Autowired
+    private ServicePage p;
+
     static final Logger LOG = LoggerFactory.getLogger(Main.class);
-    private static final ServiceComputer COMPUTER = ServiceComputer.INSTANCE;
-    private static final ServiceCompany COMPANY = ServiceCompany.INSTANCE;
     private static Scanner sc = null;
 
     /**
@@ -35,9 +43,13 @@ public class Main {
     public static void main(String[] args) {
         LOG.debug("Entering CLI mode");
         sc = new Scanner(System.in);
-        menu(0);
+        Main m = new Main();
+        m.menu(0);
         sc.close();
 
+    }
+
+    public Main() {
     }
 
     /**
@@ -46,7 +58,7 @@ public class Main {
      * @param val
      *            Option selected
      */
-    private static void menu(int val) {
+    private void menu(int val) {
         // CompanyDB companies = CompanyDB.getCompanyDb();
         // ComputerDB computer = ComputerDB.getComputerDb();
         while (val <= 0 || val > 5) {
@@ -64,7 +76,6 @@ public class Main {
         case 1:
             int entry = 1;
             do {
-                ServicePage p = ServicePage.INSTANCE;
                 List<Computer> computers = p.pager(entry);
                 for (Computer c : computers) {
                     System.out.println(c);
@@ -126,7 +137,7 @@ public class Main {
      * @param cmp
      *            object Computer in case of typing error
      */
-    private static void createComputer(Computer cmp) {
+    private void createComputer(Computer cmp) {
         System.out.println("Entrer un nom (0 to cancel): ");
         String value = enterValue();
         if (value.length() > 0) {
@@ -200,7 +211,7 @@ public class Main {
      * @param opt
      *            option selected (edit, remove or go back)
      */
-    private static void options(Computer cmp, int opt) {
+    private void options(Computer cmp, int opt) {
         if (opt == 2) {
             COMPUTER.delete(cmp);
             System.out.println("The computer \"" + cmp.getName() + "\" has been removed from the database!");
@@ -277,7 +288,7 @@ public class Main {
      *
      * @return the value type, or 0 if not an integer
      */
-    public static int enterInt() {
+    public int enterInt() {
         String value = sc.nextLine();
         int res = 0;
         try {
@@ -293,7 +304,7 @@ public class Main {
      *
      * @return the value type, or 0 if not an integer
      */
-    public static String enterValue() {
+    public String enterValue() {
         String value = sc.nextLine();
         return value;
     }

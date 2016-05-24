@@ -3,13 +3,28 @@ package com.excilys.computerdatabase.mapper;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.entity.ComputerDTO;
 
-public enum ComputerDTOMapper {
+@Component("computerDTOMapper")
+@Scope("singleton")
+public class ComputerDTOMapper {
 
-    INSTANCE;
+    @Autowired
+    @Qualifier("localdatetimemapper")
+    private LocalDateTimeMapper dtm;
+
+    /**
+     * Constructor of the class.
+     */
+    public ComputerDTOMapper() {
+    }
 
     /**
      * Object to DTO.
@@ -40,7 +55,6 @@ public enum ComputerDTOMapper {
 
     public Computer dtoToObject(String id, String name, String intro, String disc, String cid, String cname) {
         Company c = new Company(Long.parseLong(cid), cname);
-        LocalDateTimeMapper dtm = LocalDateTimeMapper.getInstance();
         Computer t = new Computer.ComputerBuilder().id(Long.parseLong(id)).name(name).introduced(dtm.map(intro))
                 .discontinued(dtm.map(disc)).company(c).build();
         return t;
@@ -48,7 +62,6 @@ public enum ComputerDTOMapper {
 
     public Computer dtoToObject(String name, String intro, String disc, String cid, String cname) {
         Company c = new Company(Long.parseLong(cid), cname);
-        LocalDateTimeMapper dtm = LocalDateTimeMapper.getInstance();
         Computer t = new Computer.ComputerBuilder().name(name).introduced(dtm.map(intro)).discontinued(dtm.map(disc))
                 .company(c).build();
         return t;

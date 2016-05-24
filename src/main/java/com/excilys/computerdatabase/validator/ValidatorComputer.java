@@ -6,6 +6,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.exception.DAOException;
@@ -13,8 +17,22 @@ import com.excilys.computerdatabase.exception.ValidatorException;
 import com.excilys.computerdatabase.mapper.LocalDateTimeMapper;
 import com.excilys.computerdatabase.service.ServiceCompany;
 
-public enum ValidatorComputer implements IValidator<Computer> {
-    INSTANCE;
+@Component("validatorComputer")
+public class ValidatorComputer implements IValidator<Computer> {
+
+    @Autowired
+    @Qualifier("serviceCompany")
+    private ServiceCompany spcomp;
+
+    @Autowired
+    @Qualifier("localdatetimemapper")
+    private LocalDateTimeMapper ldt;
+
+    /**
+     * Default class constructor.
+     */
+    public ValidatorComputer() {
+    }
 
     /**
      * Method to know if a computer is valid.
@@ -78,7 +96,7 @@ public enum ValidatorComputer implements IValidator<Computer> {
         LocalDateTime disc = null;
         try {
             if (!introduced.equals("")) {
-                intro = LocalDateTimeMapper.getInstance().map(introduced);
+                intro = ldt.map(introduced);
             }
         } catch (Exception e) {
             resls.add("The introduced date is incorrect and must be format dd-mm-yyyy");
@@ -86,7 +104,7 @@ public enum ValidatorComputer implements IValidator<Computer> {
 
         try {
             if (!discontinued.equals("")) {
-                disc = LocalDateTimeMapper.getInstance().map(discontinued);
+                disc = ldt.map(discontinued);
             }
         } catch (Exception e) {
             resls.add("The discontinued date is incorrect and must be format dd-mm-yyyy");
@@ -94,8 +112,7 @@ public enum ValidatorComputer implements IValidator<Computer> {
 
         Company c = null;
         if (!company.equals("0")) {
-            ServiceCompany sp = ServiceCompany.INSTANCE;
-            c = sp.find(new Long(company));
+            c = spcomp.find(new Long(company));
             if (c == null) {
                 resls.add("The company doesn't exist !");
             }
@@ -141,7 +158,7 @@ public enum ValidatorComputer implements IValidator<Computer> {
         LocalDateTime disc = null;
         try {
             if (!introduced.equals("")) {
-                intro = LocalDateTimeMapper.getInstance().map(introduced);
+                intro = ldt.map(introduced);
             }
         } catch (Exception e) {
             resls.add("The introduced date is incorrect and must be format dd-mm-yyyy");
@@ -149,7 +166,7 @@ public enum ValidatorComputer implements IValidator<Computer> {
 
         try {
             if (!discontinued.equals("")) {
-                disc = LocalDateTimeMapper.getInstance().map(discontinued);
+                disc = ldt.map(discontinued);
             }
         } catch (Exception e) {
             resls.add("The discontinued date is incorrect and must be format dd-mm-yyyy");
@@ -157,8 +174,7 @@ public enum ValidatorComputer implements IValidator<Computer> {
 
         Company c = null;
         if (!company.equals("0")) {
-            ServiceCompany sp = ServiceCompany.INSTANCE;
-            c = sp.find(new Long(company));
+            c = spcomp.find(new Long(company));
             if (c == null) {
                 resls.add("The company doesn't exist !");
             }

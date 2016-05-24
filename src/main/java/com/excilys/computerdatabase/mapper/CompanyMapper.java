@@ -5,33 +5,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.exception.MapperException;
 
+@Component("companyMapper")
+@Scope("singleton")
 public class CompanyMapper implements IMapper<Company> {
 
-    private static CompanyMapper cpm;
-
     /**
-     * Class constructor.
+     * Constructor of the class.
      */
-    private CompanyMapper() {
-    }
-
-    /**
-     * Method to get instance of ComputerDb or create one if null.
-     *
-     * @return ComputerDB
-     */
-    public static CompanyMapper getInstance() {
-        if (cpm == null) {
-            synchronized (CompanyMapper.class) {
-                if (cpm == null) {
-                    cpm = new CompanyMapper();
-                }
-            }
-        }
-        return cpm;
+    public CompanyMapper() {
     }
 
     @Override

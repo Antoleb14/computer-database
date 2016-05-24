@@ -1,15 +1,21 @@
 package com.excilys.computerdatabase.entity;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Company Entity.
  *
  * @author excilys
  *
  */
+@Component("companyDTO")
 public class CompanyDTO {
 
     private String id;
     private String name;
+
+    public CompanyDTO() {
+    }
 
     /**
      * Constructor of the class.
