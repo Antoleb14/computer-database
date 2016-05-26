@@ -31,3 +31,12 @@ input[type='checkbox'] {
 a.glyphicon:hover{
 	text-decoration:none;
 }
+
+
+.flag {
+	width: 25px;
+}
+
+.navbar-right{
+	margin-right:10px;
+}

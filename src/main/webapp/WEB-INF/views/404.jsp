@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"
+	isELIgnored="false"%>
+<%@ taglib prefix="mytag" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
     <title>Computer Database</title>
@@ -9,16 +14,12 @@
     <link href="resources/css/main.css" rel="stylesheet" media="screen">
 </head>
 <body>
-    <header class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="home"> Application - Computer Database </a>
-        </div>
-    </header>
+    <mytag:header />
 
     <section id="main">
         <div class="container">
             <div class="alert alert-danger">
-                Error 404: Page not found. Too bad bitch!
+	            <spring:message code="i18n.404" />
                 <br/>
                 <!-- stacktrace -->
             </div>

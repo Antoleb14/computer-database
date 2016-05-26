@@ -5,6 +5,7 @@
 	isELIgnored="false"%>
 <%@ taglib prefix="mytag" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="taglib" uri="/WEB-INF/customtags.tld"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
 <title>Computer Database</title>
@@ -19,19 +20,19 @@
 	rel="stylesheet" media="screen">
 <link href="${pageContext.request.contextPath}/resources/css/main.css"
 	rel="stylesheet" media="screen">
+	
+	<spring:message code="i18n.confirmdelete" var="confirm" />
+	<script>var options = { confirm: "${confirm}" }</script>
 </head>
 <body>
-	<header class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<mytag:link target="home" classes="navbar-brand" label="Application - Computer Database"  />
-		</div>
-	</header>
+	
+	<mytag:header />
 	<section id="main">
 		<div class="container">
 			<c:if test="${ not empty success }">
 				<div class="alert alert-success">${ success }</div>
 			</c:if>
-			<h1 id="homeTitle">${ count } Computers found</h1>
+			<h1 id="homeTitle">${ count } <spring:message code="i18n.computersfound" text="default text" /></h1>
 			<div id="actions" class="form-horizontal">
 				<div class="pull-left">
 					<form id="searchForm" action="#" method="GET" class="form-inline">
@@ -43,9 +44,8 @@
 					</form>
 				</div>
 				<div class="pull-right">
-					<a class="btn btn-success" id="addComputer" href="addcomputer">Add
-						Computer</a> <a class="btn btn-default" id="editComputer" href="#"
-						onclick="$.fn.toggleEditMode();">Edit</a>
+					<a class="btn btn-success" id="addComputer" href="addcomputer"><spring:message code="i18n.addcomputer" text="default text" /></a> <a class="btn btn-default" id="editComputer" href="#"
+						onclick="$.fn.toggleEditMode();"><spring:message code="i18n.edit" /></a>
 				</div>
 			</div>
 		</div>
@@ -68,7 +68,7 @@
 									class="fa fa-trash-o fa-lg"></i>
 							</a>
 						</span></th>
-						<th>Computer name 
+						<th><spring:message code="i18n.computername" /> 
 							<mytag:link target="home" label="" search="${p.search}" classes="glyphicon glyphicon-chevron-up" page="${ page.currentPage }" 
 														limit="${p.elementsByPage}" 
 														order="name" 
@@ -78,7 +78,7 @@
 														order="name" 
 														sort="DESC" />
 					    </th>
-						<th>Introduced date <mytag:link target="home" 
+						<th><spring:message code="i18n.introduced" /> <mytag:link target="home" 
 														label="" 
 														search="${p.search}" 
 														classes="glyphicon glyphicon-chevron-up"
@@ -95,7 +95,7 @@
 														order="introduced" 
 														sort="DESC" /></th>
 						<!-- Table header for Discontinued Date -->
-						<th>Discontinued date <mytag:link target="home" 
+						<th><spring:message code="i18n.discontinued" /> <mytag:link target="home" 
 														label="" 
 														search="${p.search}" 
 														classes="glyphicon glyphicon-chevron-up" 
@@ -113,7 +113,7 @@
 														sort="DESC" />
 														</th>
 						<!-- Table header for Company -->
-						<th>Company	<mytag:link target="home" 
+						<th><spring:message code="i18n.company" />	<mytag:link target="home" 
 														label="" 
 														search="${p.search}" 
 														classes="glyphicon glyphicon-chevron-up" 

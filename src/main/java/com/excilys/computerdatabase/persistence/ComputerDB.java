@@ -132,7 +132,7 @@ public class ComputerDB implements EntityDB<Computer> {
     }
 
     /**
-     * Method to find a Computer by Name.
+     * Method to find a Computer by Name. ,
      *
      * @param name
      *            Name of the Computer

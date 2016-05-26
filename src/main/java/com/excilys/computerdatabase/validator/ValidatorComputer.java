@@ -3,8 +3,8 @@ package com.excilys.computerdatabase.validator;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -82,14 +82,14 @@ public class ValidatorComputer implements IValidator<Computer> {
      * @throws ValidatorException
      * @return Computer
      */
-    public List<String> validate(String name, String introduced, String discontinued, String company)
+    public Map<String, String> validate(String name, String introduced, String discontinued, String company)
             throws ValidatorException {
 
-        List<String> resls = new ArrayList<String>();
+        Map<String, String> resls = new HashMap<String, String>();
         name = name.trim();
 
         if (!name.matches("^[a-zA-Z0-9\\-\\ &]+$") || name.length() == 0) {
-            resls.add("The name is incorrect");
+            resls.put("name", "i18n.nameerror");
         }
 
         LocalDateTime intro = null;
@@ -99,7 +99,7 @@ public class ValidatorComputer implements IValidator<Computer> {
                 intro = ldt.map(introduced);
             }
         } catch (Exception e) {
-            resls.add("The introduced date is incorrect and must be format dd-mm-yyyy");
+            resls.put("introduced", "i18n.introducederror");
         }
 
         try {
@@ -107,21 +107,30 @@ public class ValidatorComputer implements IValidator<Computer> {
                 disc = ldt.map(discontinued);
             }
         } catch (Exception e) {
-            resls.add("The discontinued date is incorrect and must be format dd-mm-yyyy");
+            resls.put("discontinued", "i18n.discontinuederror");
+        }
+
+        if (intro != null && disc != null) {
+            if (intro.isAfter(disc)) {
+                resls.put("introduced", "i18n.isaftererror");
+                resls.put("discontinued", "i18n.isbeforeerror");
+            }
         }
 
         Company c = null;
         if (!company.equals("0")) {
             c = spcomp.find(new Long(company));
             if (c == null) {
-                resls.add("The company doesn't exist !");
+                resls.put("company", "The company doesn't exist !");
             }
         }
-        Computer t = new Computer.ComputerBuilder().name(name).introduced(intro).discontinued(disc).company(c).build();
+        // Computer t = new
+        // Computer.ComputerBuilder().name(name).introduced(intro).discontinued(disc).company(c).build();
 
-        if (!isValid(t)) {
-            resls.add("The computer contains invalid datas : Check your dates !");
-        }
+        // if (!isValid(t)) {
+        // resls.put("errors", "The computer contains invalid datas : Check your
+        // dates !");
+        // }
         return resls;
 
     }
@@ -140,18 +149,20 @@ public class ValidatorComputer implements IValidator<Computer> {
      * @throws ValidatorException
      * @return Computer
      */
-    public List<String> validate(String id, String name, String introduced, String discontinued, String company)
-            throws ValidatorException {
+    public HashMap<String, String> validate(String id, String name, String introduced, String discontinued,
+            String company) throws ValidatorException {
 
-        List<String> resls = new ArrayList<String>();
+        HashMap<String, String> resls = new HashMap<String, String>();
+
         if (!id.trim().matches("^[1-9][0-9]*$")) {
-            resls.add("Invalid ID");
+            resls.put("id", "Invalid ID");
         }
-        long computerid = Long.parseLong(id);
+        // long computerid = Long.parseLong(id);
+
         name = name.trim();
 
         if (!name.matches("^[a-zA-Z0-9\\-\\ &]+$") || name.length() == 0) {
-            resls.add("The name is incorrect");
+            resls.put("name", "i18n.nameerror");
         }
 
         LocalDateTime intro = null;
@@ -161,7 +172,7 @@ public class ValidatorComputer implements IValidator<Computer> {
                 intro = ldt.map(introduced);
             }
         } catch (Exception e) {
-            resls.add("The introduced date is incorrect and must be format dd-mm-yyyy");
+            resls.put("introduced", "i18n.introducederror");
         }
 
         try {
@@ -169,22 +180,31 @@ public class ValidatorComputer implements IValidator<Computer> {
                 disc = ldt.map(discontinued);
             }
         } catch (Exception e) {
-            resls.add("The discontinued date is incorrect and must be format dd-mm-yyyy");
+            resls.put("discontinued", "i18n.discontinuederror");
+        }
+
+        if (intro != null && disc != null) {
+            if (intro.isAfter(disc)) {
+                resls.put("introduced", "i18n.isaftererror");
+                resls.put("discontinued", "i18n.isbeforeerror");
+            }
         }
 
         Company c = null;
         if (!company.equals("0")) {
             c = spcomp.find(new Long(company));
             if (c == null) {
-                resls.add("The company doesn't exist !");
+                resls.put("company", "The company doesn't exist !");
             }
         }
-        Computer t = new Computer.ComputerBuilder().id(computerid).name(name).introduced(intro).discontinued(disc)
-                .company(c).build();
+        // Computer t = new
+        // Computer.ComputerBuilder().id(computerid).name(name).introduced(intro).discontinued(disc)
+        // .company(c).build();
 
-        if (!isValid(t)) {
-            resls.add("The computer contains invalid datas.");
-        }
+        // if (!isValid(t)) {
+        // resls.put("errors", "The computer contains invalid datas : Check your
+        // dates !");
+        // }
         return resls;
     }
 

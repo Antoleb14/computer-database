@@ -23,6 +23,7 @@
 		<javaservlet>3.1.0</javaservlet>
 		<jstl>1.2</jstl>
 		<jsp>2.0</jsp>
+		<servlet>2.5</servlet>
 		<checkstyle>2.17</checkstyle>
 		<spring>4.2.6.RELEASE</spring>
 	</properties>
@@ -81,27 +82,22 @@
 		</dependency>
 
 		<!-- Spring -->
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-core</artifactId>
-		    <version>${spring}</version>
-		</dependency>
-		<dependency>
-	        <groupId>org.springframework</groupId>
-	        <artifactId>spring-context</artifactId>
-	        <exclusions>
-			   <exclusion>
-				  <groupId>commons-logging</groupId>
-				  <artifactId>commons-logging</artifactId>
-			   </exclusion>
-			</exclusions>			
-	        <version>${spring}</version>
-	    </dependency>
-	    <dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-web</artifactId>
-		    <version>${spring}</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 		    <groupId>org.springframework</groupId> -->
+<!-- 		    <artifactId>spring-core</artifactId> -->
+<!-- 		    <version>${spring}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 	        <groupId>org.springframework</groupId> -->
+<!-- 	        <artifactId>spring-context</artifactId> -->
+<!-- 	        <exclusions> -->
+<!-- 			   <exclusion> -->
+<!-- 				  <groupId>commons-logging</groupId> -->
+<!-- 				  <artifactId>commons-logging</artifactId> -->
+<!-- 			   </exclusion> -->
+<!-- 			</exclusions>			 -->
+<!-- 	        <version>${spring}</version> -->
+<!-- 	    </dependency> -->
 		<dependency>
 	        <groupId>org.springframework</groupId>
 	        <artifactId>spring-jdbc</artifactId>
@@ -115,6 +111,12 @@
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-webmvc</artifactId>
+		    <exclusions>
+			   <exclusion>
+				  <groupId>commons-logging</groupId>
+				  <artifactId>commons-logging</artifactId>
+			   </exclusion>
+			</exclusions>
 		    <version>${spring}</version>
 		</dependency>
 		
@@ -136,6 +138,12 @@
             <artifactId>jsp-api</artifactId>
             <version>${jsp}</version>
         </dependency>
+        <dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>servlet-api</artifactId>
+		    <version>${servlet}</version>
+		    <scope>provided</scope>
+		</dependency>
         
         <!-- Connection pool -->
         <dependency>

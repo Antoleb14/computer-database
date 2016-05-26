@@ -5,6 +5,7 @@
 	isELIgnored="false"%>
 <%@ taglib prefix="mytag" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="taglib" uri="/WEB-INF/customtags.tld"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
 <title>Computer Database</title>
@@ -22,9 +23,24 @@
 </head>
 <body>
 	<header class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
+		<ul class="nav navbar-nav navbar-left">
+		<li class="container">
 			<mytag:link target="home" classes="navbar-brand" label="Application - Computer Database"  />
-		</div>
+		</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+		<li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <img src="${pageContext.request.contextPath}/resources/css/blank.gif" class="flag flag-${pageContext.response.locale}" /> <spring:message code="i18n.lang" text="default text" /> <span class="caret"></span>
+          </a>
+              <ul class="dropdown-menu" style="z-index:99999">
+              <li><a href="/home?language=en"><img src="${pageContext.request.contextPath}/resources/css/blank.gif" class="flag flag-uk" alt="English" /> English</a></li>
+              <li><a href="/home?language=fr"><img src="${pageContext.request.contextPath}/resources/css/blank.gif" class="flag flag-fr" alt="France" /> Français</a></li>
+              <li role="separator" class="divider"></li>
+              <li class="text-center">Current: ${pageContext.response.locale}</li>
+              </ul>
+         </li>
+         </ul>
 	</header>
 	<section id="main">
 		<div class="container">
@@ -43,8 +59,7 @@
 					</form>
 				</div>
 				<div class="pull-right">
-					<a class="btn btn-success" id="addComputer" href="addcomputer">Add
-						Computer</a> <a class="btn btn-default" id="editComputer" href="#"
+					<a class="btn btn-success" id="addComputer" href="addcomputer"><spring:message code="i18n.addcomputer" text="default text" /></a> <a class="btn btn-default" id="editComputer" href="#"
 						onclick="$.fn.toggleEditMode();">Edit</a>
 				</div>
 			</div>

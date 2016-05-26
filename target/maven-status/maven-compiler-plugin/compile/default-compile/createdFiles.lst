@@ -1,19 +1,19 @@
-com/excilys/computerdatabase/servlets/EditComputer.class
+com/excilys/computerdatabase/controller/Dashboard.class
 com/excilys/computerdatabase/mapper/ComputerDTOMapper.class
-com/excilys/computerdatabase/servlets/AddComputer.class
 com/excilys/computerdatabase/exception/ValidatorException.class
 com/excilys/computerdatabase/mapper/IMapper.class
 com/excilys/computerdatabase/entity/ComputerDTO$ComputerDTOBuilder.class
+com/excilys/computerdatabase/controller/AddComputer.class
 com/excilys/computerdatabase/service/IService.class
 com/excilys/computerdatabase/validator/IValidator.class
 com/excilys/computerdatabase/persistence/CompanyDB.class
 com/excilys/computerdatabase/mapper/ComputerMapper.class
 com/excilys/computerdatabase/mapper/CompanyDTOMapper.class
 com/excilys/computerdatabase/service/ServicePage.class
-com/excilys/computerdatabase/servlets/Dashboard.class
 com/excilys/computerdatabase/exception/DAOException.class
 com/excilys/computerdatabase/service/RequestAnalyzer.class
 com/excilys/computerdatabase/service/ServiceComputer.class
+com/excilys/computerdatabase/controller/HTTPErrorHandler.class
 com/excilys/computerdatabase/exception/MapperException.class
 com/excilys/computerdatabase/service/Order.class
 com/excilys/computerdatabase/entity/Company.class
@@ -33,3 +33,4 @@ com/excilys/computerdatabase/entity/Page.class
 com/excilys/computerdatabase/service/ServiceCompany.class
 com/excilys/computerdatabase/mapper/CompanyMapper.class
 com/excilys/computerdatabase/entity/ComputerDTO.class
+com/excilys/computerdatabase/controller/EditComputer.class

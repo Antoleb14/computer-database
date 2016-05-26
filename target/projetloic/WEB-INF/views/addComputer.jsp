@@ -30,29 +30,32 @@
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2 box">
                     <h1>Add Computer</h1>
-                    <c:if test="${ not empty errors }">
-						<div class="alert alert-danger">
-							<ul>
-							<c:forEach var="c" items="${ errors }">
-								<li>${ c }</li>
-							</c:forEach>
-							</ul>
-						</div>
-					</c:if>
+<%--                     <c:if test="${ not empty errors }"> --%>
+<!-- 						<div class="alert alert-danger"> -->
+<!-- 							<ul> -->
+<%-- 							<c:forEach var="c" items="${ errors }"> --%>
+<%-- 								<li>${ c }</li> --%>
+<%-- 							</c:forEach> --%>
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<%-- 					</c:if> --%>
                     <div class="alert alert-danger res" style="display:none"></div>
                     <form id="form" action="addcomputer" method="POST">
                         <fieldset>
                             <div class="form-group name">
                                 <label class="control-label" for="computerName">Computer name</label>
                                 <input type="text" name="name" value="${ name }" class="form-control text-danger" id="computerName" placeholder="Computer name">
+                            	<div class="alert alert-danger errmsg" style="display:none;"></div>
                             </div>
                             <div class="form-group introduced">
                                 <label class="control-label" for="introduced">Introduced date (dd-mm-yyyy)</label>
                                 <input type="date" name="introduced" value="${ introduced }" class="form-control" id="introduced" placeholder="Introduced date">
+                            	<div class="alert alert-danger errmsg" style="display:none;"></div>
                             </div>
                             <div class="form-group discontinued">
                                 <label class="control-label" for="discontinued">Discontinued date (dd-mm-yyyy)</label>
                                 <input type="date" name="discontinued" value="${ discontinued }" class="form-control" id="discontinued" placeholder="Discontinued date">
+                            	<div class="alert alert-danger errmsg" style="display:none;"></div>
                             </div>
                             <div class="form-group company">
                                 <label class="control-label" for="companyId">Company</label>
@@ -76,6 +79,24 @@
     </section>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/addComputer.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/addComputer.js"></script>
+    
+    <script>
+    	$(function(){
+    		var name = "${errors.name}";
+    		var introduced = "${errors.introduced}";
+    		var discontinued = "${errors.discontinued}";
+    		if(name){
+    			displayerror("name", name);
+    		}
+    		if(introduced){
+    			displayerror("introduced", introduced);
+    		}
+    		if(discontinued){
+    			displayerror("discontinued", discontinued);
+    		}
+    	});
+    </script>
+
 </body>
 </html>
