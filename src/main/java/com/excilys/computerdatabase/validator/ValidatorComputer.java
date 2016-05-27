@@ -9,16 +9,19 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
+import com.excilys.computerdatabase.entity.ComputerDTO;
 import com.excilys.computerdatabase.exception.DAOException;
 import com.excilys.computerdatabase.exception.ValidatorException;
 import com.excilys.computerdatabase.mapper.LocalDateTimeMapper;
 import com.excilys.computerdatabase.service.ServiceCompany;
 
 @Component("validatorComputer")
-public class ValidatorComputer implements IValidator<Computer> {
+public class ValidatorComputer implements IValidator<Computer>, Validator {
 
     @Autowired
     @Qualifier("serviceCompany")
@@ -206,6 +209,53 @@ public class ValidatorComputer implements IValidator<Computer> {
         // dates !");
         // }
         return resls;
+    }
+
+    @Override
+    public boolean supports(Class<?> arg0) {
+        return Computer.class.isAssignableFrom(arg0);
+    }
+
+    @Override
+    public void validate(Object arg0, Errors resls) {
+        ComputerDTO cmp = (ComputerDTO) arg0;
+
+        if (!cmp.getName().trim().matches("^[a-zA-Z0-9\\-\\ &]+$") || cmp.getName().trim().length() == 0) {
+            resls.rejectValue("name", "i18n.nameerror");
+        }
+
+        LocalDateTime intro = null;
+        LocalDateTime disc = null;
+        try {
+            if (!cmp.getIntroduced().equals("")) {
+                intro = ldt.map(cmp.getIntroduced());
+            }
+        } catch (Exception e) {
+            resls.rejectValue("introduced", "i18n.introducederror");
+        }
+
+        try {
+            if (!cmp.getDiscontinued().equals("")) {
+                disc = ldt.map(cmp.getDiscontinued());
+            }
+        } catch (Exception e) {
+            resls.rejectValue("discontinued", "i18n.discontinuederror");
+        }
+
+        if (intro != null && disc != null) {
+            if (intro.isAfter(disc)) {
+                resls.rejectValue("introduced", "i18n.isaftererror");
+                resls.rejectValue("discontinued", "i18n.isbeforeerror");
+            }
+        }
+
+        Company c = null;
+        if (cmp.getCompanyId() != null && !cmp.getCompanyId().equals("0")) {
+            c = spcomp.find(new Long(cmp.getCompanyId()));
+            if (c == null) {
+                resls.rejectValue("company", "The company doesn't exist !");
+            }
+        }
     }
 
 }

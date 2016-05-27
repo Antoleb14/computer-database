@@ -2,16 +2,20 @@ package com.excilys.computerdatabase.controller;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,7 +44,7 @@ public class EditComputer {
 
     @Autowired
     @Qualifier("computerDTOMapper")
-    public ComputerDTOMapper cdto;
+    public ComputerDTOMapper mapper;
 
     @Autowired
     @Qualifier("validatorComputer")
@@ -56,7 +60,7 @@ public class EditComputer {
         // Long.parseLong(request.getParameter("computerId"));
 
         Computer edit = scp.find(id);
-        ComputerDTO c = cdto.objetToDTO(edit);
+        ComputerDTO c = mapper.objetToDTO(edit);
         model.addAttribute("c", c);
         List<Company> lc = sc.findAll();
 
@@ -69,30 +73,31 @@ public class EditComputer {
      *      response)
      */
     @RequestMapping(value = "/editcomputer", method = RequestMethod.POST)
-    protected String editAction(Model model, @RequestParam Map<String, String> params) {
-        String id = params.get("id");
-        String name = params.get("name");
-        String introduced = params.get("introduced");
-        String discontinued = params.get("discontinued");
-        String company = params.get("company");
+    protected String editAction(Model model, @Valid @ModelAttribute ComputerDTO cdto, BindingResult result) {
+        v.validate(cdto, result);
 
-        model.addAttribute("name", name);
-        model.addAttribute("introduced", introduced);
-        model.addAttribute("discontinued", discontinued);
-        model.addAttribute("company", company);
-
-        HashMap<String, String> errors = v.validate(id, name, introduced, discontinued, company);
-        model.addAttribute("errors", errors);
-        if (!errors.isEmpty()) {
-            return editFormAction(model, Long.parseLong(id));
+        if (result.hasErrors()) {
+            HashMap<String, String> map = new HashMap<String, String>();
+            List<ObjectError> err = result.getAllErrors();
+            for (ObjectError error : err) {
+                FieldError e = (FieldError) error;
+                System.out.println(e);
+                map.put(e.getField(), e.getCode());
+            }
+            model.addAttribute("errors", map);
+            return editFormAction(model, Long.parseLong(cdto.getId()));
         }
 
-        Company c = sc.find(Long.parseLong(company));
-
-        Computer t = cdto.dtoToObject(id, name, introduced, discontinued, c.getId().toString(), c.getName());
+        if (cdto.getCompanyId() != null) {
+            Company c = sc.find(Long.parseLong(cdto.getCompanyId()));
+            if (c != null) {
+                cdto.setCompanyName(c.getName());
+            }
+        }
+        Computer t = mapper.dtoToObject(cdto);
 
         if (t == null) {
-            return editFormAction(model, Long.parseLong(id));
+            return editFormAction(model, Long.parseLong(cdto.getId()));
         } else {
             scp.update(t);
         }

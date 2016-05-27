@@ -66,7 +66,7 @@
                             </div>
                             <div class="form-group company">
                                 <label class="control-label" for="companyId">Company</label>
-                                <select class="form-control" name="company" id="companyId" >
+                                <select class="form-control" name="companyId" id="companyId" >
                                     <option value="0" ${ company == 0 ? 'selected' : '' }>--</option>
                                     <c:forEach items="${ listcompanies }" var="comp">
                                     	<option value="${comp.id}" ${ comp.id == c.companyId ? 'selected' : '' }>${ comp.name }</option>

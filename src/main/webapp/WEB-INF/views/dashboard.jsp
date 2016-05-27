@@ -29,8 +29,8 @@
 	<mytag:header />
 	<section id="main">
 		<div class="container">
-			<c:if test="${ not empty success }">
-				<div class="alert alert-success">${ success }</div>
+			<c:if test="${ successNumber > 0 }">
+				<div class="alert alert-success">${ successNumber } <spring:message code="i18n.successlabel" /></div>
 			</c:if>
 			<h1 id="homeTitle">${ count } <spring:message code="i18n.computersfound" text="default text" /></h1>
 			<div id="actions" class="form-horizontal">
@@ -44,7 +44,7 @@
 					</form>
 				</div>
 				<div class="pull-right">
-					<a class="btn btn-success" id="addComputer" href="addcomputer"><spring:message code="i18n.addcomputer" text="default text" /></a> <a class="btn btn-default" id="editComputer" href="#"
+					<a class="btn btn-success" id="addComputer" href="addcomputer"><spring:message code="i18n.addcomputer" text="Add computer" /></a> <a class="btn btn-default" id="editComputer" href="#"
 						onclick="$.fn.toggleEditMode();"><spring:message code="i18n.edit" /></a>
 				</div>
 			</div>

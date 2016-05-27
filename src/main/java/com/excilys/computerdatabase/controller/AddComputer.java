@@ -1,22 +1,27 @@
 package com.excilys.computerdatabase.controller;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
+import com.excilys.computerdatabase.entity.ComputerDTO;
 import com.excilys.computerdatabase.mapper.ComputerDTOMapper;
 import com.excilys.computerdatabase.service.ServiceCompany;
 import com.excilys.computerdatabase.service.ServiceComputer;
@@ -38,7 +43,7 @@ public class AddComputer {
 
     @Autowired
     @Qualifier("computerDTOMapper")
-    public ComputerDTOMapper cdto;
+    public ComputerDTOMapper mapper;
 
     @Autowired
     @Qualifier("validatorComputer")
@@ -61,26 +66,43 @@ public class AddComputer {
      *      response)
      */
     @RequestMapping(value = "/addcomputer", method = RequestMethod.POST)
-    protected String addComputerValidAction(Model model, @RequestParam Map<String, String> params) {
+    protected String addComputerValidAction(Model model, @Valid @ModelAttribute ComputerDTO cdto,
+            BindingResult result) {
 
-        String name = params.get("name");
-        String introduced = params.get("introduced");
-        String discontinued = params.get("discontinued");
-        String company = params.get("company");
+        // String name = params.get("name");
+        // String introduced = params.get("introduced");
+        // String discontinued = params.get("discontinued");
+        // String company = params.get("company");
+        //
+        // model.addAttribute("name", name);
+        // model.addAttribute("introduced", introduced);
+        // model.addAttribute("discontinued", discontinued);
+        // model.addAttribute("company", company);
+        //
+        // Map<String, String> errors = v.validate(name, introduced,
+        // discontinued, company);
+        // model.addAttribute("errors", errors);
+        v.validate(cdto, result);
 
-        model.addAttribute("name", name);
-        model.addAttribute("introduced", introduced);
-        model.addAttribute("discontinued", discontinued);
-        model.addAttribute("company", company);
-
-        Map<String, String> errors = v.validate(name, introduced, discontinued, company);
-        model.addAttribute("errors", errors);
-
-        if (!errors.isEmpty()) {
+        if (result.hasErrors()) {
+            HashMap<String, String> map = new HashMap<String, String>();
+            List<ObjectError> err = result.getAllErrors();
+            for (ObjectError error : err) {
+                FieldError e = (FieldError) error;
+                System.out.println(e);
+                map.put(e.getField(), e.getCode());
+            }
+            model.addAttribute("errors", map);
             return addComputerAction(model);
         }
-        Company c = sc.find(Long.parseLong(company));
-        Computer t = cdto.dtoToObject(name, introduced, discontinued, c.getId().toString(), c.getName());
+
+        if (cdto.getCompanyId() != null) {
+            Company c = sc.find(Long.parseLong(cdto.getCompanyId()));
+            if (c != null) {
+                cdto.setCompanyName(c.getName());
+            }
+        }
+        Computer t = mapper.dtoToObject(cdto);
 
         if (t == null) {
             return addComputerAction(model);

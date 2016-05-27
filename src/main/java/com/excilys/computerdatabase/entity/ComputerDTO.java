@@ -1,5 +1,7 @@
 package com.excilys.computerdatabase.entity;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class ComputerDTO {
 
     private String id;
+    @NotNull
     private String name;
     private String introduced;
     private String discontinued;

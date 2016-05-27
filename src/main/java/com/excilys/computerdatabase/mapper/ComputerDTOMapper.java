@@ -81,4 +81,18 @@ public class ComputerDTOMapper {
         }
         return listdto;
     }
+
+    public Computer dtoToObject(ComputerDTO cdto) {
+        Company c = null;
+        if (cdto.getCompanyId() != null && cdto.getCompanyName() != null) {
+            c = new Company(Long.parseLong(cdto.getCompanyId()), cdto.getCompanyName());
+        }
+        Computer.ComputerBuilder builder = new Computer.ComputerBuilder().name(cdto.getName())
+                .introduced(dtm.map(cdto.getIntroduced())).discontinued(dtm.map(cdto.getDiscontinued())).company(c);
+        if (cdto.getId() != null) {
+            builder.id(Long.parseLong(cdto.getId()));
+        }
+        Computer t = builder.build();
+        return t;
+    }
 }
