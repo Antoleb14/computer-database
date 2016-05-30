@@ -26,6 +26,7 @@
 		<servlet>2.5</servlet>
 		<checkstyle>2.17</checkstyle>
 		<spring>4.2.6.RELEASE</spring>
+		<hibernate>4.3.11.Final</hibernate>
 	</properties>
 	
 	<dependencies>
@@ -82,22 +83,6 @@
 		</dependency>
 
 		<!-- Spring -->
-<!-- 		<dependency> -->
-<!-- 		    <groupId>org.springframework</groupId> -->
-<!-- 		    <artifactId>spring-core</artifactId> -->
-<!-- 		    <version>${spring}</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 	        <groupId>org.springframework</groupId> -->
-<!-- 	        <artifactId>spring-context</artifactId> -->
-<!-- 	        <exclusions> -->
-<!-- 			   <exclusion> -->
-<!-- 				  <groupId>commons-logging</groupId> -->
-<!-- 				  <artifactId>commons-logging</artifactId> -->
-<!-- 			   </exclusion> -->
-<!-- 			</exclusions>			 -->
-<!-- 	        <version>${spring}</version> -->
-<!-- 	    </dependency> -->
 		<dependency>
 	        <groupId>org.springframework</groupId>
 	        <artifactId>spring-jdbc</artifactId>
@@ -118,6 +103,24 @@
 			   </exclusion>
 			</exclusions>
 		    <version>${spring}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring}</version>
+		</dependency>
+		
+		
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate}</version>
 		</dependency>
 		
 		<!-- Validators -->	
