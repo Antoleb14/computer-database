@@ -21,7 +21,6 @@
         <property name="poolName" value="springHikariCP" />
         <property name="dataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" />
         <property name="maximumPoolSize" value="300" />
-
         <property name="dataSourceProperties">
             <props>
                 <prop key="url">jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull</prop>
@@ -36,8 +35,25 @@
         <constructor-arg ref="hikariConfig" />
     </bean>
 	
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan" value="com.excilys.computerdatabase" />
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+            </props>
+        </property>
     </bean>
+    
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	
+	
+<!-- 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"> -->
+<!--         <property name="dataSource" ref="dataSource" /> -->
+<!--     </bean> -->
 
 </beans>

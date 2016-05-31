@@ -20,34 +20,19 @@
 	rel="stylesheet" media="screen">
 <link href="${pageContext.request.contextPath}/resources/css/main.css"
 	rel="stylesheet" media="screen">
+	
+	<spring:message code="i18n.confirmdelete" var="confirm" />
+	<script>var options = { confirm: "${confirm}" }</script>
 </head>
 <body>
-	<header class="navbar navbar-inverse navbar-fixed-top">
-		<ul class="nav navbar-nav navbar-left">
-		<li class="container">
-			<mytag:link target="home" classes="navbar-brand" label="Application - Computer Database"  />
-		</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-		<li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            <img src="${pageContext.request.contextPath}/resources/css/blank.gif" class="flag flag-${pageContext.response.locale}" /> <spring:message code="i18n.lang" text="default text" /> <span class="caret"></span>
-          </a>
-              <ul class="dropdown-menu" style="z-index:99999">
-              <li><a href="/home?language=en"><img src="${pageContext.request.contextPath}/resources/css/blank.gif" class="flag flag-uk" alt="English" /> English</a></li>
-              <li><a href="/home?language=fr"><img src="${pageContext.request.contextPath}/resources/css/blank.gif" class="flag flag-fr" alt="France" /> Français</a></li>
-              <li role="separator" class="divider"></li>
-              <li class="text-center">Current: ${pageContext.response.locale}</li>
-              </ul>
-         </li>
-         </ul>
-	</header>
+	
+	<mytag:header />
 	<section id="main">
 		<div class="container">
-			<c:if test="${ not empty success }">
-				<div class="alert alert-success">${ success }</div>
+			<c:if test="${ successNumber > 0 }">
+				<div class="alert alert-success">${ successNumber } <spring:message code="i18n.successlabel" /></div>
 			</c:if>
-			<h1 id="homeTitle">${ count } Computers found</h1>
+			<h1 id="homeTitle">${ count } <spring:message code="i18n.computersfound" text="default text" /></h1>
 			<div id="actions" class="form-horizontal">
 				<div class="pull-left">
 					<form id="searchForm" action="#" method="GET" class="form-inline">
@@ -59,8 +44,8 @@
 					</form>
 				</div>
 				<div class="pull-right">
-					<a class="btn btn-success" id="addComputer" href="addcomputer"><spring:message code="i18n.addcomputer" text="default text" /></a> <a class="btn btn-default" id="editComputer" href="#"
-						onclick="$.fn.toggleEditMode();">Edit</a>
+					<a class="btn btn-success" id="addComputer" href="addcomputer"><spring:message code="i18n.addcomputer" text="Add computer" /></a> <a class="btn btn-default" id="editComputer" href="#"
+						onclick="$.fn.toggleEditMode();"><spring:message code="i18n.edit" /></a>
 				</div>
 			</div>
 		</div>
@@ -83,7 +68,7 @@
 									class="fa fa-trash-o fa-lg"></i>
 							</a>
 						</span></th>
-						<th>Computer name 
+						<th><spring:message code="i18n.computername" /> 
 							<mytag:link target="home" label="" search="${p.search}" classes="glyphicon glyphicon-chevron-up" page="${ page.currentPage }" 
 														limit="${p.elementsByPage}" 
 														order="name" 
@@ -93,7 +78,7 @@
 														order="name" 
 														sort="DESC" />
 					    </th>
-						<th>Introduced date <mytag:link target="home" 
+						<th><spring:message code="i18n.introduced" /> <mytag:link target="home" 
 														label="" 
 														search="${p.search}" 
 														classes="glyphicon glyphicon-chevron-up"
@@ -110,7 +95,7 @@
 														order="introduced" 
 														sort="DESC" /></th>
 						<!-- Table header for Discontinued Date -->
-						<th>Discontinued date <mytag:link target="home" 
+						<th><spring:message code="i18n.discontinued" /> <mytag:link target="home" 
 														label="" 
 														search="${p.search}" 
 														classes="glyphicon glyphicon-chevron-up" 
@@ -128,7 +113,7 @@
 														sort="DESC" />
 														</th>
 						<!-- Table header for Company -->
-						<th>Company	<mytag:link target="home" 
+						<th><spring:message code="i18n.company" />	<mytag:link target="home" 
 														label="" 
 														search="${p.search}" 
 														classes="glyphicon glyphicon-chevron-up" 

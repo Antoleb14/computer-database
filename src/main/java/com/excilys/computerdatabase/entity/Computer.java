@@ -2,8 +2,16 @@ package com.excilys.computerdatabase.entity;
 
 import java.time.LocalDateTime;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * Computer Entity.
@@ -11,15 +19,28 @@ import org.springframework.beans.factory.annotation.Qualifier;
  * @author excilys
  *
  */
+@Entity
+@Table(name = "computer")
 public class Computer {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "introduced")
+    @Convert(converter = DateConverter.class)
     private LocalDateTime introduced;
+
+    @Column(name = "discontinued")
+    @Convert(converter = DateConverter.class)
     private LocalDateTime discontinued;
 
-    @Autowired
-    @Qualifier("Company")
+    @ManyToOne(targetEntity = Company.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "company_id")
     private Company company;
 
     /**

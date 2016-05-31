@@ -1,8 +1,10 @@
 com/excilys/computerdatabase/controller/Dashboard.class
+com/excilys/computerdatabase/entity/DateConverter.class
 com/excilys/computerdatabase/mapper/ComputerDTOMapper.class
 com/excilys/computerdatabase/exception/ValidatorException.class
 com/excilys/computerdatabase/mapper/IMapper.class
 com/excilys/computerdatabase/entity/ComputerDTO$ComputerDTOBuilder.class
+com/excilys/computerdatabase/persistence/ICompanyDB.class
 com/excilys/computerdatabase/controller/AddComputer.class
 com/excilys/computerdatabase/service/IService.class
 com/excilys/computerdatabase/validator/IValidator.class
@@ -18,13 +20,13 @@ com/excilys/computerdatabase/exception/MapperException.class
 com/excilys/computerdatabase/service/Order.class
 com/excilys/computerdatabase/entity/Company.class
 com/excilys/computerdatabase/exception/ServiceException.class
+com/excilys/computerdatabase/persistence/IComputerDB.class
 com/excilys/computerdatabase/persistence/SQLUtils.class
 com/excilys/computerdatabase/ui/Main.class
 com/excilys/computerdatabase/exception/SQLUtilsException.class
 com/excilys/computerdatabase/entity/Computer$ComputerBuilder.class
 com/excilys/computerdatabase/mapper/LocalDateTimeMapper.class
 com/excilys/computerdatabase/ui/LocalDateTimeTag.class
-com/excilys/computerdatabase/persistence/EntityDB.class
 com/excilys/computerdatabase/entity/CompanyDTO.class
 com/excilys/computerdatabase/persistence/ComputerDB.class
 com/excilys/computerdatabase/validator/ValidatorComputer.class

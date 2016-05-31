@@ -2184,3 +2184,138 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Can't call
 17:49:17.591 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
 17:50:19.923 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
 17:50:41.553 [main] DEBUG com.excilys.computerdatabase.ui.Main - Entering CLI mode
+12:23:10.620 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15975490: startup date [Tue May 31 12:23:10 CEST 2016]; root of context hierarchy
+12:23:10.671 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [WEB-INF/applicationContext.xml]
+12:24:14.540 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15975490: startup date [Tue May 31 12:24:14 CEST 2016]; root of context hierarchy
+12:24:14.584 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [../WEB-INF/applicationContext.xml]
+12:26:17.500 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15975490: startup date [Tue May 31 12:26:17 CEST 2016]; root of context hierarchy
+12:26:17.546 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+12:27:10.264 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15975490: startup date [Tue May 31 12:27:10 CEST 2016]; root of context hierarchy
+12:27:10.325 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+12:27:10.938 [main] INFO  com.zaxxer.hikari.HikariDataSource - springHikariCP - Started.
+12:27:11.377 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+12:27:11.382 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.3.11.Final}
+12:27:11.383 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+12:27:11.384 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+12:27:11.617 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+12:27:11.973 [main] INFO  o.h.e.t.i.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+12:27:11.977 [main] INFO  o.h.h.i.a.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+12:27:12.046 [main] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+12:27:12.766 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.ComputerDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+12:27:12.938 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.CompanyDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+12:27:13.057 [main] INFO  o.s.o.h.HibernateTransactionManager - Using DataSource [HikariDataSource (springHikariCP)] of Hibernate SessionFactory for HibernateTransactionManager
+12:29:24.715 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15975490: startup date [Tue May 31 12:29:24 CEST 2016]; root of context hierarchy
+12:29:24.754 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+12:29:25.382 [main] INFO  com.zaxxer.hikari.HikariDataSource - springHikariCP - Started.
+12:29:25.813 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+12:29:25.819 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.3.11.Final}
+12:29:25.821 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+12:29:25.822 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+12:29:26.030 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+12:29:26.365 [main] INFO  o.h.e.t.i.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+12:29:26.371 [main] INFO  o.h.h.i.a.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+12:29:26.451 [main] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+12:29:27.036 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.ComputerDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+12:29:27.359 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.CompanyDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+12:29:27.551 [main] INFO  o.s.o.h.HibernateTransactionManager - Using DataSource [HikariDataSource (springHikariCP)] of Hibernate SessionFactory for HibernateTransactionManager
+12:31:03.350 [main] ERROR com.excilys.computerdatabase.ui.Main - could not get a field value by reflection getter of com.excilys.computerdatabase.entity.Company.id; nested exception is org.hibernate.PropertyAccessException: could not get a field value by reflection getter of com.excilys.computerdatabase.entity.Company.id
+14:36:43.021 [main] ERROR com.excilys.computerdatabase.ui.Main - could not get a field value by reflection getter of com.excilys.computerdatabase.entity.Company.id; nested exception is org.hibernate.PropertyAccessException: could not get a field value by reflection getter of com.excilys.computerdatabase.entity.Company.id
+14:41:55.084 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15975490: startup date [Tue May 31 14:41:55 CEST 2016]; root of context hierarchy
+14:41:55.122 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+14:41:55.710 [main] INFO  com.zaxxer.hikari.HikariDataSource - springHikariCP - Started.
+14:41:56.143 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+14:41:56.153 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.3.11.Final}
+14:41:56.155 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+14:41:56.156 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+14:41:56.349 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+14:41:56.675 [main] INFO  o.h.e.t.i.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+14:41:56.679 [main] INFO  o.h.h.i.a.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+14:41:56.749 [main] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+14:41:57.420 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.ComputerDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+14:41:57.657 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.CompanyDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+14:41:57.788 [main] INFO  o.s.o.h.HibernateTransactionManager - Using DataSource [HikariDataSource (springHikariCP)] of Hibernate SessionFactory for HibernateTransactionManager
+14:42:02.518 [main] ERROR com.excilys.computerdatabase.ui.Main - could not get a field value by reflection getter of com.excilys.computerdatabase.entity.Company.id; nested exception is org.hibernate.PropertyAccessException: could not get a field value by reflection getter of com.excilys.computerdatabase.entity.Company.id
+14:43:38.291 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15975490: startup date [Tue May 31 14:43:38 CEST 2016]; root of context hierarchy
+14:43:38.336 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+14:43:38.954 [main] INFO  com.zaxxer.hikari.HikariDataSource - springHikariCP - Started.
+14:43:39.453 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+14:43:39.459 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.3.11.Final}
+14:43:39.461 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+14:43:39.463 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+14:43:39.673 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+14:43:39.971 [main] INFO  o.h.e.t.i.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+14:43:39.977 [main] INFO  o.h.h.i.a.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+14:43:40.064 [main] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+14:43:40.644 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.ComputerDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+14:43:40.873 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.CompanyDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+14:43:40.982 [main] INFO  o.s.o.h.HibernateTransactionManager - Using DataSource [HikariDataSource (springHikariCP)] of Hibernate SessionFactory for HibernateTransactionManager
+14:46:24.599 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15975490: startup date [Tue May 31 14:46:24 CEST 2016]; root of context hierarchy
+14:46:24.637 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+14:46:25.246 [main] INFO  com.zaxxer.hikari.HikariDataSource - springHikariCP - Started.
+14:46:25.544 [main] INFO  com.zaxxer.hikari.pool.HikariPool - springHikariCP - Close initiated...
+14:46:25.545 [main] INFO  com.zaxxer.hikari.pool.HikariPool - springHikariCP - Closed.
+14:46:25.547 [main] WARN  o.s.c.s.ClassPathXmlApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'addComputer': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: public com.excilys.computerdatabase.service.ServiceCompany com.excilys.computerdatabase.controller.AddComputer.sc; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'serviceCompany': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.excilys.computerdatabase.persistence.IComputerDB com.excilys.computerdatabase.service.ServiceCompany.CDC; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'computerDB': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.excilys.computerdatabase.persistence.SQLUtils com.excilys.computerdatabase.persistence.ComputerDB.sc; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlutils': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.zaxxer.hikari.HikariDataSource com.excilys.computerdatabase.persistence.SQLUtils.ds; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [applicationContext.xml]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Constructor threw exception; nested exception is com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: Too many connections
+14:46:59.843 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15975490: startup date [Tue May 31 14:46:59 CEST 2016]; root of context hierarchy
+14:46:59.885 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+14:47:00.497 [main] INFO  com.zaxxer.hikari.HikariDataSource - springHikariCP - Started.
+14:47:00.804 [main] INFO  com.zaxxer.hikari.pool.HikariPool - springHikariCP - Close initiated...
+14:47:00.805 [main] INFO  com.zaxxer.hikari.pool.HikariPool - springHikariCP - Closed.
+14:47:00.807 [main] WARN  o.s.c.s.ClassPathXmlApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'addComputer': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: public com.excilys.computerdatabase.service.ServiceCompany com.excilys.computerdatabase.controller.AddComputer.sc; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'serviceCompany': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.excilys.computerdatabase.persistence.IComputerDB com.excilys.computerdatabase.service.ServiceCompany.CDC; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'computerDB': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.excilys.computerdatabase.persistence.SQLUtils com.excilys.computerdatabase.persistence.ComputerDB.sc; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlutils': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.zaxxer.hikari.HikariDataSource com.excilys.computerdatabase.persistence.SQLUtils.ds; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [applicationContext.xml]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Constructor threw exception; nested exception is com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: Too many connections
+14:49:48.272 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15975490: startup date [Tue May 31 14:49:48 CEST 2016]; root of context hierarchy
+14:49:48.316 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+14:49:48.936 [main] INFO  com.zaxxer.hikari.HikariDataSource - springHikariCP - Started.
+14:49:49.408 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+14:49:49.414 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.3.11.Final}
+14:49:49.416 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+14:49:49.417 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+14:49:49.676 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+14:49:50.004 [main] INFO  o.h.e.t.i.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+14:49:50.009 [main] INFO  o.h.h.i.a.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+14:49:50.078 [main] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+14:49:50.677 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.ComputerDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+14:49:50.926 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.CompanyDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+14:49:51.108 [main] INFO  o.s.o.h.HibernateTransactionManager - Using DataSource [HikariDataSource (springHikariCP)] of Hibernate SessionFactory for HibernateTransactionManager
+14:54:10.167 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15975490: startup date [Tue May 31 14:54:10 CEST 2016]; root of context hierarchy
+14:54:10.204 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+14:54:11.017 [main] INFO  com.zaxxer.hikari.HikariDataSource - springHikariCP - Started.
+14:54:11.851 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+14:54:11.856 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.3.11.Final}
+14:54:11.883 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+14:54:11.885 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+14:54:12.125 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+14:54:12.597 [main] INFO  o.h.e.t.i.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+14:54:12.601 [main] INFO  o.h.h.i.a.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+14:54:12.662 [main] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+14:54:13.497 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.ComputerDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+14:54:13.841 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.CompanyDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+14:54:13.951 [main] INFO  o.s.o.h.HibernateTransactionManager - Using DataSource [HikariDataSource (springHikariCP)] of Hibernate SessionFactory for HibernateTransactionManager
+15:02:06.320 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15975490: startup date [Tue May 31 15:02:06 CEST 2016]; root of context hierarchy
+15:02:06.367 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+15:02:06.963 [main] INFO  com.zaxxer.hikari.HikariDataSource - springHikariCP - Started.
+15:02:07.465 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+15:02:07.470 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.3.11.Final}
+15:02:07.472 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+15:02:07.473 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+15:02:07.709 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+15:02:08.062 [main] INFO  o.h.e.t.i.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+15:02:08.066 [main] INFO  o.h.h.i.a.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+15:02:08.122 [main] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+15:02:08.737 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.ComputerDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+15:02:09.029 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.CompanyDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+15:02:09.117 [main] INFO  o.s.o.h.HibernateTransactionManager - Using DataSource [HikariDataSource (springHikariCP)] of Hibernate SessionFactory for HibernateTransactionManager
+16:17:57.398 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15975490: startup date [Tue May 31 16:17:57 CEST 2016]; root of context hierarchy
+16:17:57.479 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [../webapp/WEB-INF/applicationContext.xml]
+16:23:56.854 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15975490: startup date [Tue May 31 16:23:56 CEST 2016]; root of context hierarchy
+16:23:56.913 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+16:23:57.669 [main] INFO  com.zaxxer.hikari.HikariDataSource - springHikariCP - Started.
+16:23:58.184 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+16:23:58.190 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.3.11.Final}
+16:23:58.191 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+16:23:58.198 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+16:23:58.475 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+16:23:58.862 [main] INFO  o.h.e.t.i.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+16:23:58.886 [main] INFO  o.h.h.i.a.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+16:23:58.964 [main] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+16:23:59.710 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.ComputerDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+16:23:59.911 [main] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy method [protected final org.hibernate.Session com.excilys.computerdatabase.persistence.CompanyDB.getSession()] because it is final: All calls to this method via a proxy will NOT be routed to the target instance.
+16:24:00.173 [main] INFO  o.s.o.h.HibernateTransactionManager - Using DataSource [HikariDataSource (springHikariCP)] of Hibernate SessionFactory for HibernateTransactionManager

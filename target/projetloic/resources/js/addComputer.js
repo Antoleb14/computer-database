@@ -1,11 +1,16 @@
 var errors = [];
-var trans = {
-		name: "The name is incorrect",
-		introduced: "The introduced date is incorrect",
-		discontinued: "The discontinued date is incorrect",
-		company:"The company is incorrect"
+var def = {
+		name: "--",
+		introduced: "--",
+		discontinued: "--",
+		company:"--"
 }
 
+/*options = options || {};
+for (var opt in def)
+    if (def.hasOwnProperty(opt) && !options.hasOwnProperty(opt))
+        options[opt] = def[opt];
+*/
 function displayerror(e, f){
 	$("."+e).removeClass("has-success").addClass("has-error");
 	$("."+e+" .errmsg").html(f).show();
@@ -25,7 +30,7 @@ $(function(){
 	
     $("input[name=name]").focusout(function(){
     	if($(this).val().length == 0){
-    		displayerror("name", trans.name); 
+    		displayerror("name", options.name); 
     	}else{
     		hideerror("name");
     	}
@@ -34,14 +39,14 @@ $(function(){
     var dateregex = '(0[1-9]|[12][0-9]|3[01])[\-](0[1-9]|1[012])[\-](19[7-9][0-9]|20[0-3][0-9])';
     $("input[name=introduced]").focusout(function(){
     	if(!$(this).val().match(dateregex) && $(this).val().length > 0){
-    		displayerror("introduced", trans.introduced); 
+    		displayerror("introduced", options.introduced); 
     	}else{
     		hideerror("introduced");
     	}
     });
     $("input[name=discontinued]").focusout(function(){
     	if(!$(this).val().match(dateregex) && $(this).val().length > 0){
-    		displayerror("discontinued", trans.discontinued); 
+    		displayerror("discontinued", options.discontinued); 
     	}else{
     		hideerror("discontinued");
     	}

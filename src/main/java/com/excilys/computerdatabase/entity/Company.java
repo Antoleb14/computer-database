@@ -1,15 +1,35 @@
 package com.excilys.computerdatabase.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Company Entity.
  *
  * @author excilys
  *
  */
+@Entity
+@Table(name = "company")
 public class Company {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "name")
     private String name;
+
+    /**
+     * Default Constructor.
+     */
+    public Company() {
+    }
 
     /**
      * Constructor of the class.

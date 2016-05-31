@@ -1,22 +1,20 @@
 package com.excilys.computerdatabase.persistence;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
-import com.excilys.computerdatabase.exception.DAOException;
 import com.excilys.computerdatabase.mapper.ComputerMapper;
 import com.excilys.computerdatabase.service.Order;
 
@@ -28,10 +26,9 @@ import com.excilys.computerdatabase.service.Order;
  */
 
 @Repository("computerDB")
+@Transactional
 @Scope("singleton")
-public class ComputerDB implements EntityDB<Computer> {
-
-    private JdbcTemplate jdbcTemplate;
+public class ComputerDB implements IComputerDB<Computer> {
 
     @Autowired
     @Qualifier("computerMapper")
@@ -41,94 +38,48 @@ public class ComputerDB implements EntityDB<Computer> {
     @Qualifier("sqlutils")
     private SQLUtils sc;
 
+    @Autowired
+    private SessionFactory sessionFactory;
+
     /**
      * Constructor of the class.
      */
     public ComputerDB() {
     }
 
-    @Override
-    public Connection connect() {
-        return sc.getConnection();
+    protected final Session getSession() {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            return session;
+        } catch (HibernateException e) {
+            Session session = sessionFactory.openSession();
+            return session;
+        }
+    }
+
+    public void setSessionFactory(SessionFactory sf) {
+        this.sessionFactory = sf;
     }
 
     @Override
     public Computer create(Computer c) {
-        Connection db = connect();
-        PreparedStatement prep = null;
-        String query = "INSERT INTO computer(name, introduced, discontinued, company_id) VALUES(?, ?, ?, ?)";
-        try {
-            prep = db.prepareStatement(query);
-            prep.setString(1, c.getName());
-            if (c.getIntroduced() == null) {
-                prep.setNull(2, java.sql.Types.TIMESTAMP);
-            } else {
-                prep.setTimestamp(2, Timestamp.valueOf(c.getIntroduced()));
-            }
-            if (c.getDiscontinued() == null) {
-                prep.setNull(3, java.sql.Types.TIMESTAMP);
-            } else {
-                prep.setTimestamp(3, Timestamp.valueOf(c.getDiscontinued()));
-            }
-            if (c.getCompany() != null) {
-                prep.setLong(4, c.getCompany().getId());
-            } else {
-                prep.setNull(4, java.sql.Types.INTEGER);
-            }
-
-            prep.executeUpdate();
-            prep.close();
-            List<Computer> ls = this.findByName(c.getName());
-            c = ls.get(ls.size() - 1);
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        } finally {
-            closeConnection();
-        }
+        Session s = getSession();
+        s.save(c);
         return c;
     }
 
     @Override
     public Computer update(Computer c) {
-        Connection db = connect();
-        PreparedStatement prep = null;
-        String query = "UPDATE computer SET name = ?, introduced = ?, discontinued = ?, company_id = ? WHERE id = ?";
-        try {
-            prep = db.prepareStatement(query);
-            prep.setString(1, c.getName());
-            if (c.getIntroduced() == null) {
-                prep.setNull(2, java.sql.Types.TIMESTAMP);
-            } else {
-                prep.setTimestamp(2, Timestamp.valueOf(c.getIntroduced()));
-            }
-            if (c.getDiscontinued() == null) {
-                prep.setNull(3, java.sql.Types.TIMESTAMP);
-            } else {
-                prep.setTimestamp(3, Timestamp.valueOf(c.getDiscontinued()));
-            }
-
-            if (c.getCompany() != null) {
-                prep.setLong(4, c.getCompany().getId());
-            } else {
-                prep.setNull(4, java.sql.Types.INTEGER);
-            }
-
-            prep.setLong(5, c.getId());
-            prep.executeUpdate();
-            prep.close();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        } finally {
-            closeConnection();
-        }
+        Session s = getSession();
+        System.out.println(c);
+        s.update(c);
+        s.flush();
         return c;
     }
 
     @Override
     public Computer find(Long id) {
-        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id WHERE i.id = ?";
-        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
-        return jdbcTemplate.queryForObject(query, new Object[] { id }, new ComputerMapper());
+        return (Computer) getSession().get(Computer.class, id);
     }
 
     /**
@@ -138,10 +89,15 @@ public class ComputerDB implements EntityDB<Computer> {
      *            Name of the Computer
      * @return List of Computers found
      */
+    @SuppressWarnings("unchecked")
+    @Override
     public List<Computer> findByName(String name) {
-        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id WHERE i.name = ? ORDER BY i.id ASC";
-        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
-        return jdbcTemplate.query(query, new Object[] { name }, new ComputerMapper());
+        String hql = "SELECT i FROM Computer as i WHERE name = :name ORDER BY i.id ASC";
+        Session s = getSession();
+        Query query = s.createQuery(hql);
+        query.setParameter("name", name);
+        List<Computer> ls = query.list();
+        return ls;
     }
 
     /**
@@ -151,25 +107,14 @@ public class ComputerDB implements EntityDB<Computer> {
      *            Name of the Computer
      * @return List of Computers found
      */
+    @SuppressWarnings("unchecked")
     public List<Computer> findByCompany(String id) {
-        Connection db = connect();
-        PreparedStatement prep = null;
-        ResultSet res = null;
-        List<Computer> c = new ArrayList<Computer>();
-        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id WHERE i.company_id = ? ORDER BY i.id ASC";
-        try {
-            prep = db.prepareStatement(query);
-            prep.setString(1, id);
-            res = prep.executeQuery();
-            c = cmapper.mapAll(res);
-            prep.close();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        } finally {
-            closeConnection();
-        }
-
-        return c;
+        String hql = "SELECT i FROM Computer as i left join i.Company as c WHERE c.id = :id ORDER BY i.id ASC";
+        Session s = getSession();
+        Query query = s.createQuery(hql);
+        query.setParameter("id", id);
+        List<Computer> ls = query.list();
+        return ls;
     }
 
     /**
@@ -179,18 +124,24 @@ public class ComputerDB implements EntityDB<Computer> {
      *            Name of the Computer
      * @return List of Computers found
      */
+    @SuppressWarnings("unchecked")
     public List<Computer> findByCompany(Company t) {
-        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id WHERE i.company_id = ? ORDER BY i.id ASC";
-        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
-        return jdbcTemplate.query(query, new Object[] { t.getId() }, new ComputerMapper());
+        String hql = "SELECT i FROM Computer as i WHERE i.company = :company ORDER BY i.id ASC";
+        Session s = getSession();
+        Query query = s.createQuery(hql);
+        query.setParameter("company", t);
+        List<Computer> ls = query.list();
+        return ls;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Computer> findAll() {
-        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id ORDER BY i.name ASC";
-        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
-        List<Computer> list = jdbcTemplate.query(query, new ComputerMapper());
-        return list;
+        String hql = "SELECT i FROM Computer as i";
+        Session s = getSession();
+        Query query = s.createQuery(hql);
+        List<Computer> ls = query.list();
+        return ls;
     }
 
     /**
@@ -202,11 +153,13 @@ public class ComputerDB implements EntityDB<Computer> {
      *            number of computers by page
      * @return List of computers
      */
+    @SuppressWarnings("unchecked")
+    @Override
     public List<Computer> findBySearch(int page, int number, String search, Order order) {
         String orderQuery = "";
         StringBuilder sb = new StringBuilder();
 
-        String query = "SELECT * FROM computer i LEFT JOIN company c ON c.id = i.company_id WHERE i.name LIKE ? OR c.name LIKE ?";
+        String query = "select i from Computer as i left join i.company as c WHERE i.name LIKE :searchQ OR c.name LIKE :searchQ";
 
         if (order != null) {
             if (order.getChamp().equals("company")) {
@@ -215,41 +168,41 @@ public class ComputerDB implements EntityDB<Computer> {
                 orderQuery = " ORDER BY i." + order.getChamp() + " " + order.getOrder() + " ";
             }
         }
-        sb.append(query).append(orderQuery).append(" LIMIT ?, ?");
+        sb.append(query).append(orderQuery);
 
-        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
         String searchQ = search + "%";
-        System.out.println(number);
-        return jdbcTemplate.query(sb.toString(), new Object[] { searchQ, searchQ, page, number }, new ComputerMapper());
+        Query hql = getSession().createQuery(sb.toString());
+        hql.setParameter("searchQ", searchQ);
+        hql.setFirstResult(page);
+        hql.setMaxResults(number);
+
+        List<Computer> ls = hql.list();
+        return ls;
+        // jdbcTemplate = new JdbcTemplate(sc.getDataSource());
+        // return jdbcTemplate.query(sb.toString(), new Object[] { searchQ,
+        // searchQ, page, number }, new ComputerMapper());
     }
 
     @Override
     public int delete(Computer cmp) {
-        String query = "DELETE FROM computer WHERE id = ?";
-        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
-        return jdbcTemplate.update(query, new Object[] { cmp.getId() });
+        Session s = getSession();
+        Query query = s.createQuery("delete Computer where id = :ID");
+        query.setParameter("ID", cmp.getId());
+        int result = query.executeUpdate();
+        return result;
     }
 
+    @Override
     public int delete(List<Long> cmp) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("(");
-        for (int i = 0; i < cmp.size(); i++) {
-            if (i < cmp.size() - 1) {
-                sb.append("?, ");
-            } else {
-                sb.append("?");
-            }
-        }
-        sb.append(")");
-        cmp.toArray();
-        Object[] objs = new Object[cmp.size()];
-        for (int i = 0; i < cmp.size(); i++) {
-            objs[i] = cmp.get(i);
-        }
+        Session s = getSession();
 
-        String query = "DELETE FROM computer WHERE id IN " + sb.toString();
-        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
-        return jdbcTemplate.update(query, objs);
+        for (int i = 0; i < cmp.size(); i++) {
+            Computer comp = find(cmp.get(i));
+            s.delete(comp);
+        }
+        s.flush();
+        return cmp.size();
+
     }
 
     /**
@@ -261,10 +214,13 @@ public class ComputerDB implements EntityDB<Computer> {
      *            Computer to delete
      * @return boolean for the success of the operation
      */
+    @Override
     public int deleteByCompany(Long id) {
-        String query = "DELETE FROM computer WHERE company_id = ?";
-        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
-        return jdbcTemplate.update(query, new Object[] { id });
+        Session s = getSession();
+        Query query = s.createQuery("delete Computer where company_id = :ID");
+        query.setParameter("ID", id);
+        int result = query.executeUpdate();
+        return result;
     }
 
     /**
@@ -272,18 +228,21 @@ public class ComputerDB implements EntityDB<Computer> {
      *
      * @return integer number of computers
      */
-    public int count() {
-        String query = "SELECT COUNT(*) FROM computer";
-        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
-        return jdbcTemplate.queryForObject(query, Integer.class);
-    }
 
-    public int countBySearch(String search) {
-        String searchQuery = "WHERE c.name LIKE ? OR i.name LIKE ?";
-        String query = "SELECT COUNT(*) FROM computer i LEFT JOIN company c ON c.id = i.company_id " + searchQuery;
+    @Override
+    public long countBySearch(String search) {
+        String searchQuery = "WHERE c.name LIKE :search OR i.name LIKE ?";
+        String hql = "SELECT COUNT(*) FROM Computer as i LEFT JOIN i.company as c ON c.id = i.company ";
         String searchQ = search + "%";
-        jdbcTemplate = new JdbcTemplate(sc.getDataSource());
-        return jdbcTemplate.queryForObject(query, new Object[] { searchQ, searchQ }, Integer.class);
+        Query query = null;
+        if (search != null && !search.trim().isEmpty()) {
+            hql += searchQuery;
+            query = getSession().createQuery(hql);
+            query.setParameter("search", searchQ);
+        } else {
+            query = getSession().createQuery(hql);
+        }
+        return (long) query.uniqueResult();
     }
 
 }

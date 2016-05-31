@@ -7,6 +7,9 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.excilys.computerdatabase.entity.Company;
 import com.excilys.computerdatabase.entity.Computer;
@@ -20,6 +23,7 @@ import com.excilys.computerdatabase.service.ServicePage;
  * @author excilys
  *
  */
+@Component
 public class Main {
 
     @Autowired
@@ -41,10 +45,11 @@ public class Main {
      *            arguments
      */
     public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Main p = context.getBean(Main.class);
         LOG.debug("Entering CLI mode");
         sc = new Scanner(System.in);
-        Main m = new Main();
-        m.menu(0);
+        p.menu(0);
         sc.close();
 
     }
@@ -116,7 +121,7 @@ public class Main {
             System.out.print("Which company would you like to delete : ");
             Long comp = new Long(enterInt());
             Company company = COMPANY.find(comp);
-            LOG.debug(company.toString());
+            // LOG.debug(company.toString());
             try {
                 COMPANY.delete(company);
             } catch (Exception e) {

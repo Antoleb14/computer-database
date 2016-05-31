@@ -10,10 +10,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.excilys.computerdatabase.entity.Company;
+import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.exception.DAOException;
 import com.excilys.computerdatabase.exception.ServiceException;
-import com.excilys.computerdatabase.persistence.CompanyDB;
-import com.excilys.computerdatabase.persistence.ComputerDB;
+import com.excilys.computerdatabase.persistence.ICompanyDB;
+import com.excilys.computerdatabase.persistence.IComputerDB;
 import com.excilys.computerdatabase.persistence.SQLUtils;
 
 @Service("serviceCompany")
@@ -22,12 +23,10 @@ public class ServiceCompany implements IService<Company> {
     private Logger LOG = LoggerFactory.getLogger(ServiceComputer.class);
 
     @Autowired
-    @Qualifier("companyDB")
-    private CompanyDB CDB;
+    private IComputerDB<Computer> CDC;
 
     @Autowired
-    @Qualifier("computerDB")
-    private ComputerDB CDC;
+    private ICompanyDB<Company> CDB;
 
     @Autowired
     @Qualifier("sqlutils")

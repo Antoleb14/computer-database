@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.excilys.computerdatabase.entity.Computer;
 import com.excilys.computerdatabase.exception.DAOException;
 import com.excilys.computerdatabase.exception.ServiceException;
-import com.excilys.computerdatabase.persistence.ComputerDB;
+import com.excilys.computerdatabase.persistence.IComputerDB;
 import com.excilys.computerdatabase.validator.ValidatorComputer;
 
 @Service("serviceComputer")
@@ -23,8 +23,7 @@ public class ServiceComputer implements IService<Computer> {
     private Logger LOG = LoggerFactory.getLogger(ServiceComputer.class);
 
     @Autowired
-    @Qualifier("computerDB")
-    private ComputerDB CDB;
+    private IComputerDB<Computer> CDB;
 
     @Autowired
     @Qualifier("validatorComputer")
@@ -113,10 +112,10 @@ public class ServiceComputer implements IService<Computer> {
      * @throws DAOException
      *             Exception
      */
-    public int count() {
-        int c = 0;
+    public long count() {
+        long c = 0;
         try {
-            c = CDB.count();
+            c = CDB.countBySearch(null);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

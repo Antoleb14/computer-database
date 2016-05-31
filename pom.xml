@@ -4,7 +4,7 @@
 	<groupId>com.excilys</groupId>
 	<artifactId>projetloic</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>projetloic Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	
@@ -26,6 +26,7 @@
 		<servlet>2.5</servlet>
 		<checkstyle>2.17</checkstyle>
 		<spring>4.2.6.RELEASE</spring>
+		<hikari>2.4.6</hikari>
 		<hibernate>4.3.11.Final</hibernate>
 	</properties>
 	
@@ -164,7 +165,7 @@
         <dependency>
 		    <groupId>com.zaxxer</groupId>
 		    <artifactId>HikariCP</artifactId>
-		    <version>2.4.5</version>
+		    <version>${hikari}</version>
 		    <scope>compile</scope>
 		</dependency>
                

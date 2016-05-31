@@ -27,7 +27,7 @@ public class ServicePage {
     private ServiceComputer cs;
 
     private int page = 1;
-    private int maxPages;
+    private long maxPages;
     private int limitPerPage = 10;
     private Scanner sc = new Scanner(System.in);
 
@@ -45,8 +45,8 @@ public class ServicePage {
      *
      * @return number of pages
      */
-    public int numberOfPages() {
-        int count = cs.count();
+    public long numberOfPages() {
+        long count = cs.count();
         return (count / limitPerPage) + (count % limitPerPage > 0 ? 1 : 0);
     }
 
@@ -60,6 +60,7 @@ public class ServicePage {
     public List<Computer> pager(int page) {
         int current = (page - 1) * limitPerPage;
         System.out.println(current);
+        maxPages = numberOfPages();
         List<Computer> computers = cs.findBySearch(current, limitPerPage, "", null);
         this.page = page;
         System.out.println(computers);

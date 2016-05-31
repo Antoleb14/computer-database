@@ -1,6 +1,7 @@
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/validator/ValidatorComputer.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/Order.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/Page.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/ICompanyDB.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/MapperException.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServiceComputer.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/Company.java
@@ -15,10 +16,12 @@
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/SQLUtilsException.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/LocalDateTimeMapper.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/CompanyDB.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/DateConverter.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/controller/Dashboard.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServiceCompany.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/exception/ServiceException.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/ComputerMapper.java
+/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/IComputerDB.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/controller/HTTPErrorHandler.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/CompanyMapper.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/ComputerDTOMapper.java
@@ -30,5 +33,4 @@
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/entity/CompanyDTO.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/service/ServicePage.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/mapper/CompanyDTOMapper.java
-/home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/persistence/EntityDB.java
 /home/excilys/workspace/projetloic/src/main/java/com/excilys/computerdatabase/ui/LocalDateTimeTag.java
