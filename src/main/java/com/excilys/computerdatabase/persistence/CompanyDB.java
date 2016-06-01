@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,8 +39,6 @@ public class CompanyDB implements ICompanyDB<Company> {
     @Autowired
     @Qualifier("companyMapper")
     private CompanyMapper cmapper;
-
-    private JdbcTemplate jdbcTemplate;
 
     @Autowired
     private SessionFactory sessionFactory;

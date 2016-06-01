@@ -35,10 +35,6 @@ public class ComputerDB implements IComputerDB<Computer> {
     private ComputerMapper cmapper;
 
     @Autowired
-    @Qualifier("sqlutils")
-    private SQLUtils sc;
-
-    @Autowired
     private SessionFactory sessionFactory;
 
     /**

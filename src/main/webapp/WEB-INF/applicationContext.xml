@@ -40,6 +40,7 @@
         <property name="packagesToScan" value="com.excilys.computerdatabase" />
         <property name="hibernateProperties">
             <props>
+            	<prop key="hibernate.connection.zeroDateTimeBehavior">convertToNull</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
             </props>
         </property>

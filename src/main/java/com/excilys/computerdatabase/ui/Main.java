@@ -51,7 +51,6 @@ public class Main {
         sc = new Scanner(System.in);
         p.menu(0);
         sc.close();
-
     }
 
     public Main() {
