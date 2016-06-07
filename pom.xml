@@ -28,6 +28,8 @@
 		<spring>4.2.6.RELEASE</spring>
 		<hikari>2.4.6</hikari>
 		<hibernate>4.3.11.Final</hibernate>
+		<springSecurity>4.1.0.RELEASE</springSecurity>
+		<jackson>2.7.4</jackson>
 	</properties>
 	
 	<dependencies>
@@ -110,6 +112,21 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${spring}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${springSecurity}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${springSecurity}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${springSecurity}</version>
+		</dependency>
 		
 		
 		<!-- Hibernate -->
@@ -124,6 +141,14 @@
 			<version>${hibernate}</version>
 		</dependency>
 		
+		<!-- EHCache -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-ehcache</artifactId>
+		    <version>${hibernate}</version>
+		</dependency>
+				
+			
 		<!-- Validators -->	
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -168,7 +193,29 @@
 		    <version>${hikari}</version>
 		    <scope>compile</scope>
 		</dependency>
-               
+		
+		<!-- Jackson -->
+        <dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>${jackson}</version>
+		</dependency> 
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${jackson}</version>
+		</dependency> 
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-annotations</artifactId>
+		    <version>${jackson}</version>
+		</dependency>  
+		<dependency>
+		    <groupId>com.fasterxml.jackson.datatype</groupId>
+		    <artifactId>jackson-datatype-jsr310</artifactId>
+		    <version>${jackson}</version>
+		</dependency>   
+         
  	</dependencies>
 
 	<reporting>

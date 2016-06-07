@@ -29,6 +29,7 @@
 	<mytag:header />
 	<section id="main">
 		<div class="container">
+			
 			<c:if test="${ successNumber > 0 }">
 				<div class="alert alert-success">${ successNumber } <spring:message code="i18n.successlabel" /></div>
 			</c:if>
@@ -38,7 +39,9 @@
 					<form id="searchForm" action="#" method="GET" class="form-inline">
 
 						<input type="search" id="searchbox" name="search" value="${ p.search }"
-							class="form-control" placeholder="Search name" /> <input
+							class="form-control" placeholder="Search name" />
+					    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					    <input
 							type="submit" id="searchsubmit" value="Filter by name"
 							class="btn btn-primary" />
 					</form>
@@ -50,8 +53,9 @@
 			</div>
 		</div>
 
-		<form id="deleteForm" action="#" method="POST">
+		<form id="deleteForm" action="${pageContext.request.contextPath}/delete" method="POST">
 			<input type="hidden" name="selection" value="">
+			<input type="hidden" id="${_csrf.parameterName}" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</form>
 
 		<div class="container" style="margin-top: 10px;">
@@ -138,7 +142,7 @@
 					<c:forEach items="${p.elements}" var="computer">
 						<tr>
 							<td class="editMode"><input type="checkbox" name="cb" id="${ computer.name }_id"
-								class="cb" value="${ computer.id }"></td>
+								class="cb" value="${ computer.id }" /></td>
 							<td><mytag:link target="editcomputer" id="${ computer.name }_name" datas="computerId=${computer.id}" label="${ computer.name }"  /></td>
 							
 							<td>${computer.introduced}</td>

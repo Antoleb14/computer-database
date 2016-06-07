@@ -29,6 +29,7 @@
 	<mytag:header />
 	<section id="main">
 		<div class="container">
+			
 			<c:if test="${ successNumber > 0 }">
 				<div class="alert alert-success">${ successNumber } <spring:message code="i18n.successlabel" /></div>
 			</c:if>

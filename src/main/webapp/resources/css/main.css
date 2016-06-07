@@ -40,3 +40,13 @@ a.glyphicon:hover{
 .navbar-right{
 	margin-right:10px;
 }
+
+.navbarlink{
+	vertical-align: middle;
+    display: table-cell;
+    height: 55px;
+}
+
+.navbar-inverse .btn-link, .navbar-inverse .btn-link:focus, .navbar-inverse .btn-link:hover{
+	color:#000;	
+}

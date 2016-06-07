@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.excilys.computerdatabase.rest.View;
+import com.fasterxml.jackson.annotation.JsonView;
+
 /**
  * Computer Entity.
  *
@@ -26,21 +29,26 @@ public class Computer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
+    @JsonView(View.Summary.class)
     private Long id;
 
     @Column(name = "name")
+    @JsonView(View.Summary.class)
     private String name;
 
     @Column(name = "introduced")
     @Convert(converter = DateConverter.class)
+    @JsonView(View.Summary.class)
     private LocalDateTime introduced;
 
     @Column(name = "discontinued")
     @Convert(converter = DateConverter.class)
+    @JsonView(View.Summary.class)
     private LocalDateTime discontinued;
 
     @ManyToOne(targetEntity = Company.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
+    @JsonView(View.Summary.class)
     private Company company;
 
     /**

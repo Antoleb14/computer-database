@@ -7,6 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.cache.annotation.Cacheable;
+
+import com.excilys.computerdatabase.rest.View;
+import com.fasterxml.jackson.annotation.JsonView;
+
 /**
  * Company Entity.
  *
@@ -15,14 +22,18 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "company")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
+    @JsonView(View.Summary.class)
     private Long id;
 
     @Column(name = "name")
+    @JsonView(View.Summary.class)
     private String name;
 
     /**

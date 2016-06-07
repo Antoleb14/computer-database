@@ -227,7 +227,8 @@ public class ComputerDB implements IComputerDB<Computer> {
 
     @Override
     public long countBySearch(String search) {
-        String searchQuery = "WHERE c.name LIKE :search OR i.name LIKE ?";
+        String searchQuery = "WHERE i.name LIKE :search";// OR c.name LIKE
+                                                         // :search";
         String hql = "SELECT COUNT(*) FROM Computer as i LEFT JOIN i.company as c ON c.id = i.company ";
         String searchQ = search + "%";
         Query query = null;

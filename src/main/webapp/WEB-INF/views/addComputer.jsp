@@ -85,6 +85,7 @@
                             or
                             <mytag:link target="home" classes="btn btn-default" label="Cancel"  />
                         </div>
+                        <input type="hidden" id="${_csrf.parameterName}" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
                 </div>
             </div>

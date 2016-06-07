@@ -68,7 +68,7 @@ public class Dashboard {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
      *      response)
      */
-    @RequestMapping(value = "/home", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String deleteComputerAction(Model model, @RequestParam Map<String, String> params) {
 
         String selection = params.get("selection");
